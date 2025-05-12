@@ -10,7 +10,7 @@ This project is divided into several folders, where each folder is designed to r
 
 # Replication
 
-The Python scripts were executed with Python 3.8.10 with the additional module evaluate at version 0.4.3.  
+The Python scripts were executed with Python 3.8.10 and imported the module evaluate at version 0.4.3.  
 The AutoHotkey scripts were executed with AutoHotkey v2. **They will not work correctly if you use AutoHotkey v1.**  
 The HTML scripts should function in any browser but were tested in Microsoft Edge.  
 However, there are slight differences once embedded in Google Sites, including all hyperlinks opening a new tab: https://support.google.com/sites/thread/147825188/how-do-i-prevent-links-in-my-custom-html-embedded-code-from-opening-a-new-tab.
