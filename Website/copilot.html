@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <title>LLM-Formative</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        .pie {
+          width: 310px;
+          height: 180px;
+        }
+
+        .square {
+          height: 200px;
+          width: 225px;
+          margin: auto;
+          align-content: center;
+          text-align:center;
+        }
+
+        table {
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        /* From https://www.w3schools.com/howto/howto_css_tooltip.asp */
+        .tooltip {
+          text-align: center;
+          position: relative;
+          /* display: inline-block; */
+          /* border-bottom: 1px dotted black; */
+        }
+
+        .tooltip .tooltiptext {
+          visibility: hidden;
+          width: 220px;
+          font-size:20px;
+          background-color: #555;
+          color: #fff;
+          text-align: center;
+          border-radius: 6px;
+          padding: 5px 0;
+          position: absolute;
+          z-index: 1;
+          bottom: 125%;
+          left: 50%;
+          margin-left: -60px;
+          opacity: 0;
+          transition: opacity 0.3s;
+        }
+
+        .tooltip .tooltiptext::after {
+          content: "";
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          margin-left: -5px;
+          border-width: 5px;
+          border-style: solid;
+          border-color: #555 transparent transparent transparent;
+        }
+
+        .tooltip:hover .tooltiptext {
+          visibility: visible;
+          opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="font-size:50px; margin:0px; text-align:center;">LLM-Formative</h1>
+    <h1 style="font-size:x-large; text-align:center;">Copilot Analysis: Hover over a pie chart metric to learn about it!</h1>
+
+    <table>
+      <tr>
+        <td style="border:1px solid grey;">
+          <br>
+          <div class="tooltip" style="font-size: 23px; text-align:center;">
+            Code Quality: BLEU Score
+            <span class="tooltiptext">BLEU Score: Measure of substring similarity</span>
+          </div>
+          <div class="pie">
+            <canvas id="bleuChart"></canvas>
+          </div>
+          <div style="vertical-align:top; text-align:center;">Average: 28.04</div>
+        </td>
+        
+        <td style="border:1px solid grey;">
+          <br>
+          <div class="tooltip" style="font-size: 23px; text-align:center;">
+            Code Performance: pass@1
+            <span style="left: 60%;" class="tooltiptext">pass@1: Whether 1 LLM result passes test</span>
+          </div>
+          <div class="pie">
+            <canvas id="errorChart"></canvas>
+          </div>
+          <div class="tooltip" style="vertical-align:top;text-align:center;">
+            pass^3: 24.4
+            <span style="left: 30%;" class="tooltiptext">pass^3: Chance that 3 LLM results in a row pass test</span>
+          </div>
+        </td>
+
+        <td style="border:1px solid grey;">
+          <br>
+          <div class="tooltip" style="font-size: 23px; text-align:center;">
+            Consistency: BLEU Score
+            <span class="tooltiptext">BLEU Score: Measure of substring similarity</span>
+          </div>
+          <div class="pie">
+            <canvas id="consistChart"></canvas>
+          </div>
+          <div style="vertical-align:top; text-align:center;">Average: 93.53</div>
+        </td>
+      </tr>
+    </table>
+
+    <p></p>
+
+    <table style="width:950px;">
+      <tr>
+        <td>
+          <div class="square" style="background-color:chartreuse">
+            Code Efficiency: Good
+            <br><br>
+            Fairly consistent but prioritizes code clarity over performance, as shown by its strong bias for merge sort.
+            May require further prompting for optimal time and space complexity.
+            <br><br>
+            <b>Score: 7.5/10</b>
+          </div>
+        </td>
+
+        <td>
+          <div class="square" style="background-color:chartreuse">
+            Hallucination: Uncommon
+            <br><br>
+            For the most part, effectively and clearly explains limitations.
+            May use terminology incorrectly or return a slightly unrelated solution instead of the next best algorithm.
+            <br><br>
+            <b>Score: 8/10</b>
+          </div>
+        </td>
+
+        <td>
+          <div class="square" style="background-color:cornflowerblue">
+            Language Bias: Python
+            <br><br>
+            Frequently answers algorithm questions in Python, even when questions are aimed for
+            compiled languages. Also, uses Python terms like dictionaries instead of hash maps.
+            <br><br>
+            <b>Score: 4/10</b>
+          </div>
+        </td>
+
+        <td>
+          <div class="square" style="background-color:forestgreen">
+            Plagiarism: Minimal
+            <br><br>
+            Politely refuses to answer questions that may violate copyright licenses and 
+            has the ability to attach footnotes with links so it is easy to find the original resource.
+            <br><br>
+            <b>Score: 10/10</b>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <script>
+        // Code for Accuracy pie chart
+        const accXValues = ["<10", "10-30", "30-50", "50-70", "70+"];
+        const accYValues = [62, 138, 68, 15, 3];
+        const accSum = 286;
+        const accBarColors = [
+          "Red",
+          "Orange",
+          "Yellow",
+          "Lime",
+          "forestgreen"
+        ];
+        
+        new Chart("bleuChart", {
+          type: "pie",
+          data: {
+            labels: accXValues,
+            datasets: [{
+              backgroundColor: accBarColors,
+              hoverBackgroundColor: accBarColors,
+              hoverBorderColor: accBarColors,
+              data: accYValues
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            tooltips: {
+                callbacks: {
+                    label: (ttItem, data) => (`${Math.round(1000 * accYValues[ttItem.index] / accSum) / 10}%, ${accYValues[ttItem.index]} Samples`)
+                }
+            },
+            title: {
+              display: false,
+              text: "Code Quality: BLEU Score",
+              fontSize: 20
+            },
+            legend: {
+              labels: {
+                boxWidth: 15
+              }
+            }
+          }
+        });
+
+        const errXValues = ["Passed Test", "Failed Test", "Has Bug"];
+        const errYValues = [125, 34, 41];
+        const errSum = 200;
+        const errBarColors = [
+          "forestgreen", "Orange", "Red"
+        ];
+
+        new Chart("errorChart", {
+          type: "pie",
+          data: {
+            labels: errXValues,
+            datasets: [{
+              backgroundColor: errBarColors,
+              hoverBackgroundColor: errBarColors,
+              hoverBorderColor: errBarColors,
+              data: errYValues
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            tooltips: {
+                callbacks: {
+                    label: (ttItem, data) => (`${Math.round(1000 * errYValues[ttItem.index] / errSum) / 10}%, ${errYValues[ttItem.index]} Samples`)
+                }
+            },
+            title: {
+              display: false,
+              text: "Code Performance: pass@1",
+              fontSize: 20
+            },
+            legend: {
+              labels: {
+                boxWidth: 25
+              }
+            }
+          }
+        });
+
+        const xValues = ["<70", "70-90", "90+"]
+        const yValues = [5, 15, 99];
+        const sum = 114;
+        const barColors = [
+          "Yellow",
+          "Lime",
+          "forestgreen"
+        ];
+
+        new Chart("consistChart", {
+          type: "pie",
+          data: {
+            labels: xValues,
+            datasets: [{
+              backgroundColor: barColors,
+              hoverBackgroundColor: barColors,
+              hoverBorderColor: barColors,
+              data: yValues
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            tooltips: {
+                callbacks: {
+                    label: (ttItem, data) => (`${Math.round(1000 * yValues[ttItem.index] / sum) / 10}%, ${yValues[ttItem.index]} Samples`)
+                }
+            },
+            title: {
+              display: false,
+              text: "Consistency: BLEU Score",
+              fontSize: 20
+            }
+          }
+        });
+    </script>
+</body>
+</html>

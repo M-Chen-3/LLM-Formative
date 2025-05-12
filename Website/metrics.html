@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM-Formative</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <!-- Prototype page for explaining metrics but could not implement a good solution in time -->
+     <!-- Idea was to copy model page but with text explanations of metrics instead -->
+    <h1 style="font-size:60px; margin:0px;">LLM-Formative</h1>
+    <h1 style="font-size:xx-large;">Accuracy</h1>
+    <div style="text-align: center;">
+        <div style="max-width:600px; word-wrap:break-word; margin: 0 auto;">
+        For this metric, we used the CodeSearchNet dataset, which contains code and human descriptions of the code. 
+        We used the descriptions to input 300 prompts and compared the generated results to the correct code. 
+        Note that not all of the descriptions returned valid code, which is why the final number of samples may not be 300.
+        We evaluated the results using BLEU score, a common text metric that looks at the substrings in common.
+        A BLEU score of above 50% is considered optimal, since this means a bulk of the generated code is correct.
+        </div>
+    </div>
+</body>
+</html>
