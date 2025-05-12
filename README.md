@@ -1,6 +1,6 @@
 # LLM-Formative
 
-Welcome to LLM-Formative! Feel free to view the completed website at https://sites.google.com/view/llm-formative/home.
+Welcome to LLM-Formative! Feel free to view the completed website here: https://sites.google.com/view/llm-formative/home.  
 In addition, the final report and PDF version of the survey (instead of the original form to avoid exposing responses) for this project is provided for more detailed information.
 This project is divided into several folders, where each folder is designed to run separately from the rest.
 - The Copilot and ChatGPT Results folders contain the LLM results in the form of a text file as well as Python scripts to analyze them.
