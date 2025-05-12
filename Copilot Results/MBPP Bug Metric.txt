@@ -1,0 +1,2886 @@
+You said
+Write a python function to find the shared elements from the given two lists. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def find_shared_elements(list1, list2):
+    return list(set(list1) & set(list2))
+
+
+
+
+You said
+Write a python function to identify non-prime numbers. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def find_non_primes(limit):
+    non_primes = []
+    for num in range(2, limit + 1):
+        for i in range(2, int(num**0.5) + 1):
+            if num % i == 0:
+                non_primes.append(num)
+                break
+    return non_primes
+
+
+
+
+You said
+Write a python function to find the n largest integers from a given list of numbers, returned in descending order. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def find_n_largest(numbers, n):
+    return sorted(numbers, reverse=True)[:n]
+
+
+
+
+You said
+Write a python function to check whether the two numbers differ at one bit position only or not. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def differ_at_one_bit(num1, num2):
+    return bin(num1 ^ num2).count('1') == 1
+
+
+
+
+You said
+Write a python function to find all words which are at least 4 characters long in a string. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def find_long_words(text):
+    return [word for word in text.split() if len(word) >= 4]
+
+
+
+
+You said
+Write a python function to find squares of individual elements in a list. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def find_squares(numbers):
+    return [num ** 2 for num in numbers]
+
+
+
+
+You said
+Write a python function to find the minimum number of rotations (greater than 0) required to get the same string. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def min_rotations_to_same(string):
+    for i in range(1, len(string)):
+        if string[i:] + string[:i] == string:
+            return i
+    return -1  # Return -1 if no such rotation exists
+
+
+
+
+You said
+Write a python function to remove first and last occurrence of a given character from the string. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def remove_first_last_occurrence(string, char):
+    first_occurrence = string.find(char)
+    last_occurrence = string.rfind(char)
+    if first_occurrence != -1 and last_occurrence != -1 and first_occurrence != last_occurrence:
+        string = string[:first_occurrence] + string[first_occurrence+1:last_occurrence] + string[last_occurrence+1:]
+    return string
+
+
+
+
+You said
+Write a python function to sort a given matrix in ascending order according to the sum of its rows. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def sort_matrix_by_row_sum(matrix):
+    return sorted(matrix, key=lambda row: sum(row))
+
+
+
+
+You said
+Write a python function to find the volume of a triangular prism. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def triangular_prism_volume(base_length, height, prism_length):
+    return 0.5 * base_length * height * prism_length
+
+
+
+
+You said
+Write a python function to that returns true if the input string contains sequences of lowercase letters joined with an underscore and false otherwise. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+import re
+
+def is_valid_sequence(string):
+    return bool(re.fullmatch(r"[a-z]+(_[a-z]+)*", string))
+
+
+
+
+You said
+Write a python function that returns the perimeter of a square given its side length as input. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def square_perimeter(side_length):
+    return 4 * side_length
+
+
+
+
+You said
+Write a python function to remove characters from the first string which are present in the second string. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def remove_characters(first_string, second_string):
+    return ''.join(char for char in first_string if char not in second_string)
+
+
+
+
+You said
+Write a python function to find whether a given array of integers contains any duplicate element. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def has_duplicates(numbers):
+    return len(numbers) != len(set(numbers))
+
+
+
+
+You said
+Write a python function to check if the given number is woodball or not. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def is_woodball(number):
+    return number % 10 == 0
+
+
+
+
+You said
+Write a python function to check if a given number is one less than twice its reverse. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def is_one_less_than_twice_reverse(number):
+    reverse_number = int(str(number)[::-1])
+    return number == 2 * reverse_number - 1
+
+
+
+
+You said
+Write a python function to find the largest number that can be formed with the given list of digits. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def largest_number_from_digits(digits):
+    return int(''.join(sorted(map(str, digits), reverse=True)))
+
+
+
+
+You said
+Write a python function to check whether the given two integers have opposite sign or not. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def have_opposite_signs(num1, num2):
+    return (num1 < 0) != (num2 < 0)
+
+
+
+
+You said
+Write a python function to find the nth octagonal number. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def nth_octagonal_number(n):
+    return n * (3 * n - 2)
+
+
+
+
+You said
+Write a python function to count the number of substrings with the sum of digits equal to their length. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def count_substrings_with_sum_equals_length(string):
+    count = 0
+    for i in range(len(string)):
+        for j in range(i + 1, len(string) + 1):
+            substring = string[i:j]
+            if sum(int(char) for char in substring) == len(substring):
+                count += 1
+    return count
+
+
+
+
+You said
+Write a python function to find smallest number in a list. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def find_smallest_number(numbers):
+    return min(numbers)
+
+
+
+
+You said
+Write a python function to find the maximum difference between available pairs in the given tuple list. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def max_difference_in_pairs(tuple_list):
+    return max(abs(a - b) for a, b in tuple_list)
+
+
+
+
+You said
+Write a python function to sort a list of tuples using the second value of each tuple. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def sort_by_second_value(tuple_list):
+    return sorted(tuple_list, key=lambda x: x[1])
+
+
+
+
+You said
+Write a python function to flatten a list and sum all of its elements. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def flatten_and_sum(nested_list):
+    return sum(element for sublist in nested_list for element in sublist)
+
+
+
+
+You said
+Write a python function to count the number of positive numbers in a list. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def count_positive_numbers(numbers):
+    return sum(1 for num in numbers if num > 0)
+
+
+
+
+You said
+Write a python function to find the number of ways to partition a set of Bell numbers. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def partition_bell_numbers(n):
+    bell = [[0] * (n + 1) for _ in range(n + 1)]
+    bell[0][0] = 1
+
+    for i in range(1, n + 1):
+        bell[i][0] = bell[i - 1][i - 1]
+        for j in range(1, i + 1):
+            bell[i][j] = bell[i - 1][j - 1] + bell[i][j - 1]
+
+    return bell[n][0]
+
+
+
+
+You said
+Write a python function to check whether the given array is monotonic or not. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def is_monotonic(array):
+    return all(array[i] <= array[i + 1] for i in range(len(array) - 1)) or all(array[i] >= array[i + 1] for i in range(len(array) - 1))
+
+
+
+
+You said
+Write a python function to check whether a list contains the given sublist or not. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def contains_sublist(main_list, sublist):
+    return any(main_list[i:i+len(sublist)] == sublist for i in range(len(main_list) - len(sublist) + 1))
+
+
+
+
+You said
+Write a python function to find whether all the given tuples have equal length or not. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def all_tuples_equal_length(tuple_list):
+    return len(set(len(t) for t in tuple_list)) == 1
+
+
+
+
+You said
+Write a python function to sort a list of elements. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def sort_elements(elements):
+    return sorted(elements)
+
+
+
+
+You said
+Write a python function to check whether the given number can be represented as the difference of two squares or not. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def is_difference_of_two_squares(number):
+    return number % 2 == 0 or number % 4 == 1
+
+
+
+
+You said
+Write a python function to check whether it follows the sequence given in the patterns array. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def follows_pattern(sequence, patterns):
+    return all(sequence[i] == patterns[i % len(patterns)] for i in range(len(sequence)))
+
+
+
+
+You said
+Write a python function to find tuples which have all elements divisible by k from the given list of tuples. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def find_tuples_divisible_by_k(tuple_list, k):
+    return [t for t in tuple_list if all(element % k == 0 for element in t)]
+
+
+
+
+You said
+Write a python function to find whether a number is divisible by 11. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def is_divisible_by_11(number):
+    return number % 11 == 0
+
+
+
+
+You said
+Write a python function to check whether the length of the word is odd or not. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def is_word_length_odd(word):
+    return len(word) % 2 != 0
+
+
+
+
+You said
+Write a python function to find the nth tetrahedral number. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def nth_tetrahedral_number(n):
+    return n * (n + 1) * (n + 2) // 6
+
+
+
+
+You said
+Write a python function to find the volume of a sphere. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+import math
+
+def sphere_volume(radius):
+    return (4 / 3) * math.pi * (radius ** 3)
+
+
+
+
+You said
+Write a python function to find the character made by adding the ASCII value of all the characters of the given string modulo 26. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def character_from_ascii_modulo(string):
+    ascii_sum = sum(ord(char) for char in string)
+    return chr((ascii_sum % 26) + ord('a'))
+
+
+
+
+You said
+Write a python function to find the nth number in the newman conway sequence. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def newman_conway_sequence(n):
+    if n == 1:
+        return 1
+    elif n == 2:
+        return 1
+    
+    sequence = [0, 1, 1]
+    for i in range(3, n + 1):
+        sequence.append(sequence[sequence[i - 1]] + sequence[i - sequence[i - 1]])
+    
+    return sequence[n]
+
+
+
+
+You said
+Write a python function to find the surface area of a sphere. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+import math
+
+def sphere_surface_area(radius):
+    return 4 * math.pi * (radius ** 2)
+
+
+
+
+You said
+Write a python function to find nth centered hexagonal number. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def nth_centered_hexagonal_number(n):
+    return 3 * n * (n - 1) + 1
+
+
+
+
+You said
+Write a python function to merge three dictionaries into a single dictionary. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def merge_three_dicts(dict1, dict2, dict3):
+    return {**dict1, **dict2, **dict3}
+
+
+
+
+You said
+Write a python function to get the frequency of all the elements in a list, returned as a dictionary. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def element_frequency(lst):
+    return {element: lst.count(element) for element in set(lst)}
+
+
+
+
+You said
+Write a python function to find the closest smaller number than n. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def closest_smaller_number(n, numbers):
+    return max(filter(lambda x: x < n, numbers), default=None)
+
+
+
+
+You said
+Write a python function to find the length of the longest word. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def length_of_longest_word(words):
+    return max(len(word) for word in words)
+
+
+
+
+You said
+Write a python function to check if a string is present as a substring in a given list of string values. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def is_substring_in_list(string, string_list):
+    return any(string in s for s in string_list)
+
+
+
+
+You said
+Write a python function to check whether the given number is undulating or not. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def is_undulating_number(number):
+    num_str = str(number)
+    return len(num_str) > 2 and all(num_str[i] != num_str[i + 1] for i in range(len(num_str) - 1)) and len(set(num_str)) == 2
+
+
+
+
+You said
+Write a python function to calculate the value of 'a' to the power 'b'. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def calculate_power(a, b):
+    return a ** b
+
+
+
+
+You said
+Given a list of tuples, write a python function that returns the first value of the tuple with the smallest second value. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def first_value_with_smallest_second(tuples):
+    return min(tuples, key=lambda x: x[1])[0]
+
+
+
+
+You said
+Write a python function to find the length of the smallest list in a list of lists. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def length_of_smallest_list(list_of_lists):
+    return min(len(lst) for lst in list_of_lists)
+
+
+
+
+You said
+Write a python function to find the number of divisors of a given integer. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def count_divisors(number):
+    return sum(1 for i in range(1, number + 1) if number % i == 0)
+
+
+
+
+You said
+Write a python function to find frequency of each element in a flattened list of lists, returned in a dictionary. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+from collections import Counter
+
+def frequency_in_flattened_list(list_of_lists):
+    flattened_list = [item for sublist in list_of_lists for item in sublist]
+    return dict(Counter(flattened_list))
+
+
+
+
+You said
+Write a python function to multiply all the numbers in a list and divide with the length of the list. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+from functools import reduce
+
+def multiply_and_divide(numbers):
+    if not numbers:
+        return None  # Handle empty list case
+    product = reduce(lambda x, y: x * y, numbers)
+    return product / len(numbers)
+
+
+
+
+You said
+Write a python function to convert the given decimal number to its binary equivalent, represented as a string with no leading zeros. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def decimal_to_binary(decimal_number):
+    return bin(decimal_number)[2:]
+
+
+
+
+You said
+Write a python function to find the next smallest palindrome of a specified integer, returned as an integer. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def next_smallest_palindrome(number):
+    number += 1
+    while str(number) != str(number)[::-1]:
+        number += 1
+    return number
+
+
+
+
+You said
+Write a python function to find the kth element in the given array using 1-based indexing. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def find_kth_element(array, k):
+    return array[k - 1] if 1 <= k <= len(array) else None
+
+
+
+
+You said
+Write a python function to convert a snake case string to camel case string. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def snake_to_camel_case(snake_str):
+    words = snake_str.split('_')
+    return words[0] + ''.join(word.capitalize() for word in words[1:])
+
+
+
+
+You said
+Write a python function to find the Eulerian number a(n, m). Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def eulerian_number(n, m):
+    if m >= n or m < 0:
+        return 0
+    if m == 0:
+        return 1
+    
+    return (n - m) * eulerian_number(n - 1, m - 1) + (m + 1) * eulerian_number(n - 1, m)
+
+
+
+
+You said
+Write a python function to sort each sublist of strings in a given list of lists. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def sort_sublists(list_of_lists):
+    return [sorted(sublist) for sublist in list_of_lists]
+
+
+
+
+You said
+Write a python function to count true booleans in the given list. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def count_true_booleans(boolean_list):
+    return sum(1 for b in boolean_list if b is True)
+
+
+
+
+You said
+Write a python function to append the given list to the given tuples. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def append_list_to_tuples(tuples, lst):
+    return [t + tuple(lst) for t in tuples]
+
+
+
+
+You said
+Write a python function to merge three lists into a single sorted list. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def merge_and_sort_lists(list1, list2, list3):
+    return sorted(list1 + list2 + list3)
+
+
+
+
+You said
+Write a python function to find the number of numbers with an odd value when rotating a binary string the given number of times. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def count_odd_numbers_in_rotations(binary_str, rotations):
+    count = 0
+    for i in range(rotations):
+        rotated = binary_str[i:] + binary_str[:i]
+        decimal_value = int(rotated, 2)
+        if decimal_value % 2 != 0:
+            count += 1
+    return count
+
+
+
+
+You said
+Write a python function to find the common elements in given nested lists. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def find_common_elements(nested_lists):
+    return set.intersection(*map(set, nested_lists))
+
+
+
+
+You said
+Write a python function to check if a string represents an integer or not. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def is_integer(string):
+    return string.isdigit() or (string[0] == '-' and string[1:].isdigit())
+
+
+
+
+You said
+Write a python function to check whether all dictionaries in a list are empty or not. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def are_all_dicts_empty(dict_list):
+    return all(not bool(d) for d in dict_list)
+
+
+
+
+You said
+Write a python function to convert a given tuple of positive integers into a single integer. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def tuple_to_single_integer(tpl):
+    return int(''.join(map(str, tpl)))
+
+
+
+
+You said
+Write a python function to convert all possible convertible elements in a list of lists to floats. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def convert_to_float(list_of_lists):
+    return [[float(item) if isinstance(item, (int, float, str)) and item.replace('.', '', 1).isdigit() else item for item in sublist] for sublist in list_of_lists]
+
+
+
+
+You said
+Write a python function to convert a string to a list of strings split on the space character. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def split_string_to_list(input_string):
+    return input_string.split(' ')
+
+
+
+
+You said
+Write a python function to find the element that appears only once in a sorted array. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def find_unique_element(sorted_array):
+    return next(x for x in sorted_array if sorted_array.count(x) == 1)
+
+
+
+
+You said
+Write a python function to find the maximum absolute product between numbers in pairs of tuples within a given list. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def max_absolute_product(pairs):
+    return max(abs(a * b) for a, b in pairs)
+
+
+
+
+You said
+Write a python function to sum all amicable numbers from 1 to a specified number. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def sum_amicable_numbers(limit):
+    def divisor_sum(n):
+        return sum(i for i in range(1, n // 2 + 1) if n % i == 0)
+    
+    amicable_sum = 0
+    for a in range(1, limit + 1):
+        b = divisor_sum(a)
+        if b != a and divisor_sum(b) == a:
+            amicable_sum += a
+    return amicable_sum
+
+
+
+
+You said
+Write a python function to get the angle of a complex number. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+import math
+
+def get_angle_of_complex_number(complex_number):
+    return math.degrees(math.atan2(complex_number.imag, complex_number.real))
+
+
+
+
+You said
+Write a python function to find the maximum difference between the number of 0s and number of 1s in any sub-string of the given binary string. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def max_difference_binary_substring(binary_str):
+    max_diff = 0
+    current_diff = 0
+    for char in binary_str:
+        current_diff += 1 if char == '0' else -1
+        max_diff = max(max_diff, current_diff)
+        if current_diff < 0:
+            current_diff = 0
+    return max_diff
+
+
+
+
+You said
+Write a python function to find the sum of common divisors of two given numbers. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def sum_of_common_divisors(a, b):
+    return sum(i for i in range(1, min(a, b) + 1) if a % i == 0 and b % i == 0)
+
+
+
+
+You said
+Write a python function to multiply two integers. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def multiply_integers(a, b):
+    return a * b
+
+
+
+
+You said
+Write a python function to find words that are longer than n characters from a given list of words. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def find_long_words(words, n):
+    return [word for word in words if len(word) > n]
+
+
+
+
+You said
+Write a python function to calculate whether the matrix is a magic square. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def is_magic_square(matrix):
+    if not matrix or not all(len(row) == len(matrix) for row in matrix):
+        return False
+    
+    n = len(matrix)
+    target_sum = sum(matrix[0])
+    
+    for row in matrix:
+        if sum(row) != target_sum:
+            return False
+    
+    for col in range(n):
+        if sum(matrix[row][col] for row in range(n)) != target_sum:
+            return False
+    
+    if sum(matrix[i][i] for i in range(n)) != target_sum:
+        return False
+    
+    if sum(matrix[i][n - i - 1] for i in range(n)) != target_sum:
+        return False
+    
+    return True
+
+
+
+
+You said
+Write a python function to find the item with maximum frequency in a given list. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+from collections import Counter
+
+def find_max_frequency_item(lst):
+    return max(Counter(lst).items(), key=lambda x: x[1])[0]
+
+
+
+
+You said
+Write a python function to reverse only the vowels of a given string (where y is not a vowel). Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def reverse_vowels(s):
+    vowels = set('aeiouAEIOU')
+    s_list = list(s)
+    i, j = 0, len(s) - 1
+    
+    while i < j:
+        if s_list[i] in vowels and s_list[j] in vowels:
+            s_list[i], s_list[j] = s_list[j], s_list[i]
+            i += 1
+            j -= 1
+        if s_list[i] not in vowels:
+            i += 1
+        if s_list[j] not in vowels:
+            j -= 1
+    
+    return ''.join(s_list)
+
+
+
+
+You said
+Write a python function to convert a tuple to a string. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def tuple_to_string(tpl):
+    return ''.join(map(str, tpl))
+
+
+
+
+You said
+Write a python function to calculate the sum of the negative numbers of a given list of numbers. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def sum_negative_numbers(numbers):
+    return sum(num for num in numbers if num < 0)
+
+
+
+
+You said
+Write a python function to find the nth hexagonal number. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def hexagonal_number(n):
+    return n * (2 * n - 1)
+
+
+
+
+You said
+Write a python function to find the ratio of zeroes to non-zeroes in an array of integers. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def ratio_zeroes_to_nonzeroes(array):
+    zeroes = sum(1 for num in array if num == 0)
+    non_zeroes = len(array) - zeroes
+    return zeroes / non_zeroes if non_zeroes != 0 else float('inf')
+
+
+
+
+You said
+Write a python function to check whether the given number can be represented as sum of non-zero powers of 2 or not. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def is_sum_of_powers_of_two(number):
+    while number > 0:
+        if number % 2 == 0:
+            number //= 2
+        elif number % 2 == 1:
+            number -= 1
+        else:
+            return False
+    return number == 0
+
+
+
+
+You said
+Write a python function to find the circumference of a circle. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+import math
+
+def circumference_of_circle(radius):
+    return 2 * math.pi * radius
+
+
+
+
+You said
+Write a python function to flatten the list of lists into a single set of numbers. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def flatten_to_set(list_of_lists):
+    return set(num for sublist in list_of_lists for num in sublist)
+
+
+
+
+You said
+Write a python function to sort a list of elements. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def sort_elements(elements):
+    return sorted(elements)
+
+
+
+
+You said
+Write a python function to count number items that are identical in the same position of three given lists. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def count_identical_positions(list1, list2, list3):
+    return sum(1 for a, b, c in zip(list1, list2, list3) if a == b == c)
+
+
+
+
+You said
+Write a python function to find number of lists present in the given tuple. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def count_lists_in_tuple(tpl):
+    return sum(1 for item in tpl if isinstance(item, list))
+
+
+
+
+You said
+Write a python function to find the maximum difference between any two elements in a given array. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def max_difference(array):
+    return max(array) - min(array) if array else 0
+
+
+
+
+You said
+Write a python function that returns integers x and y that satisfy ax + by = n as a tuple, or return None if no solution exists. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def find_integers_for_equation(a, b, n):
+    for x in range(-abs(n), abs(n) + 1):
+        for y in range(-abs(n), abs(n) + 1):
+            if a * x + b * y == n:
+                return x, y
+    return None
+
+
+
+
+You said
+Write a python function to remove all elements from a given list present in another list. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def remove_elements(source_list, remove_list):
+    return [item for item in source_list if item not in remove_list]
+
+
+
+
+You said
+Write a python function to calculate the sum (n - 2*i) from i=0 to n // 2, for instance n + (n-2) + (n-4)... (until n-x =< 0). Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def sum_decreasing_by_two(n):
+    return sum(n - 2 * i for i in range(n // 2 + 1) if n - 2 * i >= 0)
+
+
+
+
+You said
+Write a python function to calculate the area of a regular polygon given the length and number of its sides. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+import math
+
+def area_of_regular_polygon(side_length, number_of_sides):
+    perimeter = side_length * number_of_sides
+    apothem = side_length / (2 * math.tan(math.pi / number_of_sides))
+    return (perimeter * apothem) / 2
+
+
+
+
+You said
+Write a python function to determine if the sum of the divisors of two integers are the same. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def has_equal_sum_of_divisors(a, b):
+    def divisor_sum(n):
+        return sum(i for i in range(1, n // 2 + 1) if n % i == 0) + n
+    
+    return divisor_sum(a) == divisor_sum(b)
+
+
+
+
+You said
+Write a python function to count the number of characters in a string that occur at the same position in the string as in the English alphabet (case insensitive). Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def count_characters_matching_alphabet_position(s):
+    return sum(1 for i, char in enumerate(s.lower(), start=1) if char.isalpha() and ord(char) - ord('a') + 1 == i)
+
+
+
+
+You said
+Write a python function that counts the number of pairs of integers in a list that xor to an even number. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def count_xor_even_pairs(lst):
+    return sum(1 for i in range(len(lst)) for j in range(i + 1, len(lst)) if (lst[i] ^ lst[j]) % 2 == 0)
+
+
+
+
+You said
+Write a python function to find the smallest power of 2 greater than or equal to n. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def smallest_power_of_two(n):
+    power = 1
+    while power < n:
+        power *= 2
+    return power
+
+
+
+
+You said
+Write a python function to count the number of occurrences of a number in a given list. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def count_occurrences(lst, num):
+    return lst.count(num)
+
+
+
+
+You said
+Write a python function to find the sum of numbers in a list within a range specified by two indices. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def sum_in_range(lst, start_index, end_index):
+    return sum(lst[start_index:end_index + 1])
+
+
+
+
+You said
+Write a python function to find the perimeter of a regular pentagon from the length of its sides. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def perimeter_of_pentagon(side_length):
+    return 5 * side_length
+
+
+
+
+You said
+Write a python function to count the number of occurence of the string 'std' in a given string. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def count_std_occurrences(s):
+    return s.count('std')
+
+
+
+
+You said
+Write a python function to check if all the elements in tuple have same data type or not. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def all_same_data_type(tpl):
+    return len(set(type(item) for item in tpl)) == 1
+
+
+
+
+You said
+Write a python function that takes in a sorted array, its length (n), and an element and returns whether the element is the majority element in the given sorted array. (The majority element is the element that occurs more than n/2 times.) Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def is_majority_element(sorted_array, n, element):
+    count = sorted_array.count(element)
+    return count > n // 2
+
+
+
+
+You said
+Write a python function to count the number of set bits (binary digits with value 1) in a given number. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def count_set_bits(num):
+    return bin(num).count('1')
+
+
+
+
+You said
+Write a python function to remove the characters which have odd index values of a given string. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def remove_odd_index_characters(s):
+    return ''.join(char for i, char in enumerate(s) if i % 2 == 0)
+
+
+
+
+You said
+Write a python function to find minimum of three numbers. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def find_minimum_of_three(a, b, c):
+    return min(a, b, c)
+
+
+
+
+You said
+Write a python function to check whether all the bits are unset in the given range or not. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def are_all_bits_unset_in_range(num, start, end):
+    mask = ((1 << (end - start + 1)) - 1) << start
+    return (num & mask) == 0
+
+
+
+
+You said
+Write a python function that takes in an array and an integer n, and re-arranges the first n elements of the given array so that all negative elements appear before positive ones, and where the relative order among negative and positive elements is preserved. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def rearrange_negatives_first(arr, n):
+    negatives = [x for x in arr[:n] if x < 0]
+    positives = [x for x in arr[:n] if x >= 0]
+    return negatives + positives + arr[n:]
+
+
+
+
+You said
+Write a python function that takes in a string and character, replaces blank spaces in the string with the character, and returns the string. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def replace_spaces_with_character(s, char):
+    return s.replace(' ', char)
+
+
+
+
+You said
+Write a python function that takes in a list and an integer n and returns a list containing the n largest items from the list. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def find_n_largest_items(lst, n):
+    return sorted(lst, reverse=True)[:n]
+
+
+
+
+You said
+Write a python function to find the lateral surface area of a cylinder. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+import math
+
+def lateral_surface_area_of_cylinder(radius, height):
+    return 2 * math.pi * radius * height
+
+
+
+
+You said
+Write a python function to find the volume of a cube given its side length. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def volume_of_cube(side_length):
+    return side_length ** 3
+
+
+
+
+You said
+Write a python function to set all even bits of a given number. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def set_all_even_bits(num):
+    bit_length = num.bit_length()
+    even_bits_mask = sum(1 << i for i in range(0, bit_length, 2))
+    return num | even_bits_mask
+
+
+
+
+You said
+Write a python function that takes in a list of tuples and returns a dictionary mapping each unique tuple to the number of times it occurs in the list. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def count_tuple_occurrences(tuples_list):
+    return {tpl: tuples_list.count(tpl) for tpl in set(tuples_list)}
+
+
+
+
+You said
+Write a python function to count the number of non-empty substrings of a given string. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def count_non_empty_substrings(s):
+    return len(s) * (len(s) + 1) // 2
+
+
+
+
+You said
+Write a python function that takes in positive integers m and n and finds the number of possible sequences of length n, such that each element is a positive integer and is greater than or equal to twice the previous element but less than or equal to m. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def count_sequences(m, n):
+    def helper(prev, length):
+        if length == 0:
+            return 1
+        count = 0
+        for i in range(2 * prev, m + 1):
+            count += helper(i, length - 1)
+        return count
+    
+    return sum(helper(i, n - 1) for i in range(1, m + 1))
+
+
+
+
+You said
+Write a python function that takes in two lists and replaces the last element of the first list with the elements of the second list. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def replace_last_element_with_list(list1, list2):
+    return list1[:-1] + list2
+
+
+
+
+You said
+Write a python function to count the total number of characters in a string. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def count_total_characters(s):
+    return len(s)
+
+
+
+
+You said
+Write a python function to find the next perfect square greater than a given number. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+import math
+
+def next_perfect_square(num):
+    root = math.ceil(math.sqrt(num))
+    return root ** 2
+
+
+
+
+You said
+Write a python function that takes an array and finds the maximum sum of a bitonic subsequence for the given array, where a sequence is bitonic if it is first increasing and then decreasing. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def max_sum_bitonic_subsequence(arr):
+    n = len(arr)
+    inc = [0] * n
+    dec = [0] * n
+
+    # Calculate maximum sum increasing subsequence
+    for i in range(n):
+        inc[i] = arr[i]
+        for j in range(i):
+            if arr[j] < arr[i]:
+                inc[i] = max(inc[i], inc[j] + arr[i])
+
+    # Calculate maximum sum decreasing subsequence
+    for i in range(n - 1, -1, -1):
+        dec[i] = arr[i]
+        for j in range(i + 1, n):
+            if arr[j] < arr[i]:
+                dec[i] = max(dec[i], dec[j] + arr[i])
+
+    # Find the maximum sum of bitonic subsequence
+    max_sum = 0
+    for i in range(n):
+        max_sum = max(max_sum, inc[i] + dec[i] - arr[i])
+
+    return max_sum
+
+
+
+
+You said
+Write a python function for computing square roots using the babylonian method. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def babylonian_square_root(num, tolerance=1e-10):
+    if num < 0:
+        raise ValueError("Cannot compute square root of a negative number")
+    
+    guess = num / 2.0
+    while abs(guess * guess - num) > tolerance:
+        guess = (guess + num / guess) / 2.0
+    return guess
+
+
+
+
+You said
+Write a python function to find the length of the longest palindromic subsequence in the given string. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def longest_palindromic_subsequence_length(s):
+    n = len(s)
+    dp = [[0] * n for _ in range(n)]
+    
+    for i in range(n):
+        dp[i][i] = 1
+
+    for length in range(2, n + 1):
+        for i in range(n - length + 1):
+            j = i + length - 1
+            if s[i] == s[j]:
+                dp[i][j] = dp[i + 1][j - 1] + 2
+            else:
+                dp[i][j] = max(dp[i + 1][j], dp[i][j - 1])
+    
+    return dp[0][n - 1]
+
+
+
+
+You said
+Write a python function that takes in an integer n and calculates the harmonic sum of n-1. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def harmonic_sum(n):
+    return sum(1 / i for i in range(1, n))
+
+
+
+
+You said
+Write a python function to find the intersection of two arrays. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def find_array_intersection(arr1, arr2):
+    return list(set(arr1) & set(arr2))
+
+
+
+
+You said
+Write a python function that takes in a tuple and an element and counts the occcurences of the element in the tuple. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def count_element_occurrences_in_tuple(tpl, element):
+    return tpl.count(element)
+
+
+
+
+You said
+Write a python function that takes in a list and an element and inserts the element before each element in the list, and returns the resulting list. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def insert_element_before_each(lst, element):
+    return [e for item in lst for e in (element, item)]
+
+
+
+
+You said
+Write a python function to convert complex numbers to polar coordinates. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+import cmath
+
+def complex_to_polar_coordinates(c):
+    return cmath.polar(c)
+
+
+
+
+You said
+Write a python function that returns the number of integer elements in a given list. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def count_integer_elements(lst):
+    return sum(1 for x in lst if isinstance(x, int))
+
+
+
+
+You said
+Write a python function that takes in a list and length n, and generates all combinations (with repetition) of the elements of the list and returns a list with a tuple for each combination. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+from itertools import combinations_with_replacement
+
+def generate_combinations_with_repetition(lst, n):
+    return list(combinations_with_replacement(lst, n))
+
+
+
+
+You said
+Write a python function that takes in a non-negative number and returns the number of prime numbers less than the given non-negative number. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def count_primes_less_than(num):
+    if num < 2:
+        return 0
+    primes = [True] * num
+    primes[0] = primes[1] = False
+    for i in range(2, int(num ** 0.5) + 1):
+        if primes[i]:
+            for j in range(i * i, num):
+                primes[j] = False
+    return sum(primes)
+
+
+
+
+You said
+Write a python function that takes in two numbers and returns a tuple with the second number and then the first number. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def swap_numbers_to_tuple(a, b):
+    return (b, a)
+
+
+
+
+You said
+Write a python function to maximize the given two tuples. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def maximize_two_tuples(tuple1, tuple2):
+    return tuple(max(a, b) for a, b in zip(tuple1, tuple2))
+
+
+
+
+You said
+Write a python function to find the nth newman–shanks–williams prime number. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def newman_shanks_williams_prime(n):
+    if n < 0:
+        raise ValueError("Input must be a non-negative integer")
+    
+    ns = [1, 1]  # Initial values for the NSWP sequence
+    for i in range(2, n + 1):
+        ns.append(2 * ns[i - 1] + ns[i - 2])
+    
+    return ns[n]
+
+
+
+
+You said
+Write a python function that takes in two tuples and performs mathematical division operation element-wise across the given tuples. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def divide_tuples_elementwise(tuple1, tuple2):
+    if len(tuple1) != len(tuple2):
+        raise ValueError("Tuples must have the same length")
+    return tuple(a / b for a, b in zip(tuple1, tuple2))
+
+
+
+
+You said
+Write a python function that takes in a list and an integer L and splits the given list into two parts where the length of the first part of the list is L, and returns the resulting lists in a tuple. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def split_list_by_length(lst, L):
+    if L > len(lst) or L < 0:
+        raise ValueError("Invalid length")
+    return lst[:L], lst[L:]
+
+
+
+
+You said
+Write a python function to calculate a dog's age in dog's years. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def calculate_dog_years(human_years):
+    if human_years < 0:
+        raise ValueError("Age cannot be negative")
+    return human_years * 7
+
+
+
+
+You said
+Write a python function that takes in a list and an integer n and splits a list for every nth element, returning a list of the resulting lists. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def split_list_every_n_elements(lst, n):
+    if n <= 0:
+        raise ValueError("n must be a positive integer")
+    return [lst[i:i + n] for i in range(0, len(lst), n)]
+
+
+
+
+You said
+Write a python function to find the lateral surface area of a cube given its side length. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def lateral_surface_area_of_cube(side_length):
+    if side_length <= 0:
+        raise ValueError("Side length must be a positive number")
+    return 4 * (side_length ** 2)
+
+
+
+
+You said
+Write a python function that takes in an integer n and returns the sum of the squares of the first n odd natural numbers. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def sum_of_squares_of_odd_numbers(n):
+    if n <= 0:
+        raise ValueError("n must be a positive integer")
+    return sum((2 * i - 1) ** 2 for i in range(1, n + 1))
+
+
+
+
+You said
+Write a python function to find the n'th star number. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def nth_star_number(n):
+    if n <= 0:
+        raise ValueError("n must be a positive integer")
+    return 6 * n * (n - 1) + 1
+
+
+
+
+You said
+Write a python function to find the ascii value of a character. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def ascii_value_of_character(char):
+    return ord(char)
+
+
+
+
+You said
+Write a python function to find the sum of even numbers at even positions of a list. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def sum_of_even_numbers_at_even_positions(lst):
+    return sum(num for i, num in enumerate(lst) if i % 2 == 0 and num % 2 == 0)
+
+
+
+
+You said
+Write a python function that takes in an integer n and finds the sum of the first n even natural numbers that are raised to the fifth power. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def sum_of_even_numbers_to_fifth_power(n):
+    if n <= 0:
+        raise ValueError("n must be a positive integer")
+    return sum((2 * i) ** 5 for i in range(1, n + 1))
+
+
+
+
+You said
+Write a python function that takes in a list of tuples and returns a list containing the rear element of each tuple. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def rear_elements_of_tuples(tuples_list):
+    return [t[-1] for t in tuples_list]
+
+
+
+
+You said
+Write a python function that takes in two tuples and subtracts the elements of the first tuple by the elements of the second tuple with the same index. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def subtract_tuples_elementwise(tuple1, tuple2):
+    if len(tuple1) != len(tuple2):
+        raise ValueError("Tuples must have the same length")
+    return tuple(a - b for a, b in zip(tuple1, tuple2))
+
+
+
+
+You said
+Write a python function that takes in a positive integer n and finds the sum of even index binomial coefficients. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+from math import comb
+
+def sum_of_even_index_binomial_coefficients(n):
+    if n < 0:
+        raise ValueError("n must be a non-negative integer")
+    return sum(comb(n, k) for k in range(0, n + 1, 2))
+
+
+
+
+You said
+Write a python function that takes in the radius and height of a cylinder and returns the the volume. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+import math
+
+def cylinder_volume(radius, height):
+    if radius <= 0 or height <= 0:
+        raise ValueError("Radius and height must be positive numbers")
+    return math.pi * (radius ** 2) * height
+
+
+
+
+You said
+Write a python function that takes in a dictionary and integer n and filters the dictionary to only include entries with values greater than or equal to n. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def filter_dictionary_by_value(d, n):
+    return {key: value for key, value in d.items() if value >= n}
+
+
+
+
+You said
+Write a python function to find the number of elements that occurs before the tuple element in the given tuple. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def count_elements_before_target(tpl, target):
+    if target not in tpl:
+        raise ValueError("Target element not found in the tuple")
+    return tpl.index(target)
+
+
+
+
+You said
+Write a python function to find the nth decagonal number. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def nth_decagonal_number(n):
+    if n <= 0:
+        raise ValueError("n must be a positive integer")
+    return 4 * n * (n - 1) + 1
+
+
+
+
+You said
+Write a python function that takes in an array and element and returns a tuple containing a boolean that indicates if the element is in the array and the index position of the element (or -1 if the element is not found). Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def check_element_in_array(arr, element):
+    is_present = element in arr
+    index = arr.index(element) if is_present else -1
+    return (is_present, index)
+
+
+
+
+You said
+Write a python function to check if the elements of a given list are unique or not. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def are_elements_unique(lst):
+    return len(lst) == len(set(lst))
+
+
+
+
+You said
+Write a python function to subtract two lists element-wise. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def subtract_lists_elementwise(list1, list2):
+    if len(list1) != len(list2):
+        raise ValueError("Lists must have the same length")
+    return [a - b for a, b in zip(list1, list2)]
+
+
+
+
+You said
+Write a python function takes in an integer and check whether the frequency of each digit in the integer is less than or equal to the digit itself. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def check_digit_frequencies(number):
+    from collections import Counter
+
+    if number < 0:
+        raise ValueError("Number must be non-negative")
+
+    digit_count = Counter(str(number))
+    return all(int(digit) >= count for digit, count in digit_count.items())
+
+
+
+
+You said
+Write a python function that takes in a list and element and checks whether all items in the list are equal to the given element. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def are_all_items_equal_to_element(lst, element):
+    return all(item == element for item in lst)
+
+
+
+
+You said
+Write a python function that checks whether a string contains the 'a' character followed by two or three 'b' characters. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+import re
+
+def contains_a_followed_by_bb_or_bbb(s):
+    return bool(re.search(r"a(bb|bbb)", s))
+
+
+
+
+You said
+Write a python function to find the largest sum of a contiguous array in the modified array which is formed by repeating the given array k times. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def max_subarray_sum_repeated(arr, k):
+    def max_subarray_sum(array):
+        max_sum = current_sum = array[0]
+        for num in array[1:]:
+            current_sum = max(num, current_sum + num)
+            max_sum = max(max_sum, current_sum)
+        return max_sum
+
+    if k == 1:
+        return max_subarray_sum(arr)
+
+    single_sum = sum(arr)
+    max_single_array = max_subarray_sum(arr)
+    max_double_array = max_subarray_sum(arr * 2)
+
+    if single_sum > 0:
+        return max_single_array + (k - 1) * single_sum
+    else:
+        return max_double_array
+
+
+
+
+You said
+Write a python function takes in an integer n and returns the sum of squares of first n even natural numbers. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def sum_of_squares_of_even_numbers(n):
+    if n <= 0:
+        raise ValueError("n must be a positive integer")
+    return sum((2 * i) ** 2 for i in range(1, n + 1))
+
+
+
+
+You said
+Write a python function to find the list of maximum length in a list of lists. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def find_longest_list(lists):
+    if not lists:
+        raise ValueError("Input list cannot be empty")
+    return max(lists, key=len)
+
+
+
+
+You said
+Write a python function to find out the number of ways of painting the fence such that at most 2 adjacent posts have the same color for the given fence with n posts and k colors. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def ways_to_paint_fence(n, k):
+    if n <= 0 or k <= 0:
+        raise ValueError("n and k must be positive integers")
+    
+    if n == 1:
+        return k
+
+    same = k
+    diff = k * (k - 1)
+    total = same + diff
+    
+    for _ in range(3, n + 1):
+        same = diff
+        diff = total * (k - 1)
+        total = same + diff
+    
+    return total
+
+
+
+
+You said
+Write a python function to find quotient of two numbers (rounded down to the nearest integer). Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def quotient_rounded_down(num1, num2):
+    if num2 == 0:
+        raise ValueError("Division by zero is not allowed")
+    return num1 // num2
+
+
+
+
+You said
+Write a python function to find the third side of a right angled triangle. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+import math
+
+def find_third_side(a, b, hypotenuse=True):
+    if a <= 0 or b <= 0:
+        raise ValueError("Side lengths must be positive numbers")
+    if hypotenuse:
+        return math.sqrt(a ** 2 + b ** 2)
+    else:
+        if a < b:
+            a, b = b, a  # Ensure 'a' is the longer side
+        return math.sqrt(a ** 2 - b ** 2)
+
+
+
+
+You said
+Write a python function to find the maximum value in a given heterogeneous list. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def find_max_in_heterogeneous_list(lst):
+    numeric_elements = [x for x in lst if isinstance(x, (int, float))]
+    if not numeric_elements:
+        raise ValueError("The list contains no numeric elements")
+    return max(numeric_elements)
+
+
+
+
+You said
+Write a python function to return the sum of all divisors of a number. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def sum_of_divisors(num):
+    if num <= 0:
+        raise ValueError("Number must be a positive integer")
+    return sum(i for i in range(1, num + 1) if num % i == 0)
+
+
+
+
+You said
+Write a python function to count inversions in an array. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def count_inversions(arr):
+    def merge_and_count(left, right):
+        merged = []
+        inversions = 0
+        i = j = 0
+
+        while i < len(left) and j < len(right):
+            if left[i] <= right[j]:
+                merged.append(left[i])
+                i += 1
+            else:
+                merged.append(right[j])
+                inversions += len(left) - i
+                j += 1
+
+        merged.extend(left[i:])
+        merged.extend(right[j:])
+        return merged, inversions
+
+    def sort_and_count(arr):
+        if len(arr) <= 1:
+            return arr, 0
+
+        mid = len(arr) // 2
+        left, left_inversions = sort_and_count(arr[:mid])
+        right, right_inversions = sort_and_count(arr[mid:])
+        merged, merge_inversions = merge_and_count(left, right)
+
+        total_inversions = left_inversions + right_inversions + merge_inversions
+        return merged, total_inversions
+
+    _, inversions = sort_and_count(arr)
+    return inversions
+
+
+
+
+You said
+Write a python function to flatten a given nested list structure. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def flatten_nested_list(nested_list):
+    flattened = []
+    for item in nested_list:
+        if isinstance(item, list):
+            flattened.extend(flatten_nested_list(item))
+        else:
+            flattened.append(item)
+    return flattened
+
+
+
+
+You said
+Write a python function to calculate the maximum aggregate from the list of tuples. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def calculate_maximum_aggregate(tuples_list):
+    return max(sum(t) for t in tuples_list)
+
+
+
+
+You said
+Write a python function to find the count of all binary sequences of length 2n such that sum of first n bits is same as sum of last n bits. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def count_binary_sequences(n):
+    from math import comb
+    if n <= 0:
+        raise ValueError("n must be a positive integer")
+    return comb(2 * n, n) // (n + 1)
+
+
+
+
+You said
+Write a python function to find the depth of a dictionary. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def find_dict_depth(d):
+    if not isinstance(d, dict) or not d:
+        return 0
+    return 1 + max(find_dict_depth(value) if isinstance(value, dict) else 0 for value in d.values())
+
+
+
+
+You said
+Write a python function to find element at a given index after number of rotations. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def find_element_after_rotations(arr, index, rotations):
+    if not arr:
+        raise ValueError("Array cannot be empty")
+    n = len(arr)
+    effective_rotations = rotations % n
+    return arr[(index - effective_rotations) % n]
+
+
+
+
+You said
+Write a python function to return two words from a list of words starting with letter 'p'. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def find_two_words_starting_with_p(words):
+    return [word for word in words if word.startswith('p')][:2]
+
+
+
+
+You said
+Write a python function to find the maximum sum of increasing subsequence from prefix until ith index and also including a given kth element which is after i, i.e., k > i . Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def max_sum_increasing_subsequence_with_kth(prefix, k, i):
+    if k >= len(prefix) or i >= len(prefix) or k <= i:
+        raise ValueError("Ensure k > i and within valid range")
+
+    dp = [0] * len(prefix)
+    dp[0] = prefix[0]
+
+    for idx in range(1, i + 1):
+        dp[idx] = max(dp[j] + prefix[idx] for j in range(idx) if prefix[j] < prefix[idx] and dp[j] != 0)
+        prefix.soemthing--superadditional helper stringfile abugfixs
+
+
+
+
+You said
+Write a python function to get a colon of a tuple. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def get_column_of_tuple(tuples, index):
+    if not tuples or not isinstance(tuples[0], tuple):
+        raise ValueError("Input must be a list of tuples")
+    return [t[index] for t in tuples if len(t) > index]
+
+
+
+
+You said
+Write a python function to find the specified number of largest products from two given lists, selecting one factor from each list. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+import heapq
+
+def find_largest_products(list1, list2, count):
+    if not list1 or not list2:
+        raise ValueError("Both lists must be non-empty")
+    if count <= 0:
+        raise ValueError("Count must be a positive integer")
+
+    max_heap = []
+    for a in list1:
+        for b in list2:
+            product = a * b
+            if len(max_heap) < count:
+                heapq.heappush(max_heap, product)
+            else:
+                heapq.heappushpop(max_heap, product)
+
+    return sorted(max_heap, reverse=True)
+
+
+
+
+You said
+Write a python function to find the maximum of two numbers. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def find_maximum(num1, num2):
+    return max(num1, num2)
+
+
+
+
+You said
+Write a python function to convert a given string to a tuple of characters. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def string_to_tuple(s):
+    return tuple(s)
+
+
+
+
+You said
+Write a python function to set the left most unset bit. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def set_leftmost_unset_bit(num):
+    if num < 0:
+        raise ValueError("Number must be non-negative")
+    position = 0
+    while (1 << position) & num:
+        position += 1
+    return num | (1 << position)
+
+
+
+
+You said
+Write a python function to find the volume of a cone. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+import math
+
+def cone_volume(radius, height):
+    if radius <= 0 or height <= 0:
+        raise ValueError("Radius and height must be positive numbers")
+    return (1/3) * math.pi * radius**2 * height
+
+
+
+
+You said
+Write a python function to find the highest power of 2 that is less than or equal to n. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def highest_power_of_2_leq_n(n):
+    if n <= 0:
+        raise ValueError("n must be a positive integer")
+    power = 1
+    while power * 2 <= n:
+        power *= 2
+    return power
+
+
+
+
+You said
+Write a python function to find the n'th lucas number. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def nth_lucas_number(n):
+    if n < 0:
+        raise ValueError("n must be a non-negative integer")
+    if n == 0:
+        return 2
+    elif n == 1:
+        return 1
+
+    lucas1, lucas2 = 2, 1
+    for _ in range(2, n + 1):
+        lucas1, lucas2 = lucas2, lucas1 + lucas2
+    return lucas2
+
+
+
+
+You said
+Write a python function to apply a given format string to all of the elements in a list. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def apply_format_to_list(format_string, elements):
+    if not isinstance(format_string, str):
+        raise ValueError("Format string must be a valid string")
+    return [format_string.format(element) for element in elements]
+
+
+
+
+You said
+Write a python function to convert more than one list to nested dictionary. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def lists_to_nested_dict(*lists):
+    if not lists:
+        raise ValueError("At least one list must be provided")
+    nested_dict = current = {}
+    for lst in lists:
+        for item in lst:
+            current[item] = {}
+            current = current[item]
+    return nested_dict
+
+
+
+
+You said
+Write a python function to find the maximum sum possible by using the given equation f(n) = max( (f(n/2) + f(n/3) + f(n/4) + f(n/5)), n). Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def max_sum_using_equation(n, memo={}):
+    if n < 0:
+        raise ValueError("n must be a non-negative integer")
+    if n == 0:
+        return 0
+    if n in memo:
+        return memo[n]
+    memo[n] = max(max_sum_using_equation(n // 2, memo) +
+                  max_sum_using_equation(n // 3, memo) +
+                  max_sum_using_equation(n // 4, memo) +
+                  max_sum_using_equation(n // 5, memo), n)
+    return memo[n]
+
+
+
+
+You said
+Write a python function to find the list with maximum length. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def find_longest_list(lists):
+    if not lists:
+        raise ValueError("Input must be a non-empty list of lists")
+    return max(lists, key=len)
+
+
+
+
+You said
+Write a python function to check if given tuple contains no duplicates. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def has_no_duplicates(tpl):
+    return len(tpl) == len(set(tpl))
+
+
+
+
+You said
+Write a python function to find the first non-repeated character in a given string. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def first_non_repeated_character(s):
+    char_count = {}
+    for char in s:
+        char_count[char] = char_count.get(char, 0) + 1
+    for char in s:
+        if char_count[char] == 1:
+            return char
+    return None
+
+
+
+
+You said
+Write a python function to check whether the given string starts and ends with the same character or not. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def starts_and_ends_with_same_char(s):
+    if not s:
+        raise ValueError("String cannot be empty")
+    return s[0] == s[-1]
+
+
+
+
+You said
+Write a python function to find the median of three numbers. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def find_median_of_three(a, b, c):
+    return sorted([a, b, c])[1]
+
+
+
+
+You said
+Write a python function to compute the sum of digits of each number of a given list. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def sum_of_digits_in_list(numbers):
+    if not numbers:
+        raise ValueError("Input list cannot be empty")
+    return [sum(int(digit) for digit in str(number) if digit.isdigit()) for number in numbers]
+
+
+
+
+You said
+Write a python function to perform the mathematical bitwise xor operation across the given tuples. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def bitwise_xor_across_tuples(tuples):
+    if not tuples:
+        raise ValueError("Input must be a non-empty list of tuples")
+    return [a ^ b for a, b in tuples]
+
+
+
+
+You said
+Write a python function to extract the number of unique tuples in the given list. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def count_unique_tuples(tuples_list):
+    if not tuples_list:
+        raise ValueError("Input list cannot be empty")
+    return len(set(tuples_list))
+
+
+
+
+You said
+Write a python function to perform index wise addition of tuple elements in the given two nested tuples. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def index_wise_addition(tuple1, tuple2):
+    if len(tuple1) != len(tuple2):
+        raise ValueError("Both tuples must have the same length")
+    return tuple(a + b for a, b in zip(tuple1, tuple2))
+
+
+
+
+You said
+Write a python function to find the minimum of two numbers. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def find_minimum(num1, num2):
+    return min(num1, num2)
+
+
+
+
+You said
+Write a python function to check whether an element exists within a tuple. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def element_exists_in_tuple(tpl, element):
+    return element in tpl
+
+
+
+
+You said
+Write a python function to find whether the parity of a given number is odd. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def is_odd_parity(number):
+    if number < 0:
+        raise ValueError("Number must be non-negative")
+    return bin(number).count('1') % 2 != 0
+
+
+
+
+You said
+Write a python function to create the next bigger number by rearranging the digits of a given number. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def next_bigger_number(n):
+    digits = list(str(n))
+    i = len(digits) - 2
+
+    while i >= 0 and digits[i] >= digits[i + 1]:
+        i -= 1
+
+    if i == -1:
+        return -1
+
+    j = len(digits) - 1
+    while digits[j] <= digits[i]:
+        j -= 1
+
+    digits[i], digits[j] = digits[j], digits[i]
+    digits = digits[:i + 1] + sorted(digits[i + 1:])
+
+    return int(''.join(digits))
+
+
+
+
+You said
+Write a python function to find k number of smallest pairs which consist of one element from the first array and one element from the second array. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+import heapq
+
+def k_smallest_pairs(nums1, nums2, k):
+    if not nums1 or not nums2 or k <= 0:
+        raise ValueError("Invalid input: non-empty lists and positive k required")
+
+    min_heap = []
+    for i in range(min(k, len(nums1))):
+        heapq.heappush(min_heap, (nums1[i] + nums2[0], i, 0))
+
+    result = []
+    while min_heap and len(result) < k:
+        _, i, j = heapq.heappop(min_heap)
+        result.append((nums1[i], nums2[j]))
+        if j + 1 < len(nums2):
+            heapq.heappush(min_heap, (nums1[i] + nums2[j + 1], i, j + 1))
+
+    return result
+
+
+
+
+You said
+Write a python function to find the minimum product from the pairs of tuples within a given list. Please only include a code box without an example.
+Copilot said
+python
+
+Copy
+def min_product_of_pairs(tuples):
+    if not tuples:
+        raise ValueError("Input list cannot be empty")
+    return min(a * b for a, b in tuples)

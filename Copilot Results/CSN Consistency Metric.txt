@@ -1,0 +1,5663 @@
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Creates a new database in CosmosDB.
+Copilot said
+python
+
+Copy
+from azure.cosmos import CosmosClient
+
+def create_cosmosdb_database(endpoint, key, database_name):
+    """
+    Creates a new database in Azure CosmosDB.
+
+    Parameters:
+        endpoint (str): The CosmosDB account endpoint URL.
+        key (str): The primary key for the CosmosDB account.
+        database_name (str): The name of the database to create.
+
+    Returns:
+        DatabaseProxy: The proxy object representing the created database.
+    """
+    client = CosmosClient(endpoint, credential=key)
+    database = client.create_database_if_not_exists(id=database_name)
+    return database
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Creates a new database in CosmosDB.
+Copilot said
+python
+
+Copy
+from azure.cosmos import CosmosClient
+
+def create_cosmosdb_database(endpoint, key, database_name):
+    """
+    Creates a new database in Azure CosmosDB.
+
+    Parameters:
+        endpoint (str): The CosmosDB account endpoint URL.
+        key (str): The primary key for the CosmosDB account.
+        database_name (str): The name of the database to create.
+
+    Returns:
+        DatabaseProxy: The proxy object representing the created database.
+    """
+    client = CosmosClient(endpoint, credential=key)
+    database = client.create_database(id=database_name)
+    return database
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Creates a new database in CosmosDB.
+Copilot said
+python
+
+Copy
+from azure.cosmos import CosmosClient
+
+def create_cosmosdb_database(endpoint, key, database_name):
+    """
+    Creates a new database in Azure CosmosDB.
+
+    Parameters:
+        endpoint (str): The CosmosDB account endpoint URL.
+        key (str): The primary key for the CosmosDB account.
+        database_name (str): The name of the database to create.
+
+    Returns:
+        DatabaseProxy: The proxy object representing the created database.
+    """
+    client = CosmosClient(endpoint, credential=key)
+    database = client.create_database(id=database_name)
+    return database
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Creates a new database in CosmosDB.
+Copilot said
+python
+
+Copy
+from azure.cosmos import CosmosClient
+
+def create_cosmosdb_database(endpoint, key, database_name):
+    """
+    Creates a new database in Azure CosmosDB.
+
+    Parameters:
+        endpoint (str): The CosmosDB account endpoint URL.
+        key (str): The primary key for the CosmosDB account.
+        database_name (str): The name of the database to create.
+
+    Returns:
+        DatabaseProxy: The proxy object representing the created database.
+    """
+    client = CosmosClient(endpoint, credential=key)
+    database = client.create_database(id=database_name)
+    return database
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Creates a new database in CosmosDB.
+Copilot said
+python
+
+Copy
+from azure.cosmos import CosmosClient
+
+def create_cosmosdb_database(endpoint, key, database_name):
+    """
+    Creates a new database in Azure CosmosDB.
+
+    Parameters:
+        endpoint (str): The CosmosDB account endpoint URL.
+        key (str): The primary key for the CosmosDB account.
+        database_name (str): The name of the database to create.
+
+    Returns:
+        DatabaseProxy: The proxy object representing the created database.
+    """
+    client = CosmosClient(endpoint, credential=key)
+    database = client.create_database(id=database_name)
+    return database
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Creates a dag run for the specified dag
+    :param args:
+    :return:
+Copilot said
+python
+
+Copy
+from airflow.api.client.local_client import Client
+
+def create_dag_run(dag_id, run_id, conf=None, execution_date=None):
+    """
+    Creates a DAG run for the specified DAG.
+
+    Parameters:
+        dag_id (str): The ID of the DAG to trigger.
+        run_id (str): A unique identifier for this DAG run.
+        conf (dict, optional): Configuration dictionary for the DAG run.
+        execution_date (datetime, optional): The execution date for the DAG run.
+
+    Returns:
+        DagRun: The created DAG run object.
+    """
+    client = Client(None)
+    dag_run = client.trigger_dag(dag_id=dag_id, run_id=run_id, conf=conf, execution_date=execution_date)
+    return dag_run
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Creates a dag run for the specified dag
+    :param args:
+    :return:
+Copilot said
+python
+
+Copy
+from airflow.models import DagRun
+from airflow.utils.state import State
+from airflow.utils.timezone import utcnow
+
+def create_dag_run(dag, execution_date=None, state=State.RUNNING, conf=None, external_trigger=True):
+    """
+    Creates a DAG run for the specified DAG.
+
+    Parameters:
+        dag (DAG): The DAG object for which the DAG run will be created.
+        execution_date (datetime, optional): The execution date for the DAG run. Defaults to the current UTC time.
+        state (str, optional): The initial state of the DAG run. Defaults to 'running'.
+        conf (dict, optional): Configuration dictionary for the DAG run.
+        external_trigger (bool, optional): Indicates if this DAG run was externally triggered. Defaults to True.
+
+    Returns:
+        DagRun: The created DAG run object.
+    """
+    if execution_date is None:
+        execution_date = utcnow()
+
+    dag_run = DagRun(
+        dag_id=dag.dag_id,
+        execution_date=execution_date,
+        state=state,
+        conf=conf,
+        external_trigger=external_trigger
+    )
+    
+    dag_run.dag = dag  # Associate the DAG with the DAG run
+    dag_run.verify_integrity()  # Ensure the DAG run configuration is valid
+    dag_run.schedule_dag()  # Schedule the DAG for execution
+    
+    return dag_run
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Creates a dag run for the specified dag
+    :param args:
+    :return:
+Copilot said
+python
+
+Copy
+from airflow.api.common.experimental.trigger_dag import trigger_dag
+
+def create_dag_run(dag_id, run_id, conf=None, execution_date=None):
+    """
+    Creates a DAG run for the specified DAG.
+
+    Parameters:
+        dag_id (str): The ID of the DAG to trigger.
+        run_id (str): A unique identifier for this DAG run.
+        conf (dict, optional): Configuration dictionary for the DAG run.
+        execution_date (datetime, optional): The execution date for the DAG run.
+
+    Returns:
+        DagRun: The triggered DAG run object.
+    """
+    dag_run = trigger_dag(dag_id=dag_id, run_id=run_id, conf=conf, execution_date=execution_date)
+    return dag_run
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Creates a dag run for the specified dag
+    :param args:
+    :return:
+Copilot said
+python
+
+Copy
+from airflow.api.common.experimental.trigger_dag import trigger_dag
+
+def create_dag_run(dag_id, run_id, conf=None, execution_date=None):
+    """
+    Creates a DAG run for the specified DAG.
+
+    Parameters:
+        dag_id (str): The ID of the DAG to trigger.
+        run_id (str): A unique identifier for this DAG run.
+        conf (dict, optional): Configuration dictionary for the DAG run.
+        execution_date (datetime, optional): The execution date for the DAG run.
+
+    Returns:
+        DagRun: The triggered DAG run object.
+    """
+    dag_run = trigger_dag(dag_id=dag_id, run_id=run_id, conf=conf, execution_date=execution_date)
+    return dag_run
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Creates a dag run for the specified dag
+    :param args:
+    :return:
+Copilot said
+python
+
+Copy
+from airflow.api.common.experimental.trigger_dag import trigger_dag
+
+def create_dag_run(dag_id, run_id, conf=None, execution_date=None):
+    """
+    Creates a DAG run for the specified DAG.
+
+    Parameters:
+        dag_id (str): The ID of the DAG to trigger.
+        run_id (str): A unique identifier for this DAG run.
+        conf (dict, optional): Configuration dictionary for the DAG run.
+        execution_date (datetime, optional): The execution date for the DAG run.
+
+    Returns:
+        DagRun: The triggered DAG run object.
+    """
+    return trigger_dag(dag_id=dag_id, run_id=run_id, conf=conf, execution_date=execution_date)
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Function decorator that provides a session if it isn't provided.
+    If you want to reuse a session or run the function as part of a
+    database transaction, you pass it to the function, if not this wrapper
+    will create one and close it for you.
+Copilot said
+python
+
+Copy
+from functools import wraps
+from sqlalchemy.orm import Session
+from sqlalchemy import create_engine
+
+def provide_session(func):
+    """
+    Function decorator that provides a session if it isn't provided.
+    If you want to reuse a session or run the function as part of a
+    database transaction, you pass it to the function, if not this wrapper
+    will create one and close it for you.
+
+    Parameters:
+        func (callable): The function to be decorated.
+
+    Returns:
+        callable: The wrapped function.
+    """
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        session = kwargs.get('session')
+        close_session = False
+
+        if session is None:
+            engine = create_engine("sqlite:///:memory:")  # Replace with your actual database URI
+            session = Session(bind=engine)
+            kwargs['session'] = session
+            close_session = True
+
+        try:
+            result = func(*args, **kwargs)
+        finally:
+            if close_session:
+                session.close()
+
+        return result
+
+    return wrapper
+```
+1
+github.com
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Function decorator that provides a session if it isn't provided.
+    If you want to reuse a session or run the function as part of a
+    database transaction, you pass it to the function, if not this wrapper
+    will create one and close it for you.
+Copilot said
+python
+
+Copy
+from functools import wraps
+from sqlalchemy.orm import Session
+from sqlalchemy import create_engine
+
+def provide_session(func):
+    """
+    Function decorator that provides a session if it isn't provided.
+    If you want to reuse a session or run the function as part of a
+    database transaction, you pass it to the function, if not this wrapper
+    will create one and close it for you.
+
+    Parameters:
+        func (callable): The function to be decorated.
+
+    Returns:
+        callable: The wrapped function.
+    """
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        session = kwargs.get('session')
+        close_session = False
+
+        if session is None:
+            engine = create_engine("sqlite:///:memory:")  # Replace with your actual database URI
+            session = Session(bind=engine)
+            kwargs['session'] = session
+            close_session = True
+
+        try:
+            result = func(*args, **kwargs)
+        finally:
+            if close_session:
+                session.close()
+
+        return result
+
+    return wrapper
+```
+1
+github.com
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Function decorator that provides a session if it isn't provided.
+    If you want to reuse a session or run the function as part of a
+    database transaction, you pass it to the function, if not this wrapper
+    will create one and close it for you.
+Copilot said
+python
+
+Copy
+from functools import wraps
+from sqlalchemy.orm import Session
+from sqlalchemy import create_engine
+
+def provide_session(func):
+    """
+    Function decorator that provides a session if it isn't provided.
+    If you want to reuse a session or run the function as part of a
+    database transaction, you pass it to the function, if not this wrapper
+    will create one and close it for you.
+
+    Parameters:
+        func (callable): The function to be decorated.
+
+    Returns:
+        callable: The wrapped function.
+    """
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        session = kwargs.get('session')
+        close_session = False
+
+        if session is None:
+            engine = create_engine("sqlite:///:memory:")  # Replace with your actual database URI
+            session = Session(bind=engine)
+            kwargs['session'] = session
+            close_session = True
+
+        try:
+            result = func(*args, **kwargs)
+        finally:
+            if close_session:
+                session.close()
+
+        return result
+
+    return wrapper
+```
+1
+github.com
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Function decorator that provides a session if it isn't provided.
+    If you want to reuse a session or run the function as part of a
+    database transaction, you pass it to the function, if not this wrapper
+    will create one and close it for you.
+Copilot said
+python
+
+Copy
+from functools import wraps
+from sqlalchemy.orm import Session
+from sqlalchemy import create_engine
+
+def provide_session(func):
+    """
+    Function decorator that provides a session if it isn't provided.
+    If you want to reuse a session or run the function as part of a
+    database transaction, you pass it to the function, if not this wrapper
+    will create one and close it for you.
+
+    Parameters:
+        func (callable): The function to be decorated.
+
+    Returns:
+        callable: The wrapped function.
+    """
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        session = kwargs.get('session')
+        close_session = False
+
+        if session is None:
+            engine = create_engine("sqlite:///:memory:")  # Replace with your actual database URI
+            session = Session(bind=engine)
+            kwargs['session'] = session
+            close_session = True
+
+        try:
+            result = func(*args, **kwargs)
+        finally:
+            if close_session:
+                session.close()
+
+        return result
+
+    return wrapper
+```
+1
+github.com
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Function decorator that provides a session if it isn't provided.
+    If you want to reuse a session or run the function as part of a
+    database transaction, you pass it to the function, if not this wrapper
+    will create one and close it for you.
+Copilot said
+python
+
+Copy
+from functools import wraps
+from sqlalchemy.orm import Session
+from sqlalchemy import create_engine
+
+def provide_session(func):
+    """
+    Function decorator that provides a session if it isn't provided.
+    If you want to reuse a session or run the function as part of a
+    database transaction, you pass it to the function, if not this wrapper
+    will create one and close it for you.
+
+    Parameters:
+        func (callable): The function to be decorated.
+
+    Returns:
+        callable: The wrapped function.
+    """
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        session = kwargs.get('session')
+        close_session = False
+
+        if session is None:
+            engine = create_engine("sqlite:///:memory:")  # Replace with your actual database URI
+            session = Session(bind=engine)
+            kwargs['session'] = session
+            close_session = True
+
+        try:
+            result = func(*args, **kwargs)
+        finally:
+            if close_session:
+                session.close()
+
+        return result
+
+    return wrapper
+```
+1
+github.com
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Returns a JSON with a dag_run's public instance variables.
+    The format for the exec_date is expected to be
+    "YYYY-mm-DDTHH:MM:SS", for example: "2016-11-16T11:34:15". This will
+    of course need to have been encoded for URL in the request.
+Copilot said
+python
+
+Copy
+import json
+from airflow.utils.timezone import parse
+
+def dag_run_to_json(dag_run):
+    """
+    Returns a JSON with a dag_run's public instance variables.
+
+    Parameters:
+        dag_run (DagRun): The DAG run object.
+
+    Returns:
+        str: A JSON string representation of the DAG run's public instance variables.
+    """
+    dag_run_data = {
+        "dag_id": dag_run.dag_id,
+        "run_id": dag_run.run_id,
+        "state": dag_run.state,
+        "execution_date": dag_run.execution_date.strftime("%Y-%m-%dT%H:%M:%S") if dag_run.execution_date else None,
+        "start_date": dag_run.start_date.strftime("%Y-%m-%dT%H:%M:%S") if dag_run.start_date else None,
+        "end_date": dag_run.end_date.strftime("%Y-%m-%dT%H:%M:%S") if dag_run.end_date else None,
+        "conf": dag_run.conf
+    }
+    return json.dumps(dag_run_data)
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Returns a JSON with a dag_run's public instance variables.
+    The format for the exec_date is expected to be
+    "YYYY-mm-DDTHH:MM:SS", for example: "2016-11-16T11:34:15". This will
+    of course need to have been encoded for URL in the request.
+Copilot said
+python
+
+Copy
+import json
+
+def dag_run_to_json(dag_run):
+    """
+    Returns a JSON with a dag_run's public instance variables.
+
+    Parameters:
+        dag_run (DagRun): The DAG run object.
+
+    Returns:
+        str: A JSON string representation of the DAG run's public instance variables.
+    """
+    dag_run_data = {
+        "dag_id": dag_run.dag_id,
+        "run_id": dag_run.run_id,
+        "state": dag_run.state,
+        "execution_date": dag_run.execution_date.strftime("%Y-%m-%dT%H:%M:%S") if dag_run.execution_date else None,
+        "start_date": dag_run.start_date.strftime("%Y-%m-%dT%H:%M:%S") if dag_run.start_date else None,
+        "end_date": dag_run.end_date.strftime("%Y-%m-%dT%H:%M:%S") if dag_run.end_date else None,
+        "conf": dag_run.conf
+    }
+    return json.dumps(dag_run_data)
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Returns a JSON with a dag_run's public instance variables.
+    The format for the exec_date is expected to be
+    "YYYY-mm-DDTHH:MM:SS", for example: "2016-11-16T11:34:15". This will
+    of course need to have been encoded for URL in the request.
+Copilot said
+python
+
+Copy
+import json
+
+def dag_run_to_json(dag_run):
+    """
+    Returns a JSON with a dag_run's public instance variables.
+
+    Parameters:
+        dag_run (DagRun): The DAG run object.
+
+    Returns:
+        str: A JSON string representation of the DAG run's public instance variables.
+    """
+    dag_run_data = {
+        "dag_id": dag_run.dag_id,
+        "run_id": dag_run.run_id,
+        "state": dag_run.state,
+        "execution_date": dag_run.execution_date.strftime("%Y-%m-%dT%H:%M:%S") if dag_run.execution_date else None,
+        "start_date": dag_run.start_date.strftime("%Y-%m-%dT%H:%M:%S") if dag_run.start_date else None,
+        "end_date": dag_run.end_date.strftime("%Y-%m-%dT%H:%M:%S") if dag_run.end_date else None,
+        "conf": dag_run.conf
+    }
+    return json.dumps(dag_run_data)
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Returns a JSON with a dag_run's public instance variables.
+    The format for the exec_date is expected to be
+    "YYYY-mm-DDTHH:MM:SS", for example: "2016-11-16T11:34:15". This will
+    of course need to have been encoded for URL in the request.
+Copilot said
+python
+
+Copy
+import json
+
+def dag_run_to_json(dag_run):
+    """
+    Returns a JSON with a dag_run's public instance variables.
+
+    Parameters:
+        dag_run (DagRun): The DAG run object.
+
+    Returns:
+        str: A JSON string representation of the DAG run's public instance variables.
+    """
+    dag_run_data = {
+        "dag_id": dag_run.dag_id,
+        "run_id": dag_run.run_id,
+        "state": dag_run.state,
+        "execution_date": dag_run.execution_date.strftime("%Y-%m-%dT%H:%M:%S") if dag_run.execution_date else None,
+        "start_date": dag_run.start_date.strftime("%Y-%m-%dT%H:%M:%S") if dag_run.start_date else None,
+        "end_date": dag_run.end_date.strftime("%Y-%m-%dT%H:%M:%S") if dag_run.end_date else None,
+        "conf": dag_run.conf
+    }
+    return json.dumps(dag_run_data)
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Returns a JSON with a dag_run's public instance variables.
+    The format for the exec_date is expected to be
+    "YYYY-mm-DDTHH:MM:SS", for example: "2016-11-16T11:34:15". This will
+    of course need to have been encoded for URL in the request.
+Copilot said
+python
+
+Copy
+import json
+
+def dag_run_to_json(dag_run):
+    """
+    Returns a JSON with a dag_run's public instance variables.
+
+    Parameters:
+        dag_run (DagRun): The DAG run object.
+
+    Returns:
+        str: A JSON string representation of the DAG run's public instance variables.
+    """
+    dag_run_data = {
+        "dag_id": dag_run.dag_id,
+        "run_id": dag_run.run_id,
+        "state": dag_run.state,
+        "execution_date": dag_run.execution_date.strftime("%Y-%m-%dT%H:%M:%S") if dag_run.execution_date else None,
+        "start_date": dag_run.start_date.strftime("%Y-%m-%dT%H:%M:%S") if dag_run.start_date else None,
+        "end_date": dag_run.end_date.strftime("%Y-%m-%dT%H:%M:%S") if dag_run.end_date else None,
+        "conf": dag_run.conf
+    }
+    return json.dumps(dag_run_data)
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Gets the latest state of a long-running operation.
+
+        .. seealso::
+            https://cloud.google.com/datastore/docs/reference/data/rest/v1/projects.operations/get
+
+        :param name: the name of the operation resource.
+        :type name: str
+        :return: a resource operation instance.
+        :rtype: dict
+Copilot said
+python
+
+Copy
+from google.cloud import datastore
+
+def get_operation_state(name):
+    """
+    Gets the latest state of a long-running operation.
+
+    Parameters:
+        name (str): The name of the operation resource.
+
+    Returns:
+        dict: A resource operation instance.
+    """
+    client = datastore.Client()
+    operation = client.get(name=name)
+    return operation
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Gets the latest state of a long-running operation.
+
+        .. seealso::
+            https://cloud.google.com/datastore/docs/reference/data/rest/v1/projects.operations/get
+
+        :param name: the name of the operation resource.
+        :type name: str
+        :return: a resource operation instance.
+        :rtype: dict
+Copilot said
+python
+
+Copy
+from google.cloud import operations_v1
+
+def get_operation_state(name):
+    """
+    Gets the latest state of a long-running operation.
+
+    .. seealso::
+        https://cloud.google.com/datastore/docs/reference/data/rest/v1/projects.operations/get
+
+    Parameters:
+        name (str): The name of the operation resource.
+
+    Returns:
+        dict: A resource operation instance.
+    """
+    client = operations_v1.OperationsClient()
+    operation = client.get_operation(name=name)
+    return {
+        "name": operation.name,
+        "done": operation.done,
+        "metadata": operation.metadata,
+        "response": operation.response if operation.done else None,
+        "error": operation.error if operation.done and operation.HasField("error") else None,
+    }
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Gets the latest state of a long-running operation.
+
+        .. seealso::
+            https://cloud.google.com/datastore/docs/reference/data/rest/v1/projects.operations/get
+
+        :param name: the name of the operation resource.
+        :type name: str
+        :return: a resource operation instance.
+        :rtype: dict
+Copilot said
+python
+
+Copy
+from google.cloud import operations_v1
+
+def get_operation_state(name):
+    """
+    Gets the latest state of a long-running operation.
+
+    .. seealso::
+        https://cloud.google.com/datastore/docs/reference/data/rest/v1/projects.operations/get
+
+    Parameters:
+        name (str): The name of the operation resource.
+
+    Returns:
+        dict: A resource operation instance.
+    """
+    client = operations_v1.OperationsClient()
+    operation = client.get_operation(name=name)
+    return {
+        "name": operation.name,
+        "done": operation.done,
+        "metadata": dict(operation.metadata),
+        "response": dict(operation.response) if operation.done else None,
+        "error": dict(operation.error) if operation.done and operation.HasField("error") else None,
+    }
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Gets the latest state of a long-running operation.
+
+        .. seealso::
+            https://cloud.google.com/datastore/docs/reference/data/rest/v1/projects.operations/get
+
+        :param name: the name of the operation resource.
+        :type name: str
+        :return: a resource operation instance.
+        :rtype: dict
+Copilot said
+python
+
+Copy
+from google.longrunning import operations_pb2
+from google.api_core.operations_v1 import OperationsClient
+from google.api_core.gapic_v1.client_info import ClientInfo
+
+def get_operation_state(name):
+    """
+    Gets the latest state of a long-running operation.
+
+    .. seealso::
+        https://cloud.google.com/datastore/docs/reference/data/rest/v1/projects.operations/get
+
+    Parameters:
+        name (str): The name of the operation resource.
+
+    Returns:
+        dict: A resource operation instance.
+    """
+    client_info = ClientInfo()  # You can customize client information if needed
+    client = OperationsClient(client_info=client_info)
+
+    request = operations_pb2.GetOperationRequest(name=name)
+    operation = client.get_operation(request)
+
+    return {
+        "name": operation.name,
+        "done": operation.done,
+        "metadata": dict(operation.metadata),
+        "response": dict(operation.response) if operation.done else None,
+        "error": dict(operation.error) if operation.done and operation.HasField("error") else None,
+    }
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Gets the latest state of a long-running operation.
+
+        .. seealso::
+            https://cloud.google.com/datastore/docs/reference/data/rest/v1/projects.operations/get
+
+        :param name: the name of the operation resource.
+        :type name: str
+        :return: a resource operation instance.
+        :rtype: dict
+Copilot said
+python
+
+Copy
+from google.cloud import operations_v1
+
+def get_operation_state(name):
+    """
+    Gets the latest state of a long-running operation.
+
+    .. seealso::
+        https://cloud.google.com/datastore/docs/reference/data/rest/v1/projects.operations/get
+
+    Parameters:
+        name (str): The name of the operation resource.
+
+    Returns:
+        dict: A resource operation instance.
+    """
+    client = operations_v1.OperationsClient()
+    operation = client.get_operation(name=name)
+    return {
+        "name": operation.name,
+        "done": operation.done,
+        "metadata": dict(operation.metadata),
+        "response": dict(operation.response) if operation.done else None,
+        "error": dict(operation.error) if operation.done and operation.HasField("error") else None,
+    }
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Retrieve database hook. This is the actual Postgres or MySQL database hook
+        that uses proxy or connects directly to the Google Cloud SQL database.
+Copilot said
+python
+
+Copy
+from airflow.providers.google.cloud.hooks.sql import CloudSQLDatabaseHook
+
+def get_database_hook(connection_id):
+    """
+    Retrieve the database hook for Postgres or MySQL that uses proxy or connects
+    directly to the Google Cloud SQL database.
+
+    Parameters:
+        connection_id (str): The Airflow connection ID for the database.
+
+    Returns:
+        CloudSQLDatabaseHook: The database hook instance.
+    """
+    return CloudSQLDatabaseHook(gcp_conn_id=connection_id)
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Retrieve database hook. This is the actual Postgres or MySQL database hook
+        that uses proxy or connects directly to the Google Cloud SQL database.
+Copilot said
+python
+
+Copy
+from airflow.providers.google.cloud.hooks.cloud_sql import CloudSQLDatabaseHook
+
+def get_database_hook(connection_id):
+    """
+    Retrieve the database hook for Postgres or MySQL that uses proxy or connects
+    directly to the Google Cloud SQL database.
+
+    Parameters:
+        connection_id (str): The Airflow connection ID for the database.
+
+    Returns:
+        CloudSQLDatabaseHook: The database hook instance.
+    """
+    return CloudSQLDatabaseHook(gcp_conn_id=connection_id)
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Retrieve database hook. This is the actual Postgres or MySQL database hook
+        that uses proxy or connects directly to the Google Cloud SQL database.
+Copilot said
+python
+
+Copy
+from airflow.providers.google.cloud.hooks.cloud_sql import CloudSQLDatabaseHook
+
+def get_database_hook(connection_id):
+    """
+    Retrieve the database hook for Postgres or MySQL that uses proxy or connects
+    directly to the Google Cloud SQL database.
+
+    Parameters:
+        connection_id (str): The Airflow connection ID for the database.
+
+    Returns:
+        CloudSQLDatabaseHook: The database hook instance.
+    """
+    return CloudSQLDatabaseHook(gcp_conn_id=connection_id)
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Retrieve database hook. This is the actual Postgres or MySQL database hook
+        that uses proxy or connects directly to the Google Cloud SQL database.
+Copilot said
+python
+
+Copy
+from airflow.providers.google.cloud.hooks.cloud_sql import CloudSQLDatabaseHook
+
+def get_database_hook(connection_id):
+    """
+    Retrieve the database hook for Postgres or MySQL that uses proxy or connects
+    directly to the Google Cloud SQL database.
+
+    Parameters:
+        connection_id (str): The Airflow connection ID for the database.
+
+    Returns:
+        CloudSQLDatabaseHook: The database hook instance.
+    """
+    return CloudSQLDatabaseHook(gcp_conn_id=connection_id)
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Retrieve database hook. This is the actual Postgres or MySQL database hook
+        that uses proxy or connects directly to the Google Cloud SQL database.
+Copilot said
+python
+
+Copy
+from airflow.providers.google.cloud.hooks.cloud_sql import CloudSQLDatabaseHook
+
+def get_database_hook(connection_id):
+    """
+    Retrieve the database hook for Postgres or MySQL that uses proxy or connects
+    directly to the Google Cloud SQL database.
+
+    Parameters:
+        connection_id (str): The Airflow connection ID for the database.
+
+    Returns:
+        CloudSQLDatabaseHook: The database hook instance.
+    """
+    return CloudSQLDatabaseHook(gcp_conn_id=connection_id)
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Begins a new transaction.
+
+        .. seealso::
+            https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction
+
+        :return: a transaction handle.
+        :rtype: str
+Copilot said
+python
+
+Copy
+from google.cloud import datastore
+
+def begin_transaction():
+    """
+    Begins a new transaction.
+
+    .. seealso::
+        https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction
+
+    Returns:
+        str: A transaction handle.
+    """
+    client = datastore.Client()
+    transaction = client.transaction()
+    transaction.begin()
+    return transaction.id
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Begins a new transaction.
+
+        .. seealso::
+            https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction
+
+        :return: a transaction handle.
+        :rtype: str
+Copilot said
+python
+
+Copy
+from google.cloud import datastore
+
+def begin_transaction():
+    """
+    Begins a new transaction.
+
+    .. seealso::
+        https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction
+
+    Returns:
+        str: A transaction handle.
+    """
+    client = datastore.Client()
+    transaction = client.transaction()
+    transaction.begin()
+    return transaction.id
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Begins a new transaction.
+
+        .. seealso::
+            https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction
+
+        :return: a transaction handle.
+        :rtype: str
+Copilot said
+python
+
+Copy
+from google.cloud import datastore
+
+def begin_transaction():
+    """
+    Begins a new transaction.
+
+    .. seealso::
+        https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction
+
+    Returns:
+        str: A transaction handle.
+    """
+    client = datastore.Client()
+    transaction = client.transaction()
+    transaction.begin()
+    return transaction.id
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Begins a new transaction.
+
+        .. seealso::
+            https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction
+
+        :return: a transaction handle.
+        :rtype: str
+Copilot said
+python
+
+Copy
+from google.cloud import datastore
+
+def begin_transaction():
+    """
+    Begins a new transaction.
+
+    .. seealso::
+        https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction
+
+    Returns:
+        str: A transaction handle.
+    """
+    client = datastore.Client()
+    transaction = client.transaction()
+    transaction.begin()
+    return transaction.id
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Begins a new transaction.
+
+        .. seealso::
+            https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction
+
+        :return: a transaction handle.
+        :rtype: str
+Copilot said
+python
+
+Copy
+from google.cloud import datastore
+
+def begin_transaction():
+    """
+    Begins a new transaction.
+
+    .. seealso::
+        https://cloud.google.com/datastore/docs/reference/rest/v1/projects/beginTransaction
+
+    Returns:
+        str: A transaction handle.
+    """
+    client = datastore.Client()
+    transaction = client.transaction()
+    transaction.begin()
+    return transaction.id
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Parses some DatabaseError to provide a better error message
+Copilot said
+python
+
+Copy
+def parse_database_error(error):
+    """
+    Parses a DatabaseError to provide a better error message.
+
+    Parameters:
+        error (Exception): The database error to be parsed.
+
+    Returns:
+        str: A user-friendly error message.
+    """
+    if hasattr(error, 'orig') and hasattr(error.orig, 'args') and len(error.orig.args) > 0:
+        return f"Database error: {error.orig.args[0]}"
+    if hasattr(error, 'args') and len(error.args) > 0:
+        return f"Error: {error.args[0]}"
+    return "An unknown database error occurred."
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Parses some DatabaseError to provide a better error message
+Copilot said
+python
+
+Copy
+def parse_database_error(error):
+    """
+    Parses a DatabaseError to provide a better error message.
+
+    Parameters:
+        error (Exception): The database error to be parsed.
+
+    Returns:
+        str: A user-friendly error message.
+    """
+    if hasattr(error, "orig") and hasattr(error.orig, "args") and error.orig.args:
+        return f"DatabaseError: {error.orig.args[0]}"
+    elif hasattr(error, "args") and error.args:
+        return f"Error: {error.args[0]}"
+    return "An unexpected database error occurred."
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Parses some DatabaseError to provide a better error message
+Copilot said
+python
+
+Copy
+def parse_database_error(error):
+    """
+    Parses a DatabaseError to provide a better error message.
+
+    Parameters:
+        error (Exception): The database error to be parsed.
+
+    Returns:
+        str: A user-friendly error message.
+    """
+    if hasattr(error, "orig") and hasattr(error.orig, "args") and error.orig.args:
+        return f"DatabaseError: {error.orig.args[0]}"
+    elif hasattr(error, "args") and error.args:
+        return f"Error: {error.args[0]}"
+    return "An unexpected database error occurred."
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Parses some DatabaseError to provide a better error message
+Copilot said
+python
+
+Copy
+def parse_database_error(error):
+    """
+    Parses a DatabaseError to provide a better error message.
+
+    Parameters:
+        error (Exception): The database error to be parsed.
+
+    Returns:
+        str: A user-friendly error message.
+    """
+    if hasattr(error, "orig") and hasattr(error.orig, "args") and error.orig.args:
+        return f"DatabaseError: {error.orig.args[0]}"
+    if hasattr(error, "args") and error.args:
+        return f"Error: {error.args[0]}"
+    return "An unknown database error occurred."
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Parses some DatabaseError to provide a better error message
+Copilot said
+python
+
+Copy
+def parse_database_error(error):
+    """
+    Parses a DatabaseError to provide a better error message.
+
+    Parameters:
+        error (Exception): The database error to be parsed.
+
+    Returns:
+        str: A user-friendly error message.
+    """
+    if hasattr(error, "orig") and hasattr(error.orig, "args") and error.orig.args:
+        return f"DatabaseError: {error.orig.args[0]}"
+    if hasattr(error, "args") and error.args:
+        return f"Error: {error.args[0]}"
+    return "An unknown database error occurred."
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Executes SQL using psycopg2 copy_expert method.
+        Necessary to execute COPY command without access to a superuser.
+
+        Note: if this method is called with a "COPY FROM" statement and
+        the specified input file does not exist, it creates an empty
+        file and no data is loaded, but the operation succeeds.
+        So if users want to be aware when the input file does not exist,
+        they have to check its existence by themselves.
+Copilot said
+python
+
+Copy
+import psycopg2
+
+def execute_copy_expert(sql, file_path, connection):
+    """
+    Executes SQL using psycopg2 copy_expert method.
+    Necessary to execute COPY command without access to a superuser.
+
+    Note: If this method is called with a "COPY FROM" statement and
+    the specified input file does not exist, it creates an empty
+    file and no data is loaded, but the operation succeeds. Users
+    should check the file existence themselves if needed.
+
+    Parameters:
+        sql (str): The SQL COPY command to execute.
+        file_path (str): The path to the input or output file.
+        connection (psycopg2.extensions.connection): The database connection.
+
+    Returns:
+        None
+    """
+    with connection.cursor() as cursor:
+        with open(file_path, 'r' if 'COPY FROM' in sql else 'w') as file:
+            cursor.copy_expert(sql, file)
+        connection.commit()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Executes SQL using psycopg2 copy_expert method.
+        Necessary to execute COPY command without access to a superuser.
+
+        Note: if this method is called with a "COPY FROM" statement and
+        the specified input file does not exist, it creates an empty
+        file and no data is loaded, but the operation succeeds.
+        So if users want to be aware when the input file does not exist,
+        they have to check its existence by themselves.
+Copilot said
+python
+
+Copy
+import psycopg2
+
+def execute_copy_expert(sql, file_path, connection):
+    """
+    Executes SQL using psycopg2 copy_expert method.
+    Necessary to execute COPY command without access to a superuser.
+
+    Note: If this method is called with a "COPY FROM" statement and
+    the specified input file does not exist, it creates an empty
+    file and no data is loaded, but the operation succeeds. Users
+    should check the file existence themselves if needed.
+
+    Parameters:
+        sql (str): The SQL COPY command to execute.
+        file_path (str): The path to the input or output file.
+        connection (psycopg2.extensions.connection): The database connection.
+
+    Returns:
+        None
+    """
+    with connection.cursor() as cursor:
+        with open(file_path, 'r' if 'COPY FROM' in sql else 'w') as file:
+            cursor.copy_expert(sql, file)
+        connection.commit()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Executes SQL using psycopg2 copy_expert method.
+        Necessary to execute COPY command without access to a superuser.
+
+        Note: if this method is called with a "COPY FROM" statement and
+        the specified input file does not exist, it creates an empty
+        file and no data is loaded, but the operation succeeds.
+        So if users want to be aware when the input file does not exist,
+        they have to check its existence by themselves.
+Copilot said
+python
+
+Copy
+import psycopg2
+
+def execute_copy_expert(sql, file_path, connection):
+    """
+    Executes SQL using psycopg2 copy_expert method.
+    Necessary to execute COPY command without access to a superuser.
+
+    Note: If this method is called with a "COPY FROM" statement and
+    the specified input file does not exist, it creates an empty
+    file and no data is loaded, but the operation succeeds. Users
+    should check the file existence themselves if needed.
+
+    Parameters:
+        sql (str): The SQL COPY command to execute.
+        file_path (str): The path to the input or output file.
+        connection (psycopg2.extensions.connection): The database connection.
+
+    Returns:
+        None
+    """
+    with connection.cursor() as cursor:
+        with open(file_path, 'r' if 'COPY FROM' in sql else 'w') as file:
+            cursor.copy_expert(sql, file)
+        connection.commit()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Executes SQL using psycopg2 copy_expert method.
+        Necessary to execute COPY command without access to a superuser.
+
+        Note: if this method is called with a "COPY FROM" statement and
+        the specified input file does not exist, it creates an empty
+        file and no data is loaded, but the operation succeeds.
+        So if users want to be aware when the input file does not exist,
+        they have to check its existence by themselves.
+Copilot said
+python
+
+Copy
+import psycopg2
+
+def execute_copy_expert(sql, file_path, connection):
+    """
+    Executes SQL using psycopg2 copy_expert method.
+    Necessary to execute COPY command without access to a superuser.
+
+    Note: If this method is called with a "COPY FROM" statement and
+    the specified input file does not exist, it creates an empty
+    file and no data is loaded, but the operation succeeds. Users
+    should check the file existence themselves if needed.
+
+    Parameters:
+        sql (str): The SQL COPY command to execute.
+        file_path (str): The path to the input or output file.
+        connection (psycopg2.extensions.connection): The database connection.
+
+    Returns:
+        None
+    """
+    with connection.cursor() as cursor:
+        with open(file_path, 'r' if 'COPY FROM' in sql else 'w') as file:
+            cursor.copy_expert(sql, file)
+        connection.commit()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Executes SQL using psycopg2 copy_expert method.
+        Necessary to execute COPY command without access to a superuser.
+
+        Note: if this method is called with a "COPY FROM" statement and
+        the specified input file does not exist, it creates an empty
+        file and no data is loaded, but the operation succeeds.
+        So if users want to be aware when the input file does not exist,
+        they have to check its existence by themselves.
+Copilot said
+python
+
+Copy
+import psycopg2
+
+def execute_copy_expert(sql, file_path, connection):
+    """
+    Executes SQL using psycopg2 copy_expert method.
+    Necessary to execute COPY command without access to a superuser.
+
+    Note: If this method is called with a "COPY FROM" statement and
+    the specified input file does not exist, it creates an empty
+    file and no data is loaded, but the operation succeeds. Users
+    should check the file existence themselves if needed.
+
+    Parameters:
+        sql (str): The SQL COPY command to execute.
+        file_path (str): The path to the input or output file.
+        connection (psycopg2.extensions.connection): The database connection.
+
+    Returns:
+        None
+    """
+    with connection.cursor() as cursor:
+        with open(file_path, 'r' if 'COPY FROM' in sql else 'w') as file:
+            cursor.copy_expert(sql, file)
+        connection.commit()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Creates a Pub/Sub topic, if it does not already exist.
+
+        :param project: the GCP project ID in which to create
+            the topic
+        :type project: str
+        :param topic: the Pub/Sub topic name to create; do not
+            include the ``projects/{project}/topics/`` prefix.
+        :type topic: str
+        :param fail_if_exists: if set, raise an exception if the topic
+            already exists
+        :type fail_if_exists: bool
+Copilot said
+python
+
+Copy
+from google.cloud import pubsub_v1
+from google.api_core.exceptions import Conflict
+
+def create_pubsub_topic(project, topic, fail_if_exists=False):
+    """
+    Creates a Pub/Sub topic, if it does not already exist.
+
+    Parameters:
+        project (str): The GCP project ID in which to create the topic.
+        topic (str): The Pub/Sub topic name to create; do not include 
+                     the `projects/{project}/topics/` prefix.
+        fail_if_exists (bool): If set, raise an exception if the topic already exists.
+
+    Returns:
+        str: The fully qualified name of the created topic.
+    """
+    client = pubsub_v1.PublisherClient()
+    topic_path = client.topic_path(project, topic)
+
+    try:
+        client.create_topic(name=topic_path)
+    except Conflict:
+        if fail_if_exists:
+            raise RuntimeError(f"Topic '{topic}' already exists in project '{project}'.")
+    
+    return topic_path
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Creates a Pub/Sub topic, if it does not already exist.
+
+        :param project: the GCP project ID in which to create
+            the topic
+        :type project: str
+        :param topic: the Pub/Sub topic name to create; do not
+            include the ``projects/{project}/topics/`` prefix.
+        :type topic: str
+        :param fail_if_exists: if set, raise an exception if the topic
+            already exists
+        :type fail_if_exists: bool
+Copilot said
+python
+
+Copy
+from google.cloud import pubsub_v1
+from google.api_core.exceptions import AlreadyExists
+
+def create_pubsub_topic(project, topic, fail_if_exists=False):
+    """
+    Creates a Pub/Sub topic, if it does not already exist.
+
+    Parameters:
+        project (str): The GCP project ID in which to create the topic.
+        topic (str): The Pub/Sub topic name to create; do not include
+                     the `projects/{project}/topics/` prefix.
+        fail_if_exists (bool): If set, raise an exception if the topic
+                               already exists.
+
+    Returns:
+        str: The fully qualified name of the created topic.
+    """
+    client = pubsub_v1.PublisherClient()
+    topic_path = client.topic_path(project, topic)
+
+    try:
+        client.create_topic(name=topic_path)
+    except AlreadyExists:
+        if fail_if_exists:
+            raise RuntimeError(f"Topic '{topic}' already exists in project '{project}'.")
+    
+    return topic_path
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Creates a Pub/Sub topic, if it does not already exist.
+
+        :param project: the GCP project ID in which to create
+            the topic
+        :type project: str
+        :param topic: the Pub/Sub topic name to create; do not
+            include the ``projects/{project}/topics/`` prefix.
+        :type topic: str
+        :param fail_if_exists: if set, raise an exception if the topic
+            already exists
+        :type fail_if_exists: bool
+Copilot said
+python
+
+Copy
+from google.cloud import pubsub_v1
+from google.api_core.exceptions import AlreadyExists
+
+def create_pubsub_topic(project, topic, fail_if_exists=False):
+    """
+    Creates a Pub/Sub topic, if it does not already exist.
+
+    Parameters:
+        project (str): The GCP project ID in which to create the topic.
+        topic (str): The Pub/Sub topic name to create; do not include
+                     the `projects/{project}/topics/` prefix.
+        fail_if_exists (bool): If set, raise an exception if the topic
+                               already exists.
+
+    Returns:
+        str: The fully qualified name of the created topic.
+    """
+    client = pubsub_v1.PublisherClient()
+    topic_path = client.topic_path(project, topic)
+
+    try:
+        client.create_topic(name=topic_path)
+    except AlreadyExists:
+        if fail_if_exists:
+            raise RuntimeError(f"Topic '{topic}' already exists in project '{project}'.")
+    
+    return topic_path
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Creates a Pub/Sub topic, if it does not already exist.
+
+        :param project: the GCP project ID in which to create
+            the topic
+        :type project: str
+        :param topic: the Pub/Sub topic name to create; do not
+            include the ``projects/{project}/topics/`` prefix.
+        :type topic: str
+        :param fail_if_exists: if set, raise an exception if the topic
+            already exists
+        :type fail_if_exists: bool
+Copilot said
+python
+
+Copy
+from google.cloud import pubsub_v1
+from google.api_core.exceptions import AlreadyExists
+
+def create_pubsub_topic(project, topic, fail_if_exists=False):
+    """
+    Creates a Pub/Sub topic, if it does not already exist.
+
+    Parameters:
+        project (str): The GCP project ID in which to create the topic.
+        topic (str): The Pub/Sub topic name to create; do not include
+                     the `projects/{project}/topics/` prefix.
+        fail_if_exists (bool): If set, raise an exception if the topic
+                               already exists.
+
+    Returns:
+        str: The fully qualified name of the created topic.
+    """
+    client = pubsub_v1.PublisherClient()
+    topic_path = client.topic_path(project, topic)
+
+    try:
+        client.create_topic(name=topic_path)
+    except AlreadyExists:
+        if fail_if_exists:
+            raise RuntimeError(f"Topic '{topic}' already exists in project '{project}'.")
+    
+    return topic_path
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Creates a Pub/Sub topic, if it does not already exist.
+
+        :param project: the GCP project ID in which to create
+            the topic
+        :type project: str
+        :param topic: the Pub/Sub topic name to create; do not
+            include the ``projects/{project}/topics/`` prefix.
+        :type topic: str
+        :param fail_if_exists: if set, raise an exception if the topic
+            already exists
+        :type fail_if_exists: bool
+Copilot said
+python
+
+Copy
+from google.cloud import pubsub_v1
+from google.api_core.exceptions import AlreadyExists
+
+def create_pubsub_topic(project, topic, fail_if_exists=False):
+    """
+    Creates a Pub/Sub topic, if it does not already exist.
+
+    Parameters:
+        project (str): The GCP project ID in which to create the topic.
+        topic (str): The Pub/Sub topic name to create; do not include
+                     the `projects/{project}/topics/` prefix.
+        fail_if_exists (bool): If set, raise an exception if the topic
+                               already exists.
+
+    Returns:
+        str: The fully qualified name of the created topic.
+    """
+    client = pubsub_v1.PublisherClient()
+    topic_path = client.topic_path(project, topic)
+
+    try:
+        client.create_topic(name=topic_path)
+    except AlreadyExists:
+        if fail_if_exists:
+            raise RuntimeError(f"Topic '{topic}' already exists in project '{project}'.")
+    
+    return topic_path
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Sync metadata from stat queue and only keep the latest stat.
+        :return:
+Copilot said
+python
+
+Copy
+def sync_latest_stat(stat_queue):
+    """
+    Sync metadata from stat queue and only keep the latest stat.
+
+    Parameters:
+        stat_queue (list): A list of metadata dictionaries where each dictionary represents a stat.
+
+    Returns:
+        dict: The latest stat metadata.
+    """
+    if not stat_queue:
+        return {}
+
+    latest_stat = max(stat_queue, key=lambda stat: stat.get("timestamp", 0))
+    return latest_stat
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Sync metadata from stat queue and only keep the latest stat.
+        :return:
+Copilot said
+python
+
+Copy
+def sync_latest_stat(stat_queue):
+    """
+    Sync metadata from stat queue and only keep the latest stat.
+
+    Parameters:
+        stat_queue (list): A list of metadata dictionaries where each dictionary represents a stat.
+
+    Returns:
+        dict: The latest stat metadata.
+    """
+    if not stat_queue:
+        return {}
+
+    latest_stat = max(stat_queue, key=lambda stat: stat.get("timestamp", 0))
+    return latest_stat
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Sync metadata from stat queue and only keep the latest stat.
+        :return:
+Copilot said
+python
+
+Copy
+def sync_latest_stat(stat_queue):
+    """
+    Sync metadata from stat queue and only keep the latest stat.
+
+    Parameters:
+        stat_queue (list): A list of metadata dictionaries where each dictionary represents a stat.
+
+    Returns:
+        dict: The latest stat metadata.
+    """
+    if not stat_queue:
+        return {}
+
+    latest_stat = max(stat_queue, key=lambda stat: stat.get("timestamp", 0))
+    return latest_stat
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Sync metadata from stat queue and only keep the latest stat.
+        :return:
+Copilot said
+python
+
+Copy
+def sync_latest_stat(stat_queue):
+    """
+    Sync metadata from stat queue and only keep the latest stat.
+
+    Parameters:
+        stat_queue (list): A list of metadata dictionaries where each dictionary represents a stat.
+
+    Returns:
+        dict: The latest stat metadata.
+    """
+    if not stat_queue:
+        return {}
+
+    latest_stat = max(stat_queue, key=lambda stat: stat.get("timestamp", 0))
+    return latest_stat
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Sync metadata from stat queue and only keep the latest stat.
+        :return:
+Copilot said
+python
+
+Copy
+def sync_latest_stat(stat_queue):
+    """
+    Sync metadata from stat queue and only keep the latest stat.
+
+    Parameters:
+        stat_queue (list): A list of metadata dictionaries where each dictionary represents a stat.
+
+    Returns:
+        dict: The latest stat metadata.
+    """
+    if not stat_queue:
+        return {}
+
+    latest_stat = max(stat_queue, key=lambda stat: stat.get("timestamp", 0))
+    return latest_stat
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Decompresses data for Content-Encoding: deflate.
+    (the zlib compression is used.)
+Copilot said
+python
+
+Copy
+import zlib
+
+def decompress_deflate(data):
+    """
+    Decompresses data for Content-Encoding: deflate.
+
+    Parameters:
+        data (bytes): The compressed data in deflate format.
+
+    Returns:
+        bytes: The decompressed data.
+    """
+    return zlib.decompress(data, zlib.MAX_WBITS)
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Decompresses data for Content-Encoding: deflate.
+    (the zlib compression is used.)
+Copilot said
+python
+
+Copy
+import zlib
+
+def decompress_deflate(data):
+    """
+    Decompresses data for Content-Encoding: deflate using zlib compression.
+
+    Parameters:
+        data (bytes): The compressed data in deflate format.
+
+    Returns:
+        bytes: The decompressed data.
+    """
+    return zlib.decompress(data, zlib.MAX_WBITS)
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Decompresses data for Content-Encoding: deflate.
+    (the zlib compression is used.)
+Copilot said
+python
+
+Copy
+import zlib
+
+def decompress_deflate(data):
+    """
+    Decompresses data for Content-Encoding: deflate using zlib compression.
+
+    Parameters:
+        data (bytes): The compressed data in deflate format.
+
+    Returns:
+        bytes: The decompressed data.
+    """
+    return zlib.decompress(data, zlib.MAX_WBITS)
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Decompresses data for Content-Encoding: deflate.
+    (the zlib compression is used.)
+Copilot said
+python
+
+Copy
+import zlib
+
+def decompress_deflate(data):
+    """
+    Decompresses data for Content-Encoding: deflate using zlib compression.
+
+    Parameters:
+        data (bytes): The compressed data in deflate format.
+
+    Returns:
+        bytes: The decompressed data.
+    """
+    return zlib.decompress(data, zlib.MAX_WBITS)
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Detect operating system.
+Copilot said
+python
+
+Copy
+import platform
+
+def detect_operating_system():
+    """
+    Detects the operating system of the current environment.
+
+    Returns:
+        str: A string describing the operating system.
+    """
+    return platform.system()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Detect operating system.
+Copilot said
+python
+
+Copy
+import platform
+
+def detect_operating_system():
+    """
+    Detects the operating system of the current environment.
+
+    Returns:
+        str: The name of the operating system.
+    """
+    return platform.system()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Detect operating system.
+Copilot said
+python
+
+Copy
+import platform
+
+def detect_operating_system():
+    """
+    Detects the operating system of the current environment.
+
+    Returns:
+        str: The name of the operating system.
+    """
+    return platform.system()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Detect operating system.
+Copilot said
+python
+
+Copy
+import platform
+
+def detect_operating_system():
+    """
+    Detects the operating system of the current environment.
+
+    Returns:
+        str: The name of the operating system.
+    """
+    return platform.system()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Detect operating system.
+Copilot said
+python
+
+Copy
+import platform
+
+def detect_operating_system():
+    """
+    Detects the operating system of the current environment.
+
+    Returns:
+        str: The name of the operating system.
+    """
+    return platform.system()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Gets an transfer operation in Google Storage Transfer Service.
+
+        :param operation_name: (Required) Name of the transfer operation.
+        :type operation_name: str
+        :return: transfer operation
+            See:
+            https://cloud.google.com/storage-transfer/docs/reference/rest/v1/Operation
+        :rtype: dict
+Copilot said
+python
+
+Copy
+from googleapiclient.discovery import build
+
+def get_transfer_operation(operation_name):
+    """
+    Gets a transfer operation in Google Storage Transfer Service.
+
+    Parameters:
+        operation_name (str): Name of the transfer operation.
+
+    Returns:
+        dict: The transfer operation details.
+
+    See:
+        https://cloud.google.com/storage-transfer/docs/reference/rest/v1/Operation
+    """
+    service = build('storagetransfer', 'v1')
+    request = service.transferOperations().get(name=operation_name)
+    return request.execute()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Gets an transfer operation in Google Storage Transfer Service.
+
+        :param operation_name: (Required) Name of the transfer operation.
+        :type operation_name: str
+        :return: transfer operation
+            See:
+            https://cloud.google.com/storage-transfer/docs/reference/rest/v1/Operation
+        :rtype: dict
+Copilot said
+python
+
+Copy
+from googleapiclient.discovery import build
+
+def get_transfer_operation(operation_name):
+    """
+    Gets a transfer operation in Google Storage Transfer Service.
+
+    Parameters:
+        operation_name (str): Name of the transfer operation.
+
+    Returns:
+        dict: The transfer operation details.
+
+    See:
+        https://cloud.google.com/storage-transfer/docs/reference/rest/v1/Operation
+    """
+    service = build('storagetransfer', 'v1')
+    request = service.transferOperations().get(name=operation_name)
+    return request.execute()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Gets an transfer operation in Google Storage Transfer Service.
+
+        :param operation_name: (Required) Name of the transfer operation.
+        :type operation_name: str
+        :return: transfer operation
+            See:
+            https://cloud.google.com/storage-transfer/docs/reference/rest/v1/Operation
+        :rtype: dict
+Copilot said
+python
+
+Copy
+from googleapiclient.discovery import build
+
+def get_transfer_operation(operation_name):
+    """
+    Gets a transfer operation in Google Storage Transfer Service.
+
+    Parameters:
+        operation_name (str): Name of the transfer operation.
+
+    Returns:
+        dict: The transfer operation details.
+
+    See:
+        https://cloud.google.com/storage-transfer/docs/reference/rest/v1/Operation
+    """
+    service = build('storagetransfer', 'v1')
+    request = service.transferOperations().get(name=operation_name)
+    return request.execute()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Gets an transfer operation in Google Storage Transfer Service.
+
+        :param operation_name: (Required) Name of the transfer operation.
+        :type operation_name: str
+        :return: transfer operation
+            See:
+            https://cloud.google.com/storage-transfer/docs/reference/rest/v1/Operation
+        :rtype: dict
+Copilot said
+python
+
+Copy
+from googleapiclient.discovery import build
+
+def get_transfer_operation(operation_name):
+    """
+    Gets a transfer operation in Google Storage Transfer Service.
+
+    Parameters:
+        operation_name (str): Name of the transfer operation.
+
+    Returns:
+        dict: The transfer operation details.
+
+    See:
+        https://cloud.google.com/storage-transfer/docs/reference/rest/v1/Operation
+    """
+    service = build('storagetransfer', 'v1')
+    request = service.transferOperations().get(name=operation_name)
+    return request.execute()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Gets an transfer operation in Google Storage Transfer Service.
+
+        :param operation_name: (Required) Name of the transfer operation.
+        :type operation_name: str
+        :return: transfer operation
+            See:
+            https://cloud.google.com/storage-transfer/docs/reference/rest/v1/Operation
+        :rtype: dict
+Copilot said
+python
+
+Copy
+from googleapiclient.discovery import build
+
+def get_transfer_operation(operation_name):
+    """
+    Gets a transfer operation in Google Storage Transfer Service.
+
+    Parameters:
+        operation_name (str): Name of the transfer operation.
+
+    Returns:
+        dict: The transfer operation details.
+
+    See:
+        https://cloud.google.com/storage-transfer/docs/reference/rest/v1/Operation
+    """
+    service = build('storagetransfer', 'v1')
+    request = service.transferOperations().get(name=operation_name)
+    return request.execute()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Ensures that certain subfolders of AIRFLOW_HOME are on the classpath
+Copilot said
+python
+
+Copy
+import os
+import sys
+
+def ensure_airflow_subfolders_on_classpath():
+    """
+    Ensures that certain subfolders of AIRFLOW_HOME are on the classpath.
+    """
+    airflow_home = os.getenv("AIRFLOW_HOME")
+    if not airflow_home:
+        raise EnvironmentError("AIRFLOW_HOME environment variable is not set.")
+
+    subfolders = ["dags", "plugins", "config"]
+    for subfolder in subfolders:
+        subfolder_path = os.path.join(airflow_home, subfolder)
+        if os.path.exists(subfolder_path) and subfolder_path not in sys.path:
+            sys.path.append(subfolder_path)
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Ensures that certain subfolders of AIRFLOW_HOME are on the classpath
+Copilot said
+python
+
+Copy
+import os
+import sys
+
+def ensure_airflow_subfolders_on_classpath():
+    """
+    Ensures that certain subfolders of AIRFLOW_HOME are on the classpath.
+    """
+    airflow_home = os.getenv("AIRFLOW_HOME")
+    if not airflow_home:
+        raise EnvironmentError("AIRFLOW_HOME environment variable is not set.")
+
+    subfolders = ["dags", "plugins", "logs"]
+    for subfolder in subfolders:
+        subfolder_path = os.path.join(airflow_home, subfolder)
+        if os.path.exists(subfolder_path) and subfolder_path not in sys.path:
+            sys.path.append(subfolder_path)
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Ensures that certain subfolders of AIRFLOW_HOME are on the classpath
+Copilot said
+python
+
+Copy
+import os
+import sys
+
+def ensure_airflow_subfolders_on_classpath():
+    """
+    Ensures that certain subfolders of AIRFLOW_HOME are on the classpath.
+    """
+    airflow_home = os.getenv("AIRFLOW_HOME")
+    if not airflow_home:
+        raise EnvironmentError("AIRFLOW_HOME environment variable is not set.")
+
+    subfolders = ["dags", "plugins", "logs"]
+    for subfolder in subfolders:
+        subfolder_path = os.path.join(airflow_home, subfolder)
+        if os.path.exists(subfolder_path) and subfolder_path not in sys.path:
+            sys.path.append(subfolder_path)
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Ensures that certain subfolders of AIRFLOW_HOME are on the classpath
+Copilot said
+python
+
+Copy
+import os
+import sys
+
+def ensure_airflow_subfolders_on_classpath():
+    """
+    Ensures that certain subfolders of AIRFLOW_HOME are on the classpath.
+    """
+    airflow_home = os.getenv("AIRFLOW_HOME")
+    if not airflow_home:
+        raise EnvironmentError("AIRFLOW_HOME environment variable is not set.")
+
+    subfolders = ["dags", "plugins", "logs"]
+    for subfolder in subfolders:
+        subfolder_path = os.path.join(airflow_home, subfolder)
+        if os.path.exists(subfolder_path) and subfolder_path not in sys.path:
+            sys.path.append(subfolder_path)
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Ensures that certain subfolders of AIRFLOW_HOME are on the classpath
+Copilot said
+python
+
+Copy
+import os
+import sys
+
+def ensure_airflow_subfolders_on_classpath():
+    """
+    Ensures that certain subfolders of AIRFLOW_HOME are on the classpath.
+    """
+    airflow_home = os.getenv("AIRFLOW_HOME")
+    if not airflow_home:
+        raise EnvironmentError("AIRFLOW_HOME environment variable is not set.")
+
+    subfolders = ["dags", "plugins", "logs"]
+    for subfolder in subfolders:
+        subfolder_path = os.path.join(airflow_home, subfolder)
+        if os.path.exists(subfolder_path) and subfolder_path not in sys.path:
+            sys.path.append(subfolder_path)
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Updates Cloud Functions according to the specified update mask.
+
+        :param name: The name of the function.
+        :type name: str
+        :param body: The body required by the cloud function patch API.
+        :type body: dict
+        :param update_mask: The update mask - array of fields that should be patched.
+        :type update_mask: [str]
+        :return: None
+Copilot said
+python
+
+Copy
+from googleapiclient.discovery import build
+
+def update_cloud_function(name, body, update_mask):
+    """
+    Updates Cloud Functions according to the specified update mask.
+
+    Parameters:
+        name (str): The name of the function.
+        body (dict): The body required by the cloud function patch API.
+        update_mask (list): The update mask - array of fields that should be patched.
+
+    Returns:
+        None
+    """
+    service = build('cloudfunctions', 'v1')
+    request = service.projects().locations().functions().patch(
+        name=name,
+        body=body,
+        updateMask=",".join(update_mask)
+    )
+    request.execute()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Updates Cloud Functions according to the specified update mask.
+
+        :param name: The name of the function.
+        :type name: str
+        :param body: The body required by the cloud function patch API.
+        :type body: dict
+        :param update_mask: The update mask - array of fields that should be patched.
+        :type update_mask: [str]
+        :return: None
+Copilot said
+python
+
+Copy
+from googleapiclient.discovery import build
+
+def update_cloud_function(name, body, update_mask):
+    """
+    Updates Cloud Functions according to the specified update mask.
+
+    Parameters:
+        name (str): The name of the function.
+        body (dict): The body required by the cloud function patch API.
+        update_mask (list): The update mask - array of fields that should be patched.
+
+    Returns:
+        None
+    """
+    service = build('cloudfunctions', 'v1')
+    request = service.projects().locations().functions().patch(
+        name=name,
+        body=body,
+        updateMask=",".join(update_mask)
+    )
+    request.execute()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Updates Cloud Functions according to the specified update mask.
+
+        :param name: The name of the function.
+        :type name: str
+        :param body: The body required by the cloud function patch API.
+        :type body: dict
+        :param update_mask: The update mask - array of fields that should be patched.
+        :type update_mask: [str]
+        :return: None
+Copilot said
+python
+
+Copy
+from googleapiclient.discovery import build
+
+def update_cloud_function(name, body, update_mask):
+    """
+    Updates Cloud Functions according to the specified update mask.
+
+    Parameters:
+        name (str): The name of the function.
+        body (dict): The body required by the cloud function patch API.
+        update_mask (list): The update mask - array of fields that should be patched.
+
+    Returns:
+        None
+    """
+    service = build('cloudfunctions', 'v1')
+    request = service.projects().locations().functions().patch(
+        name=name,
+        body=body,
+        updateMask=",".join(update_mask)
+    )
+    request.execute()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Updates Cloud Functions according to the specified update mask.
+
+        :param name: The name of the function.
+        :type name: str
+        :param body: The body required by the cloud function patch API.
+        :type body: dict
+        :param update_mask: The update mask - array of fields that should be patched.
+        :type update_mask: [str]
+        :return: None
+Copilot said
+python
+
+Copy
+from googleapiclient.discovery import build
+
+def update_cloud_function(name, body, update_mask):
+    """
+    Updates Cloud Functions according to the specified update mask.
+
+    Parameters:
+        name (str): The name of the function.
+        body (dict): The body required by the cloud function patch API.
+        update_mask (list): The update mask - array of fields that should be patched.
+
+    Returns:
+        None
+    """
+    service = build('cloudfunctions', 'v1')
+    request = service.projects().locations().functions().patch(
+        name=name,
+        body=body,
+        updateMask=",".join(update_mask)
+    )
+    request.execute()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Updates Cloud Functions according to the specified update mask.
+
+        :param name: The name of the function.
+        :type name: str
+        :param body: The body required by the cloud function patch API.
+        :type body: dict
+        :param update_mask: The update mask - array of fields that should be patched.
+        :type update_mask: [str]
+        :return: None
+Copilot said
+python
+
+Copy
+from googleapiclient.discovery import build
+
+def update_cloud_function(name, body, update_mask):
+    """
+    Updates Cloud Functions according to the specified update mask.
+
+    Parameters:
+        name (str): The name of the function.
+        body (dict): The body required by the cloud function patch API.
+        update_mask (list): The update mask - array of fields that should be patched.
+
+    Returns:
+        None
+    """
+    service = build('cloudfunctions', 'v1')
+    request = service.projects().locations().functions().patch(
+        name=name,
+        body=body,
+        updateMask=",".join(update_mask)
+    )
+    request.execute()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Cancels an transfer operation in Google Storage Transfer Service.
+
+        :param operation_name: Name of the transfer operation.
+        :type operation_name: str
+        :rtype: None
+Copilot said
+python
+
+Copy
+from googleapiclient.discovery import build
+
+def cancel_transfer_operation(operation_name):
+    """
+    Cancels a transfer operation in Google Storage Transfer Service.
+
+    Parameters:
+        operation_name (str): Name of the transfer operation.
+
+    Returns:
+        None
+    """
+    service = build('storagetransfer', 'v1')
+    request = service.transferOperations().cancel(name=operation_name)
+    request.execute()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Cancels an transfer operation in Google Storage Transfer Service.
+
+        :param operation_name: Name of the transfer operation.
+        :type operation_name: str
+        :rtype: None
+Copilot said
+python
+
+Copy
+from googleapiclient.discovery import build
+
+def cancel_transfer_operation(operation_name):
+    """
+    Cancels a transfer operation in Google Storage Transfer Service.
+
+    Parameters:
+        operation_name (str): Name of the transfer operation.
+
+    Returns:
+        None
+    """
+    service = build('storagetransfer', 'v1')
+    request = service.transferOperations().cancel(name=operation_name)
+    request.execute()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Cancels an transfer operation in Google Storage Transfer Service.
+
+        :param operation_name: Name of the transfer operation.
+        :type operation_name: str
+        :rtype: None
+Copilot said
+python
+
+Copy
+from googleapiclient.discovery import build
+
+def cancel_transfer_operation(operation_name):
+    """
+    Cancels a transfer operation in Google Storage Transfer Service.
+
+    Parameters:
+        operation_name (str): Name of the transfer operation.
+
+    Returns:
+        None
+    """
+    service = build('storagetransfer', 'v1')
+    request = service.transferOperations().cancel(name=operation_name)
+    request.execute()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Cancels an transfer operation in Google Storage Transfer Service.
+
+        :param operation_name: Name of the transfer operation.
+        :type operation_name: str
+        :rtype: None
+Copilot said
+python
+
+Copy
+from googleapiclient.discovery import build
+
+def cancel_transfer_operation(operation_name):
+    """
+    Cancels a transfer operation in Google Storage Transfer Service.
+
+    Parameters:
+        operation_name (str): Name of the transfer operation.
+
+    Returns:
+        None
+    """
+    service = build('storagetransfer', 'v1')
+    request = service.transferOperations().cancel(name=operation_name)
+    request.execute()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Cancels an transfer operation in Google Storage Transfer Service.
+
+        :param operation_name: Name of the transfer operation.
+        :type operation_name: str
+        :rtype: None
+Copilot said
+python
+
+Copy
+from googleapiclient.discovery import build
+
+def cancel_transfer_operation(operation_name):
+    """
+    Cancels a transfer operation in Google Storage Transfer Service.
+
+    Parameters:
+        operation_name (str): Name of the transfer operation.
+
+    Returns:
+        None
+    """
+    service = build('storagetransfer', 'v1')
+    request = service.transferOperations().cancel(name=operation_name)
+    request.execute()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Function decorator that provides a session if it isn't provided.
+    If you want to reuse a session or run the function as part of a
+    database transaction, you pass it to the function, if not this wrapper
+    will create one and close it for you.
+Copilot said
+python
+
+Copy
+from functools import wraps
+
+def provide_session(func):
+    """
+    Function decorator that provides a session if it isn't provided.
+    If you want to reuse a session or run the function as part of a
+    database transaction, you pass it to the function, if not this wrapper
+    will create one and close it for you.
+    """
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        session = kwargs.get('session')
+        if session is None:
+            from sqlalchemy.orm import Session
+            from sqlalchemy import create_engine
+            
+            engine = create_engine('sqlite:///:memory:')  # Replace with your DB connection string
+            session = Session(bind=engine)
+            kwargs['session'] = session
+            
+            try:
+                result = func(*args, **kwargs)
+            finally:
+                session.close()
+            return result
+        return func(*args, **kwargs)
+    
+    return wrapper
+```
+1
+github.com
+2
+github.com
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Function decorator that provides a session if it isn't provided.
+    If you want to reuse a session or run the function as part of a
+    database transaction, you pass it to the function, if not this wrapper
+    will create one and close it for you.
+Copilot said
+python
+
+Copy
+from functools import wraps
+
+def provide_session(func):
+    """
+    Function decorator that provides a session if it isn't provided.
+    If you want to reuse a session or run the function as part of a
+    database transaction, you pass it to the function, if not this wrapper
+    will create one and close it for you.
+    """
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        session = kwargs.get('session')
+        if session is None:
+            from sqlalchemy.orm import sessionmaker
+            from sqlalchemy import create_engine
+            
+            engine = create_engine('sqlite:///:memory:')  # Replace with your DB connection string
+            Session = sessionmaker(bind=engine)
+            session = Session()
+            kwargs['session'] = session
+            
+            try:
+                result = func(*args, **kwargs)
+            finally:
+                session.close()
+            return result
+        return func(*args, **kwargs)
+    
+    return wrapper
+```
+1
+github.com
+2
+github.com
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Function decorator that provides a session if it isn't provided.
+    If you want to reuse a session or run the function as part of a
+    database transaction, you pass it to the function, if not this wrapper
+    will create one and close it for you.
+Copilot said
+python
+
+Copy
+from functools import wraps
+
+def provide_session(func):
+    """
+    Function decorator that provides a session if it isn't provided.
+    If you want to reuse a session or run the function as part of a
+    database transaction, you pass it to the function, if not this wrapper
+    will create one and close it for you.
+    """
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        session = kwargs.get('session')
+        if session is None:
+            from sqlalchemy.orm import sessionmaker
+            from sqlalchemy import create_engine
+            
+            engine = create_engine('sqlite:///:memory:')  # Replace with your DB connection string
+            Session = sessionmaker(bind=engine)
+            session = Session()
+            kwargs['session'] = session
+            
+            try:
+                result = func(*args, **kwargs)
+            finally:
+                session.close()
+            return result
+        return func(*args, **kwargs)
+    
+    return wrapper
+```
+1
+github.com
+2
+github.com
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Function decorator that provides a session if it isn't provided.
+    If you want to reuse a session or run the function as part of a
+    database transaction, you pass it to the function, if not this wrapper
+    will create one and close it for you.
+Copilot said
+python
+
+Copy
+from functools import wraps
+
+def provide_session(func):
+    """
+    Function decorator that provides a session if it isn't provided.
+    If you want to reuse a session or run the function as part of a
+    database transaction, you pass it to the function, if not this wrapper
+    will create one and close it for you.
+    """
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        session = kwargs.get('session')
+        if session is None:
+            from sqlalchemy.orm import sessionmaker
+            from sqlalchemy import create_engine
+            
+            engine = create_engine('sqlite:///:memory:')  # Replace with your DB connection string
+            Session = sessionmaker(bind=engine)
+            session = Session()
+            kwargs['session'] = session
+            
+            try:
+                result = func(*args, **kwargs)
+            finally:
+                session.close()
+            return result
+        return func(*args, **kwargs)
+    
+    return wrapper
+```
+1
+github.com
+2
+github.com
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Function decorator that provides a session if it isn't provided.
+    If you want to reuse a session or run the function as part of a
+    database transaction, you pass it to the function, if not this wrapper
+    will create one and close it for you.
+Copilot said
+python
+
+Copy
+from functools import wraps
+
+def provide_session(func):
+    """
+    Function decorator that provides a session if it isn't provided.
+    If you want to reuse a session or run the function as part of a
+    database transaction, you pass it to the function, if not this wrapper
+    will create one and close it for you.
+    """
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        session = kwargs.get('session')
+        if session is None:
+            from sqlalchemy.orm import sessionmaker
+            from sqlalchemy import create_engine
+            
+            engine = create_engine('sqlite:///:memory:')  # Replace with your DB connection string
+            Session = sessionmaker(bind=engine)
+            session = Session()
+            kwargs['session'] = session
+            
+            try:
+                result = func(*args, **kwargs)
+            finally:
+                session.close()
+            return result
+        return func(*args, **kwargs)
+    
+    return wrapper
+```
+1
+github.com
+2
+github.com
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Translate a string or list of strings.
+
+        See https://cloud.google.com/translate/docs/translating-text
+
+        :type values: str or list
+        :param values: String or list of strings to translate.
+
+        :type target_language: str
+        :param target_language: The language to translate results into. This
+                                is required by the API and defaults to
+                                the target language of the current instance.
+
+        :type format_: str
+        :param format_: (Optional) One of ``text`` or ``html``, to specify
+                        if the input text is plain text or HTML.
+
+        :type source_language: str or None
+        :param source_language: (Optional) The language of the text to
+                                be translated.
+
+        :type model: str or None
+        :param model: (Optional) The model used to translate the text, such
+                      as ``'base'`` or ``'nmt'``.
+
+        :rtype: str or list
+        :returns: A list of dictionaries for each queried value. Each
+                  dictionary typically contains three keys (though not
+                  all will be present in all cases)
+
+                  * ``detectedSourceLanguage``: The detected language (as an
+                    ISO 639-1 language code) of the text.
+                  * ``translatedText``: The translation of the text into the
+                    target language.
+                  * ``input``: The corresponding input value.
+                  * ``model``: The model used to translate the text.
+
+                  If only a single value is passed, then only a single
+                  dictionary will be returned.
+        :raises: :class:`~exceptions.ValueError` if the number of
+                 values and translations differ.
+Copilot said
+python
+
+Copy
+from googleapiclient.discovery import build
+
+def translate_text(values, target_language, format_="text", source_language=None, model=None):
+    """
+    Translate a string or list of strings.
+
+    Parameters:
+        values (str or list): String or list of strings to translate.
+        target_language (str): The language to translate results into.
+        format_ (str): (Optional) One of "text" or "html" to specify if the input text is plain text or HTML.
+        source_language (str or None): (Optional) The language of the text to be translated.
+        model (str or None): (Optional) The model used to translate the text, such as "base" or "nmt".
+
+    Returns:
+        str or list: A list of dictionaries for each queried value with keys:
+            - "detectedSourceLanguage": The detected language of the text (ISO 639-1 code).
+            - "translatedText": The translation of the text into the target language.
+            - "input": The corresponding input value.
+            - "model": The model used to translate the text.
+
+    Raises:
+        ValueError: If the number of values and translations differ.
+
+    See:
+        https://cloud.google.com/translate/docs/translating-text
+    """
+    service = build('translate', 'v2')  # Ensure proper API version is used
+    if isinstance(values, str):
+        values = [values]
+    body = {
+        "q": values,
+        "target": target_language,
+        "format": format_,
+    }
+    if source_language:
+        body["source"] = source_language
+    if model:
+        body["model"] = model
+
+    response = service.translations().list(**body).execute()
+    return response.get("translations", [])
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Translate a string or list of strings.
+
+        See https://cloud.google.com/translate/docs/translating-text
+
+        :type values: str or list
+        :param values: String or list of strings to translate.
+
+        :type target_language: str
+        :param target_language: The language to translate results into. This
+                                is required by the API and defaults to
+                                the target language of the current instance.
+
+        :type format_: str
+        :param format_: (Optional) One of ``text`` or ``html``, to specify
+                        if the input text is plain text or HTML.
+
+        :type source_language: str or None
+        :param source_language: (Optional) The language of the text to
+                                be translated.
+
+        :type model: str or None
+        :param model: (Optional) The model used to translate the text, such
+                      as ``'base'`` or ``'nmt'``.
+
+        :rtype: str or list
+        :returns: A list of dictionaries for each queried value. Each
+                  dictionary typically contains three keys (though not
+                  all will be present in all cases)
+
+                  * ``detectedSourceLanguage``: The detected language (as an
+                    ISO 639-1 language code) of the text.
+                  * ``translatedText``: The translation of the text into the
+                    target language.
+                  * ``input``: The corresponding input value.
+                  * ``model``: The model used to translate the text.
+
+                  If only a single value is passed, then only a single
+                  dictionary will be returned.
+        :raises: :class:`~exceptions.ValueError` if the number of
+                 values and translations differ.
+Copilot said
+python
+
+Copy
+from googleapiclient.discovery import build
+
+def translate_text(values, target_language, format_="text", source_language=None, model=None):
+    """
+    Translate a string or list of strings.
+
+    Parameters:
+        values (str or list): String or list of strings to translate.
+        target_language (str): The language to translate results into.
+        format_ (str): (Optional) One of "text" or "html" to specify if the input text is plain text or HTML.
+        source_language (str or None): (Optional) The language of the text to be translated.
+        model (str or None): (Optional) The model used to translate the text, such as "base" or "nmt".
+
+    Returns:
+        str or list: A list of dictionaries for each queried value with keys:
+            - "detectedSourceLanguage": The detected language of the text (ISO 639-1 code).
+            - "translatedText": The translation of the text into the target language.
+            - "input": The corresponding input value.
+            - "model": The model used to translate the text.
+
+    Raises:
+        ValueError: If the number of values and translations differ.
+
+    See:
+        https://cloud.google.com/translate/docs/translating-text
+    """
+    service = build('translate', 'v2')  # Ensure proper API version is used
+    if isinstance(values, str):
+        values = [values]
+    body = {
+        "q": values,
+        "target": target_language,
+        "format": format_,
+    }
+    if source_language:
+        body["source"] = source_language
+    if model:
+        body["model"] = model
+
+    response = service.translations().list(**body).execute()
+    return response.get("translations", [])
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Translate a string or list of strings.
+
+        See https://cloud.google.com/translate/docs/translating-text
+
+        :type values: str or list
+        :param values: String or list of strings to translate.
+
+        :type target_language: str
+        :param target_language: The language to translate results into. This
+                                is required by the API and defaults to
+                                the target language of the current instance.
+
+        :type format_: str
+        :param format_: (Optional) One of ``text`` or ``html``, to specify
+                        if the input text is plain text or HTML.
+
+        :type source_language: str or None
+        :param source_language: (Optional) The language of the text to
+                                be translated.
+
+        :type model: str or None
+        :param model: (Optional) The model used to translate the text, such
+                      as ``'base'`` or ``'nmt'``.
+
+        :rtype: str or list
+        :returns: A list of dictionaries for each queried value. Each
+                  dictionary typically contains three keys (though not
+                  all will be present in all cases)
+
+                  * ``detectedSourceLanguage``: The detected language (as an
+                    ISO 639-1 language code) of the text.
+                  * ``translatedText``: The translation of the text into the
+                    target language.
+                  * ``input``: The corresponding input value.
+                  * ``model``: The model used to translate the text.
+
+                  If only a single value is passed, then only a single
+                  dictionary will be returned.
+        :raises: :class:`~exceptions.ValueError` if the number of
+                 values and translations differ.
+Copilot said
+python
+
+Copy
+from googleapiclient.discovery import build
+
+def translate_text(values, target_language, format_="text", source_language=None, model=None):
+    """
+    Translate a string or list of strings.
+
+    Parameters:
+        values (str or list): String or list of strings to translate.
+        target_language (str): The language to translate results into.
+        format_ (str): (Optional) One of "text" or "html" to specify if the input text is plain text or HTML.
+        source_language (str or None): (Optional) The language of the text to be translated.
+        model (str or None): (Optional) The model used to translate the text, such as "base" or "nmt".
+
+    Returns:
+        str or list: A list of dictionaries for each queried value with keys:
+            - "detectedSourceLanguage": The detected language of the text (ISO 639-1 code).
+            - "translatedText": The translation of the text into the target language.
+            - "input": The corresponding input value.
+            - "model": The model used to translate the text.
+
+    Raises:
+        ValueError: If the number of values and translations differ.
+
+    See:
+        https://cloud.google.com/translate/docs/translating-text
+    """
+    service = build('translate', 'v2')  # Ensure proper API version is used
+    if isinstance(values, str):
+        values = [values]
+    body = {
+        "q": values,
+        "target": target_language,
+        "format": format_,
+    }
+    if source_language:
+        body["source"] = source_language
+    if model:
+        body["model"] = model
+
+    response = service.translations().list(**body).execute()
+    return response.get("translations", [])
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Translate a string or list of strings.
+
+        See https://cloud.google.com/translate/docs/translating-text
+
+        :type values: str or list
+        :param values: String or list of strings to translate.
+
+        :type target_language: str
+        :param target_language: The language to translate results into. This
+                                is required by the API and defaults to
+                                the target language of the current instance.
+
+        :type format_: str
+        :param format_: (Optional) One of ``text`` or ``html``, to specify
+                        if the input text is plain text or HTML.
+
+        :type source_language: str or None
+        :param source_language: (Optional) The language of the text to
+                                be translated.
+
+        :type model: str or None
+        :param model: (Optional) The model used to translate the text, such
+                      as ``'base'`` or ``'nmt'``.
+
+        :rtype: str or list
+        :returns: A list of dictionaries for each queried value. Each
+                  dictionary typically contains three keys (though not
+                  all will be present in all cases)
+
+                  * ``detectedSourceLanguage``: The detected language (as an
+                    ISO 639-1 language code) of the text.
+                  * ``translatedText``: The translation of the text into the
+                    target language.
+                  * ``input``: The corresponding input value.
+                  * ``model``: The model used to translate the text.
+
+                  If only a single value is passed, then only a single
+                  dictionary will be returned.
+        :raises: :class:`~exceptions.ValueError` if the number of
+                 values and translations differ.
+Copilot said
+python
+
+Copy
+from googleapiclient.discovery import build
+
+def translate_text(values, target_language, format_="text", source_language=None, model=None):
+    """
+    Translate a string or list of strings.
+
+    Parameters:
+        values (str or list): String or list of strings to translate.
+        target_language (str): The language to translate results into.
+        format_ (str): (Optional) One of "text" or "html" to specify if the input text is plain text or HTML.
+        source_language (str or None): (Optional) The language of the text to be translated.
+        model (str or None): (Optional) The model used to translate the text, such as "base" or "nmt".
+
+    Returns:
+        str or list: A list of dictionaries for each queried value with keys:
+            - "detectedSourceLanguage": The detected language of the text (ISO 639-1 code).
+            - "translatedText": The translation of the text into the target language.
+            - "input": The corresponding input value.
+            - "model": The model used to translate the text.
+
+    Raises:
+        ValueError: If the number of values and translations differ.
+
+    See:
+        https://cloud.google.com/translate/docs/translating-text
+    """
+    service = build('translate', 'v2')  # Ensure proper API version is used
+    if isinstance(values, str):
+        values = [values]
+    body = {
+        "q": values,
+        "target": target_language,
+        "format": format_,
+    }
+    if source_language:
+        body["source"] = source_language
+    if model:
+        body["model"] = model
+
+    response = service.translations().list(**body).execute()
+    return response.get("translations", [])
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Translate a string or list of strings.
+
+        See https://cloud.google.com/translate/docs/translating-text
+
+        :type values: str or list
+        :param values: String or list of strings to translate.
+
+        :type target_language: str
+        :param target_language: The language to translate results into. This
+                                is required by the API and defaults to
+                                the target language of the current instance.
+
+        :type format_: str
+        :param format_: (Optional) One of ``text`` or ``html``, to specify
+                        if the input text is plain text or HTML.
+
+        :type source_language: str or None
+        :param source_language: (Optional) The language of the text to
+                                be translated.
+
+        :type model: str or None
+        :param model: (Optional) The model used to translate the text, such
+                      as ``'base'`` or ``'nmt'``.
+
+        :rtype: str or list
+        :returns: A list of dictionaries for each queried value. Each
+                  dictionary typically contains three keys (though not
+                  all will be present in all cases)
+
+                  * ``detectedSourceLanguage``: The detected language (as an
+                    ISO 639-1 language code) of the text.
+                  * ``translatedText``: The translation of the text into the
+                    target language.
+                  * ``input``: The corresponding input value.
+                  * ``model``: The model used to translate the text.
+
+                  If only a single value is passed, then only a single
+                  dictionary will be returned.
+        :raises: :class:`~exceptions.ValueError` if the number of
+                 values and translations differ.
+Copilot said
+python
+
+Copy
+from googleapiclient.discovery import build
+
+def translate_text(values, target_language, format_="text", source_language=None, model=None):
+    """
+    Translate a string or list of strings.
+
+    Parameters:
+        values (str or list): String or list of strings to translate.
+        target_language (str): The language to translate results into.
+        format_ (str): (Optional) One of "text" or "html" to specify if the input text is plain text or HTML.
+        source_language (str or None): (Optional) The language of the text to be translated.
+        model (str or None): (Optional) The model used to translate the text, such as "base" or "nmt".
+
+    Returns:
+        str or list: A list of dictionaries for each queried value with keys:
+            - "detectedSourceLanguage": The detected language of the text (ISO 639-1 code).
+            - "translatedText": The translation of the text into the target language.
+            - "input": The corresponding input value.
+            - "model": The model used to translate the text.
+
+    Raises:
+        ValueError: If the number of values and translations differ.
+
+    See:
+        https://cloud.google.com/translate/docs/translating-text
+    """
+    service = build('translate', 'v2')  # Ensure proper API version is used
+    if isinstance(values, str):
+        values = [values]
+    body = {
+        "q": values,
+        "target": target_language,
+        "format": format_,
+    }
+    if source_language:
+        body["source"] = source_language
+    if model:
+        body["model"] = model
+
+    response = service.translations().list(**body).execute()
+    return response.get("translations", [])
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Properly close pooled database connections
+Copilot said
+python
+
+Copy
+def close_pooled_connections(connection_pool):
+    """
+    Properly closes all connections in a pooled database connection.
+
+    Parameters:
+        connection_pool: The database connection pool object.
+
+    Returns:
+        None
+    """
+    try:
+        if connection_pool:
+            connection_pool.closeall()
+    except Exception as e:
+        print(f"Error while closing pooled connections: {e}")
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Properly close pooled database connections
+Copilot said
+python
+
+Copy
+def close_pooled_connections(connection_pool):
+    """
+    Properly closes all connections in a pooled database connection.
+
+    Parameters:
+        connection_pool: The database connection pool object.
+
+    Returns:
+        None
+    """
+    try:
+        if connection_pool:
+            connection_pool.closeall()
+    except Exception as e:
+        print(f"Error while closing pooled connections: {e}")
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Properly close pooled database connections
+Copilot said
+python
+
+Copy
+def close_pooled_connections(connection_pool):
+    """
+    Properly closes all connections in a pooled database connection.
+
+    Parameters:
+        connection_pool: The database connection pool object.
+
+    Returns:
+        None
+    """
+    try:
+        if connection_pool:
+            connection_pool.closeall()
+    except Exception as e:
+        print(f"Error while closing pooled connections: {e}")
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Properly close pooled database connections
+Copilot said
+python
+
+Copy
+def close_pooled_connections(connection_pool):
+    """
+    Properly closes all connections in a pooled database connection.
+
+    Parameters:
+        connection_pool: The database connection pool object.
+
+    Returns:
+        None
+    """
+    try:
+        if connection_pool:
+            connection_pool.closeall()
+    except Exception as e:
+        print(f"Error while closing pooled connections: {e}")
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Properly close pooled database connections
+Copilot said
+python
+
+Copy
+def close_pooled_connections(connection_pool):
+    """
+    Properly closes all connections in a pooled database connection.
+
+    Parameters:
+        connection_pool: The database connection pool object.
+
+    Returns:
+        None
+    """
+    try:
+        if connection_pool:
+            connection_pool.closeall()
+    except Exception as e:
+        print(f"Error while closing pooled connections: {e}")
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+returns aws_access_key_id, aws_secret_access_key
+        from extra
+
+        intended to be used by external import and export statements
+Copilot said
+python
+
+Copy
+def get_aws_credentials():
+    """
+    Returns aws_access_key_id and aws_secret_access_key from extra.
+
+    Intended to be used by external import and export statements.
+
+    Returns:
+        tuple: A tuple containing aws_access_key_id and aws_secret_access_key.
+    """
+    from extra import aws_access_key_id, aws_secret_access_key
+    return aws_access_key_id, aws_secret_access_key
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+returns aws_access_key_id, aws_secret_access_key
+        from extra
+
+        intended to be used by external import and export statements
+Copilot said
+python
+
+Copy
+def get_aws_credentials():
+    """
+    Returns aws_access_key_id and aws_secret_access_key from extra.
+
+    Intended to be used by external import and export statements.
+
+    Returns:
+        tuple: A tuple containing aws_access_key_id and aws_secret_access_key.
+    """
+    from extra import aws_access_key_id, aws_secret_access_key
+    return aws_access_key_id, aws_secret_access_key
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+returns aws_access_key_id, aws_secret_access_key
+        from extra
+
+        intended to be used by external import and export statements
+Copilot said
+python
+
+Copy
+def get_aws_credentials():
+    """
+    Returns aws_access_key_id and aws_secret_access_key from extra.
+
+    Intended to be used by external import and export statements.
+
+    Returns:
+        tuple: A tuple containing aws_access_key_id and aws_secret_access_key.
+    """
+    from extra import aws_access_key_id, aws_secret_access_key
+    return aws_access_key_id, aws_secret_access_key
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+returns aws_access_key_id, aws_secret_access_key
+        from extra
+
+        intended to be used by external import and export statements
+Copilot said
+python
+
+Copy
+def get_aws_credentials():
+    """
+    Returns aws_access_key_id and aws_secret_access_key from extra.
+
+    Intended to be used by external import and export statements.
+
+    Returns:
+        tuple: A tuple containing aws_access_key_id and aws_secret_access_key.
+    """
+    from extra import aws_access_key_id, aws_secret_access_key
+    return aws_access_key_id, aws_secret_access_key
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+returns aws_access_key_id, aws_secret_access_key
+        from extra
+
+        intended to be used by external import and export statements
+Copilot said
+python
+
+Copy
+def get_aws_credentials():
+    """
+    Returns aws_access_key_id and aws_secret_access_key from extra.
+
+    Intended to be used by external import and export statements.
+
+    Returns:
+        tuple: A tuple containing aws_access_key_id and aws_secret_access_key.
+    """
+    from extra import aws_access_key_id, aws_secret_access_key
+    return aws_access_key_id, aws_secret_access_key
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Parses the query string of a URL and returns the value of a parameter.
+
+    Args:
+        url: A URL.
+        param: A string representing the name of the parameter.
+
+    Returns:
+        The value of the parameter.
+Copilot said
+python
+
+Copy
+from urllib.parse import urlparse, parse_qs
+
+def get_query_param(url, param):
+    """
+    Parses the query string of a URL and returns the value of a parameter.
+
+    Args:
+        url (str): A URL.
+        param (str): A string representing the name of the parameter.
+
+    Returns:
+        str or None: The value of the parameter, or None if the parameter does not exist.
+    """
+    query = urlparse(url).query
+    params = parse_qs(query)
+    return params.get(param, [None])[0]
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Parses the query string of a URL and returns the value of a parameter.
+
+    Args:
+        url: A URL.
+        param: A string representing the name of the parameter.
+
+    Returns:
+        The value of the parameter.
+Copilot said
+python
+
+Copy
+from urllib.parse import urlparse, parse_qs
+
+def get_query_param(url, param):
+    """
+    Parses the query string of a URL and returns the value of a parameter.
+
+    Args:
+        url (str): A URL.
+        param (str): A string representing the name of the parameter.
+
+    Returns:
+        str or None: The value of the parameter, or None if the parameter does not exist.
+    """
+    query = urlparse(url).query
+    params = parse_qs(query)
+    return params.get(param, [None])[0]
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Parses the query string of a URL and returns the value of a parameter.
+
+    Args:
+        url: A URL.
+        param: A string representing the name of the parameter.
+
+    Returns:
+        The value of the parameter.
+Copilot said
+python
+
+Copy
+from urllib.parse import urlparse, parse_qs
+
+def get_query_param(url, param):
+    """
+    Parses the query string of a URL and returns the value of a parameter.
+
+    Args:
+        url (str): A URL.
+        param (str): A string representing the name of the parameter.
+
+    Returns:
+        str or None: The value of the parameter, or None if the parameter does not exist.
+    """
+    query = urlparse(url).query
+    params = parse_qs(query)
+    return params.get(param, [None])[0]
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Parses the query string of a URL and returns the value of a parameter.
+
+    Args:
+        url: A URL.
+        param: A string representing the name of the parameter.
+
+    Returns:
+        The value of the parameter.
+Copilot said
+python
+
+Copy
+from urllib.parse import urlparse, parse_qs
+
+def get_query_param(url, param):
+    """
+    Parses the query string of a URL and returns the value of a parameter.
+
+    Args:
+        url (str): A URL.
+        param (str): A string representing the name of the parameter.
+
+    Returns:
+        str or None: The value of the parameter, or None if the parameter does not exist.
+    """
+    query = urlparse(url).query
+    params = parse_qs(query)
+    return params.get(param, [None])[0]
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Parses the query string of a URL and returns the value of a parameter.
+
+    Args:
+        url: A URL.
+        param: A string representing the name of the parameter.
+
+    Returns:
+        The value of the parameter.
+Copilot said
+python
+
+Copy
+from urllib.parse import urlparse, parse_qs
+
+def get_query_param(url, param):
+    """
+    Parses the query string of a URL and returns the value of a parameter.
+
+    Args:
+        url (str): A URL.
+        param (str): A string representing the name of the parameter.
+
+    Returns:
+        str or None: The value of the parameter, or None if the parameter does not exist.
+    """
+    query = urlparse(url).query
+    params = parse_qs(query)
+    return params.get(param, [None])[0]
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Retrieves connection to Cloud Natural Language service.
+
+        :return: Cloud Natural Language service object
+        :rtype: google.cloud.language_v1.LanguageServiceClient
+Copilot said
+python
+
+Copy
+from google.cloud import language_v1
+
+def get_natural_language_service():
+    """
+    Retrieves connection to Cloud Natural Language service.
+
+    Returns:
+        google.cloud.language_v1.LanguageServiceClient: Cloud Natural Language service object
+    """
+    return language_v1.LanguageServiceClient()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Retrieves connection to Cloud Natural Language service.
+
+        :return: Cloud Natural Language service object
+        :rtype: google.cloud.language_v1.LanguageServiceClient
+Copilot said
+python
+
+Copy
+from google.cloud import language_v1
+
+def get_natural_language_service():
+    """
+    Retrieves connection to Cloud Natural Language service.
+
+    Returns:
+        google.cloud.language_v1.LanguageServiceClient: Cloud Natural Language service object
+    """
+    return language_v1.LanguageServiceClient()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Retrieves connection to Cloud Natural Language service.
+
+        :return: Cloud Natural Language service object
+        :rtype: google.cloud.language_v1.LanguageServiceClient
+Copilot said
+python
+
+Copy
+from google.cloud import language_v1
+
+def get_natural_language_service():
+    """
+    Retrieves connection to Cloud Natural Language service.
+
+    Returns:
+        google.cloud.language_v1.LanguageServiceClient: Cloud Natural Language service object
+    """
+    return language_v1.LanguageServiceClient()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Retrieves connection to Cloud Natural Language service.
+
+        :return: Cloud Natural Language service object
+        :rtype: google.cloud.language_v1.LanguageServiceClient
+Copilot said
+python
+
+Copy
+from google.cloud import language_v1
+
+def get_natural_language_service():
+    """
+    Retrieves connection to Cloud Natural Language service.
+
+    Returns:
+        google.cloud.language_v1.LanguageServiceClient: Cloud Natural Language service object
+    """
+    return language_v1.LanguageServiceClient()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Retrieves connection to Cloud Natural Language service.
+
+        :return: Cloud Natural Language service object
+        :rtype: google.cloud.language_v1.LanguageServiceClient
+Copilot said
+python
+
+Copy
+from google.cloud import language_v1
+
+def get_natural_language_service():
+    """
+    Retrieves connection to Cloud Natural Language service.
+
+    Returns:
+        google.cloud.language_v1.LanguageServiceClient: Cloud Natural Language service object
+    """
+    return language_v1.LanguageServiceClient()
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Parses host name and port number from a string.
+Copilot said
+python
+
+Copy
+def parse_host_and_port(address):
+    """
+    Parses the host name and port number from a string.
+
+    Args:
+        address (str): The input string containing the host name and port number.
+
+    Returns:
+        tuple: A tuple containing the host name and port number. If the port is not specified, returns None for the port.
+    """
+    if ":" in address:
+        host, port = address.split(":", 1)
+        return host, int(port)
+    return address, None
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Parses host name and port number from a string.
+Copilot said
+python
+
+Copy
+def parse_host_and_port(address):
+    """
+    Parses the host name and port number from a string.
+
+    Args:
+        address (str): The input string containing the host name and port number.
+
+    Returns:
+        tuple: A tuple containing the host name and port number. If the port is not specified, returns None for the port.
+    """
+    if ":" in address:
+        host, port = address.split(":", 1)
+        return host, int(port)
+    return address, None
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Parses host name and port number from a string.
+Copilot said
+python
+
+Copy
+def parse_host_and_port(address):
+    """
+    Parses the host name and port number from a string.
+
+    Args:
+        address (str): The input string containing the host name and port number.
+
+    Returns:
+        tuple: A tuple containing the host name and port number. If the port is not specified, returns None for the port.
+    """
+    if ":" in address:
+        host, port = address.split(":", 1)
+        return host, int(port)
+    return address, None
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Parses host name and port number from a string.
+Copilot said
+python
+
+Copy
+def parse_host_and_port(address):
+    """
+    Parses the host name and port number from a string.
+
+    Args:
+        address (str): The input string containing the host name and port number.
+
+    Returns:
+        tuple: A tuple containing the host name and port number. If the port is not specified, returns None for the port.
+    """
+    if ":" in address:
+        host, port = address.split(":", 1)
+        return host, int(port)
+    return address, None
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Parses host name and port number from a string.
+Copilot said
+python
+
+Copy
+def parse_host_and_port(address):
+    """
+    Parses the host name and port number from a string.
+
+    Args:
+        address (str): The input string containing the host name and port number.
+
+    Returns:
+        tuple: A tuple containing the host name and port number. If the port is not specified, returns None for the port.
+    """
+    if ":" in address:
+        host, port = address.split(":", 1)
+        return host, int(port)
+    return address, None
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+try:
+        # normal Vimeo video
+        html = get_content('https://vimeo.com/' + id)
+        cfg_patt = r'clip_page_config\s*=\s*(\{.+?\});'
+        cfg = json.loads(match1(html, cfg_patt))
+        video_page = get_content(cfg['player']['config_url'], headers=fake_headers)
+        title = cfg['clip']['title']
+        info = loads(video_page)
+    except:
+        # embedded player - referer may be required
+        if 'referer' in kwargs:
+            fake_headers['Referer'] = kwargs['referer']
+
+        video_page = get_content('http://player.vimeo.com/video/%s' % id, headers=fake_headers)
+        title = r1(r'<title>([^<]+)</title>', video_page)
+        info = loads(match1(video_page, r'var t=(\{.+?\});'))
+
+    streams = info['request']['files']['progressive']
+    streams = sorted(streams, key=lambda i: i['height'])
+    url = streams[-1]['url']
+
+    type, ext, size = url_info(url, faker=True)
+
+    print_info(site_info, title, type, size)
+    if not info_only:
+        download_urls([url], title, ext, size, output_dir, merge=merge, faker=True)
+Copilot said
+python
+
+Copy
+def fetch_vimeo_video(id, kwargs, info_only=False, output_dir=None, merge=True):
+    """
+    Fetches a Vimeo video and handles normal and embedded cases.
+
+    Args:
+        id (str): Vimeo video ID.
+        kwargs (dict): Optional arguments like 'referer'.
+        info_only (bool): If True, only displays video information.
+        output_dir (str): Directory to save the downloaded video.
+        merge (bool): If True, merges downloaded video files.
+
+    Returns:
+        None
+    """
+    try:
+        # normal Vimeo video
+        html = get_content(f'https://vimeo.com/{id}')
+        cfg_patt = r'clip_page_config\\s*=\\s*(\\{.+?\\});'
+        cfg = json.loads(match1(html, cfg_patt))
+        video_page = get_content(cfg['player']['config_url'], headers=fake_headers)
+        title = cfg['clip']['title']
+        info = loads(video_page)
+    except Exception:
+        # embedded player - referer may be required
+        if 'referer' in kwargs:
+            fake_headers['Referer'] = kwargs['referer']
+
+        video_page = get_content(f'http://player.vimeo.com/video/{id}', headers=fake_headers)
+        title = r1(r'<title>([^<]+)</title>', video_page)
+        info = loads(match1(video_page, r'var t=(\\{.+?\\});'))
+
+    streams = info['request']['files']['progressive']
+    streams = sorted(streams, key=lambda i: i['height'])
+    url = streams[-1]['url']
+
+    type, ext, size = url_info(url, faker=True)
+
+    print_info(site_info, title, type, size)
+    if not info_only:
+        download_urls([url], title, ext, size, output_dir, merge=merge, faker=True)
+```
+1
+github.com
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+try:
+        # normal Vimeo video
+        html = get_content('https://vimeo.com/' + id)
+        cfg_patt = r'clip_page_config\s*=\s*(\{.+?\});'
+        cfg = json.loads(match1(html, cfg_patt))
+        video_page = get_content(cfg['player']['config_url'], headers=fake_headers)
+        title = cfg['clip']['title']
+        info = loads(video_page)
+    except:
+        # embedded player - referer may be required
+        if 'referer' in kwargs:
+            fake_headers['Referer'] = kwargs['referer']
+
+        video_page = get_content('http://player.vimeo.com/video/%s' % id, headers=fake_headers)
+        title = r1(r'<title>([^<]+)</title>', video_page)
+        info = loads(match1(video_page, r'var t=(\{.+?\});'))
+
+    streams = info['request']['files']['progressive']
+    streams = sorted(streams, key=lambda i: i['height'])
+    url = streams[-1]['url']
+
+    type, ext, size = url_info(url, faker=True)
+
+    print_info(site_info, title, type, size)
+    if not info_only:
+        download_urls([url], title, ext, size, output_dir, merge=merge, faker=True)
+Copilot said
+python
+
+Copy
+def fetch_vimeo_video(id, kwargs, info_only=False, output_dir=None, merge=True):
+    """
+    Fetches a Vimeo video and handles normal and embedded cases.
+
+    Args:
+        id (str): Vimeo video ID.
+        kwargs (dict): Optional arguments like 'referer'.
+        info_only (bool): If True, only displays video information.
+        output_dir (str): Directory to save the downloaded video.
+        merge (bool): If True, merges downloaded video files.
+
+    Returns:
+        None
+    """
+    try:
+        # normal Vimeo video
+        html = get_content(f'https://vimeo.com/{id}')
+        cfg_patt = r'clip_page_config\s*=\s*(\{.+?\});'
+        cfg = json.loads(match1(html, cfg_patt))
+        video_page = get_content(cfg['player']['config_url'], headers=fake_headers)
+        title = cfg['clip']['title']
+        info = loads(video_page)
+    except Exception:
+        # embedded player - referer may be required
+        if 'referer' in kwargs:
+            fake_headers['Referer'] = kwargs['referer']
+
+        video_page = get_content(f'http://player.vimeo.com/video/{id}', headers=fake_headers)
+        title = r1(r'<title>([^<]+)</title>', video_page)
+        info = loads(match1(video_page, r'var t=(\{.+?\});'))
+
+    streams = info['request']['files']['progressive']
+    streams = sorted(streams, key=lambda i: i['height'])
+    url = streams[-1]['url']
+
+    type, ext, size = url_info(url, faker=True)
+
+    print_info(site_info, title, type, size)
+    if not info_only:
+        download_urls([url], title, ext, size, output_dir, merge=merge, faker=True)
+```
+1
+github.com
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+try:
+        # normal Vimeo video
+        html = get_content('https://vimeo.com/' + id)
+        cfg_patt = r'clip_page_config\s*=\s*(\{.+?\});'
+        cfg = json.loads(match1(html, cfg_patt))
+        video_page = get_content(cfg['player']['config_url'], headers=fake_headers)
+        title = cfg['clip']['title']
+        info = loads(video_page)
+    except:
+        # embedded player - referer may be required
+        if 'referer' in kwargs:
+            fake_headers['Referer'] = kwargs['referer']
+
+        video_page = get_content('http://player.vimeo.com/video/%s' % id, headers=fake_headers)
+        title = r1(r'<title>([^<]+)</title>', video_page)
+        info = loads(match1(video_page, r'var t=(\{.+?\});'))
+
+    streams = info['request']['files']['progressive']
+    streams = sorted(streams, key=lambda i: i['height'])
+    url = streams[-1]['url']
+
+    type, ext, size = url_info(url, faker=True)
+
+    print_info(site_info, title, type, size)
+    if not info_only:
+        download_urls([url], title, ext, size, output_dir, merge=merge, faker=True)
+Copilot said
+python
+
+Copy
+def fetch_vimeo_video(id, kwargs, info_only=False, output_dir=None, merge=True):
+    """
+    Fetches a Vimeo video and handles normal and embedded cases.
+
+    Args:
+        id (str): Vimeo video ID.
+        kwargs (dict): Optional arguments like 'referer'.
+        info_only (bool): If True, only displays video information.
+        output_dir (str): Directory to save the downloaded video.
+        merge (bool): If True, merges downloaded video files.
+
+    Returns:
+        None
+    """
+    try:
+        # normal Vimeo video
+        html = get_content(f'https://vimeo.com/{id}')
+        cfg_patt = r'clip_page_config\\s*=\\s*(\\{.+?\\});'
+        cfg = json.loads(match1(html, cfg_patt))
+        video_page = get_content(cfg['player']['config_url'], headers=fake_headers)
+        title = cfg['clip']['title']
+        info = loads(video_page)
+    except Exception:
+        # embedded player - referer may be required
+        if 'referer' in kwargs:
+            fake_headers['Referer'] = kwargs['referer']
+
+        video_page = get_content(f'http://player.vimeo.com/video/{id}', headers=fake_headers)
+        title = r1(r'<title>([^<]+)</title>', video_page)
+        info = loads(match1(video_page, r'var t=(\\{.+?\\});'))
+
+    streams = info['request']['files']['progressive']
+    streams = sorted(streams, key=lambda i: i['height'])
+    url = streams[-1]['url']
+
+    type, ext, size = url_info(url, faker=True)
+
+    print_info(site_info, title, type, size)
+    if not info_only:
+        download_urls([url], title, ext, size, output_dir, merge=merge, faker=True)
+```
+1
+github.com
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+try:
+        # normal Vimeo video
+        html = get_content('https://vimeo.com/' + id)
+        cfg_patt = r'clip_page_config\s*=\s*(\{.+?\});'
+        cfg = json.loads(match1(html, cfg_patt))
+        video_page = get_content(cfg['player']['config_url'], headers=fake_headers)
+        title = cfg['clip']['title']
+        info = loads(video_page)
+    except:
+        # embedded player - referer may be required
+        if 'referer' in kwargs:
+            fake_headers['Referer'] = kwargs['referer']
+
+        video_page = get_content('http://player.vimeo.com/video/%s' % id, headers=fake_headers)
+        title = r1(r'<title>([^<]+)</title>', video_page)
+        info = loads(match1(video_page, r'var t=(\{.+?\});'))
+
+    streams = info['request']['files']['progressive']
+    streams = sorted(streams, key=lambda i: i['height'])
+    url = streams[-1]['url']
+
+    type, ext, size = url_info(url, faker=True)
+
+    print_info(site_info, title, type, size)
+    if not info_only:
+        download_urls([url], title, ext, size, output_dir, merge=merge, faker=True)
+Copilot said
+python
+
+Copy
+def fetch_vimeo_video(id, kwargs, info_only=False, output_dir=None, merge=True):
+    """
+    Fetches a Vimeo video and handles normal and embedded cases.
+
+    Args:
+        id (str): Vimeo video ID.
+        kwargs (dict): Optional arguments like 'referer'.
+        info_only (bool): If True, only displays video information.
+        output_dir (str): Directory to save the downloaded video.
+        merge (bool): If True, merges downloaded video files.
+
+    Returns:
+        None
+    """
+    try:
+        # normal Vimeo video
+        html = get_content(f'https://vimeo.com/{id}')
+        cfg_patt = r'clip_page_config\\s*=\\s*(\\{.+?\\});'
+        cfg = json.loads(match1(html, cfg_patt))
+        video_page = get_content(cfg['player']['config_url'], headers=fake_headers)
+        title = cfg['clip']['title']
+        info = loads(video_page)
+    except Exception:
+        # embedded player - referer may be required
+        if 'referer' in kwargs:
+            fake_headers['Referer'] = kwargs['referer']
+
+        video_page = get_content(f'http://player.vimeo.com/video/{id}', headers=fake_headers)
+        title = r1(r'<title>([^<]+)</title>', video_page)
+        info = loads(match1(video_page, r'var t=(\\{.+?\\});'))
+
+    streams = info['request']['files']['progressive']
+    streams = sorted(streams, key=lambda i: i['height'])
+    url = streams[-1]['url']
+
+    type, ext, size = url_info(url, faker=True)
+
+    print_info(site_info, title, type, size)
+    if not info_only:
+        download_urls([url], title, ext, size, output_dir, merge=merge, faker=True)
+```
+1
+github.com
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+try:
+        # normal Vimeo video
+        html = get_content('https://vimeo.com/' + id)
+        cfg_patt = r'clip_page_config\s*=\s*(\{.+?\});'
+        cfg = json.loads(match1(html, cfg_patt))
+        video_page = get_content(cfg['player']['config_url'], headers=fake_headers)
+        title = cfg['clip']['title']
+        info = loads(video_page)
+    except:
+        # embedded player - referer may be required
+        if 'referer' in kwargs:
+            fake_headers['Referer'] = kwargs['referer']
+
+        video_page = get_content('http://player.vimeo.com/video/%s' % id, headers=fake_headers)
+        title = r1(r'<title>([^<]+)</title>', video_page)
+        info = loads(match1(video_page, r'var t=(\{.+?\});'))
+
+    streams = info['request']['files']['progressive']
+    streams = sorted(streams, key=lambda i: i['height'])
+    url = streams[-1]['url']
+
+    type, ext, size = url_info(url, faker=True)
+
+    print_info(site_info, title, type, size)
+    if not info_only:
+        download_urls([url], title, ext, size, output_dir, merge=merge, faker=True)
+Copilot said
+python
+
+Copy
+def fetch_vimeo_video(id, kwargs, info_only=False, output_dir=None, merge=True):
+    """
+    Fetches a Vimeo video and handles normal and embedded cases.
+
+    Args:
+        id (str): Vimeo video ID.
+        kwargs (dict): Optional arguments like 'referer'.
+        info_only (bool): If True, only displays video information.
+        output_dir (str): Directory to save the downloaded video.
+        merge (bool): If True, merges downloaded video files.
+
+    Returns:
+        None
+    """
+    try:
+        # normal Vimeo video
+        html = get_content(f'https://vimeo.com/{id}')
+        cfg_patt = r'clip_page_config\s*=\s*(\{.+?\});'
+        cfg = json.loads(match1(html, cfg_patt))
+        video_page = get_content(cfg['player']['config_url'], headers=fake_headers)
+        title = cfg['clip']['title']
+        info = loads(video_page)
+    except Exception:
+        # embedded player - referer may be required
+        if 'referer' in kwargs:
+            fake_headers['Referer'] = kwargs['referer']
+
+        video_page = get_content(f'http://player.vimeo.com/video/{id}', headers=fake_headers)
+        title = r1(r'<title>([^<]+)</title>', video_page)
+        info = loads(match1(video_page, r'var t=(\{.+?\});'))
+
+    streams = info['request']['files']['progressive']
+    streams = sorted(streams, key=lambda i: i['height'])
+    url = streams[-1]['url']
+
+    type, ext, size = url_info(url, faker=True)
+
+    print_info(site_info, title, type, size)
+    if not info_only:
+        download_urls([url], title, ext, size, output_dir, merge=merge, faker=True)
+```
+1
+github.com
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Publish a message to a topic or an endpoint.
+
+        :param target_arn: either a TopicArn or an EndpointArn
+        :type target_arn: str
+        :param message: the default message you want to send
+        :param message: str
+Copilot said
+python
+
+Copy
+import boto3
+
+def publish_message(target_arn, message):
+    """
+    Publishes a message to a topic or an endpoint.
+
+    Args:
+        target_arn (str): Either a TopicArn or an EndpointArn.
+        message (str): The default message you want to send.
+
+    Returns:
+        dict: Response from the publish action.
+    """
+    client = boto3.client('sns')
+    response = client.publish(
+        TargetArn=target_arn,
+        Message=message
+    )
+    return response
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Publish a message to a topic or an endpoint.
+
+        :param target_arn: either a TopicArn or an EndpointArn
+        :type target_arn: str
+        :param message: the default message you want to send
+        :param message: str
+Copilot said
+python
+
+Copy
+import boto3
+
+def publish_message(target_arn, message):
+    """
+    Publishes a message to a topic or an endpoint.
+
+    Args:
+        target_arn (str): Either a TopicArn or an EndpointArn.
+        message (str): The default message you want to send.
+
+    Returns:
+        dict: Response from the publish action.
+    """
+    client = boto3.client('sns')
+    response = client.publish(
+        TargetArn=target_arn,
+        Message=message
+    )
+    return response
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Publish a message to a topic or an endpoint.
+
+        :param target_arn: either a TopicArn or an EndpointArn
+        :type target_arn: str
+        :param message: the default message you want to send
+        :param message: str
+Copilot said
+python
+
+Copy
+import boto3
+
+def publish_message(target_arn, message):
+    """
+    Publishes a message to a topic or an endpoint.
+
+    Args:
+        target_arn (str): Either a TopicArn or an EndpointArn.
+        message (str): The default message you want to send.
+
+    Returns:
+        dict: Response from the publish action.
+    """
+    client = boto3.client('sns')
+    response = client.publish(
+        TargetArn=target_arn,
+        Message=message
+    )
+    return response
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Publish a message to a topic or an endpoint.
+
+        :param target_arn: either a TopicArn or an EndpointArn
+        :type target_arn: str
+        :param message: the default message you want to send
+        :param message: str
+Copilot said
+python
+
+Copy
+import boto3
+
+def publish_message(target_arn, message):
+    """
+    Publishes a message to a topic or an endpoint.
+
+    Args:
+        target_arn (str): Either a TopicArn or an EndpointArn.
+        message (str): The default message you want to send.
+
+    Returns:
+        dict: Response from the publish action.
+    """
+    client = boto3.client('sns')
+    response = client.publish(
+        TargetArn=target_arn,
+        Message=message
+    )
+    return response
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Publish a message to a topic or an endpoint.
+
+        :param target_arn: either a TopicArn or an EndpointArn
+        :type target_arn: str
+        :param message: the default message you want to send
+        :param message: str
+Copilot said
+python
+
+Copy
+import boto3
+
+def publish_message(target_arn, message):
+    """
+    Publishes a message to a topic or an endpoint.
+
+    Args:
+        target_arn (str): Either a TopicArn or an EndpointArn.
+        message (str): The default message you want to send.
+
+    Returns:
+        dict: Response from the publish action.
+    """
+    client = boto3.client('sns')
+    response = client.publish(
+        TargetArn=target_arn,
+        Message=message
+    )
+    return response
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Gets the content of a URL via sending a HTTP GET request.
+
+    Args:
+        url: A URL.
+        headers: Request headers used by the client.
+        decoded: Whether decode the response body using UTF-8 or the charset specified in Content-Type.
+
+    Returns:
+        The content as a string.
+Copilot said
+python
+
+Copy
+import requests
+
+def get_content(url, headers=None, decoded=True):
+    """
+    Gets the content of a URL via sending a HTTP GET request.
+
+    Args:
+        url (str): A URL.
+        headers (dict): Request headers used by the client.
+        decoded (bool): Whether to decode the response body using UTF-8 or the charset specified in Content-Type.
+
+    Returns:
+        str: The content as a string.
+    """
+    response = requests.get(url, headers=headers)
+    if decoded:
+        response.encoding = response.apparent_encoding or response.encoding
+        return response.text
+    return response.content
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Gets the content of a URL via sending a HTTP GET request.
+
+    Args:
+        url: A URL.
+        headers: Request headers used by the client.
+        decoded: Whether decode the response body using UTF-8 or the charset specified in Content-Type.
+
+    Returns:
+        The content as a string.
+Copilot said
+python
+
+Copy
+import requests
+
+def get_content(url, headers=None, decoded=True):
+    """
+    Gets the content of a URL via sending a HTTP GET request.
+
+    Args:
+        url (str): A URL.
+        headers (dict): Request headers used by the client.
+        decoded (bool): Whether to decode the response body using UTF-8 or the charset specified in Content-Type.
+
+    Returns:
+        str: The content as a string.
+    """
+    response = requests.get(url, headers=headers)
+    if decoded:
+        response.encoding = response.apparent_encoding or response.encoding
+        return response.text
+    return response.content
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Gets the content of a URL via sending a HTTP GET request.
+
+    Args:
+        url: A URL.
+        headers: Request headers used by the client.
+        decoded: Whether decode the response body using UTF-8 or the charset specified in Content-Type.
+
+    Returns:
+        The content as a string.
+Copilot said
+python
+
+Copy
+import requests
+
+def get_content(url, headers=None, decoded=True):
+    """
+    Gets the content of a URL via sending a HTTP GET request.
+
+    Args:
+        url (str): A URL.
+        headers (dict): Request headers used by the client.
+        decoded (bool): Whether to decode the response body using UTF-8 or the charset specified in Content-Type.
+
+    Returns:
+        str: The content as a string.
+    """
+    response = requests.get(url, headers=headers)
+    if decoded:
+        response.encoding = response.apparent_encoding or response.encoding
+        return response.text
+    return response.content
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Gets the content of a URL via sending a HTTP GET request.
+
+    Args:
+        url: A URL.
+        headers: Request headers used by the client.
+        decoded: Whether decode the response body using UTF-8 or the charset specified in Content-Type.
+
+    Returns:
+        The content as a string.
+Copilot said
+python
+
+Copy
+import requests
+
+def get_content(url, headers=None, decoded=True):
+    """
+    Gets the content of a URL via sending a HTTP GET request.
+
+    Args:
+        url (str): A URL.
+        headers (dict): Request headers used by the client.
+        decoded (bool): Whether to decode the response body using UTF-8 or the charset specified in Content-Type.
+
+    Returns:
+        str: The content as a string.
+    """
+    response = requests.get(url, headers=headers)
+    if decoded:
+        response.encoding = response.apparent_encoding or response.encoding
+        return response.text
+    return response.content
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Gets the content of a URL via sending a HTTP GET request.
+
+    Args:
+        url: A URL.
+        headers: Request headers used by the client.
+        decoded: Whether decode the response body using UTF-8 or the charset specified in Content-Type.
+
+    Returns:
+        The content as a string.
+Copilot said
+python
+
+Copy
+import requests
+
+def get_content(url, headers=None, decoded=True):
+    """
+    Gets the content of a URL via sending a HTTP GET request.
+
+    Args:
+        url (str): A URL.
+        headers (dict): Request headers used by the client.
+        decoded (bool): Whether to decode the response body using UTF-8 or the charset specified in Content-Type.
+
+    Returns:
+        str: The content as a string.
+    """
+    response = requests.get(url, headers=headers)
+    if decoded:
+        response.encoding = response.apparent_encoding or response.encoding
+        return response.text
+    return response.content
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Creates a Pub/Sub topic, if it does not already exist.
+
+        :param project: the GCP project ID in which to create
+            the topic
+        :type project: str
+        :param topic: the Pub/Sub topic name to create; do not
+            include the ``projects/{project}/topics/`` prefix.
+        :type topic: str
+        :param fail_if_exists: if set, raise an exception if the topic
+            already exists
+        :type fail_if_exists: bool
+Copilot said
+python
+
+Copy
+from google.cloud import pubsub_v1
+
+def create_pubsub_topic(project, topic, fail_if_exists=False):
+    """
+    Creates a Pub/Sub topic, if it does not already exist.
+
+    Args:
+        project (str): The GCP project ID in which to create the topic.
+        topic (str): The Pub/Sub topic name to create; do not include the `projects/{project}/topics/` prefix.
+        fail_if_exists (bool): If set, raise an exception if the topic already exists.
+
+    Returns:
+        None
+    """
+    client = pubsub_v1.PublisherClient()
+    topic_path = client.topic_path(project, topic)
+
+    try:
+        client.create_topic(name=topic_path)
+        print(f"Topic '{topic}' created successfully.")
+    except Exception as e:
+        if "ALREADY_EXISTS" in str(e) and fail_if_exists:
+            raise Exception(f"Topic '{topic}' already exists.") from e
+        elif "ALREADY_EXISTS" in str(e):
+            print(f"Topic '{topic}' already exists.")
+        else:
+            raise e
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Creates a Pub/Sub topic, if it does not already exist.
+
+        :param project: the GCP project ID in which to create
+            the topic
+        :type project: str
+        :param topic: the Pub/Sub topic name to create; do not
+            include the ``projects/{project}/topics/`` prefix.
+        :type topic: str
+        :param fail_if_exists: if set, raise an exception if the topic
+            already exists
+        :type fail_if_exists: bool
+Copilot said
+python
+
+Copy
+from google.cloud import pubsub_v1
+
+def create_pubsub_topic(project, topic, fail_if_exists=False):
+    """
+    Creates a Pub/Sub topic, if it does not already exist.
+
+    Args:
+        project (str): The GCP project ID in which to create the topic.
+        topic (str): The Pub/Sub topic name to create; do not include the `projects/{project}/topics/` prefix.
+        fail_if_exists (bool): If set, raise an exception if the topic already exists.
+
+    Returns:
+        None
+    """
+    client = pubsub_v1.PublisherClient()
+    topic_path = client.topic_path(project, topic)
+
+    try:
+        client.create_topic(name=topic_path)
+        print(f"Topic '{topic}' created successfully.")
+    except Exception as e:
+        if "ALREADY_EXISTS" in str(e) and fail_if_exists:
+            raise Exception(f"Topic '{topic}' already exists.") from e
+        elif "ALREADY_EXISTS" in str(e):
+            print(f"Topic '{topic}' already exists.")
+        else:
+            raise e
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Creates a Pub/Sub topic, if it does not already exist.
+
+        :param project: the GCP project ID in which to create
+            the topic
+        :type project: str
+        :param topic: the Pub/Sub topic name to create; do not
+            include the ``projects/{project}/topics/`` prefix.
+        :type topic: str
+        :param fail_if_exists: if set, raise an exception if the topic
+            already exists
+        :type fail_if_exists: bool
+Copilot said
+python
+
+Copy
+from google.cloud import pubsub_v1
+
+def create_pubsub_topic(project, topic, fail_if_exists=False):
+    """
+    Creates a Pub/Sub topic, if it does not already exist.
+
+    Args:
+        project (str): The GCP project ID in which to create the topic.
+        topic (str): The Pub/Sub topic name to create; do not include the `projects/{project}/topics/` prefix.
+        fail_if_exists (bool): If set, raise an exception if the topic already exists.
+
+    Returns:
+        None
+    """
+    client = pubsub_v1.PublisherClient()
+    topic_path = client.topic_path(project, topic)
+
+    try:
+        client.create_topic(name=topic_path)
+        print(f"Topic '{topic}' created successfully.")
+    except Exception as e:
+        if "ALREADY_EXISTS" in str(e) and fail_if_exists:
+            raise Exception(f"Topic '{topic}' already exists.") from e
+        elif "ALREADY_EXISTS" in str(e):
+            print(f"Topic '{topic}' already exists.")
+        else:
+            raise e
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Creates a Pub/Sub topic, if it does not already exist.
+
+        :param project: the GCP project ID in which to create
+            the topic
+        :type project: str
+        :param topic: the Pub/Sub topic name to create; do not
+            include the ``projects/{project}/topics/`` prefix.
+        :type topic: str
+        :param fail_if_exists: if set, raise an exception if the topic
+            already exists
+        :type fail_if_exists: bool
+Copilot said
+python
+
+Copy
+from google.cloud import pubsub_v1
+
+def create_pubsub_topic(project, topic, fail_if_exists=False):
+    """
+    Creates a Pub/Sub topic, if it does not already exist.
+
+    Args:
+        project (str): The GCP project ID in which to create the topic.
+        topic (str): The Pub/Sub topic name to create; do not include the `projects/{project}/topics/` prefix.
+        fail_if_exists (bool): If set, raise an exception if the topic already exists.
+
+    Returns:
+        None
+    """
+    client = pubsub_v1.PublisherClient()
+    topic_path = client.topic_path(project, topic)
+
+    try:
+        client.create_topic(name=topic_path)
+        print(f"Topic '{topic}' created successfully.")
+    except Exception as e:
+        if "ALREADY_EXISTS" in str(e) and fail_if_exists:
+            raise Exception(f"Topic '{topic}' already exists.") from e
+        elif "ALREADY_EXISTS" in str(e):
+            print(f"Topic '{topic}' already exists.")
+        else:
+            raise e
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Creates a Pub/Sub topic, if it does not already exist.
+
+        :param project: the GCP project ID in which to create
+            the topic
+        :type project: str
+        :param topic: the Pub/Sub topic name to create; do not
+            include the ``projects/{project}/topics/`` prefix.
+        :type topic: str
+        :param fail_if_exists: if set, raise an exception if the topic
+            already exists
+        :type fail_if_exists: bool
+Copilot said
+python
+
+Copy
+from google.cloud import pubsub_v1
+
+def create_pubsub_topic(project, topic, fail_if_exists=False):
+    """
+    Creates a Pub/Sub topic, if it does not already exist.
+
+    Args:
+        project (str): The GCP project ID in which to create the topic.
+        topic (str): The Pub/Sub topic name to create; do not include the `projects/{project}/topics/` prefix.
+        fail_if_exists (bool): If set, raise an exception if the topic already exists.
+
+    Returns:
+        None
+    """
+    client = pubsub_v1.PublisherClient()
+    topic_path = client.topic_path(project, topic)
+
+    try:
+        client.create_topic(name=topic_path)
+        print(f"Topic '{topic}' created successfully.")
+    except Exception as e:
+        if "ALREADY_EXISTS" in str(e) and fail_if_exists:
+            raise Exception(f"Topic '{topic}' already exists.") from e
+        elif "ALREADY_EXISTS" in str(e):
+            print(f"Topic '{topic}' already exists.")
+        else:
+            raise e
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Get a pandas dataframe from a sql query.
+Copilot said
+python
+
+Copy
+import pandas as pd
+import sqlite3
+
+def get_dataframe_from_sql(query, database_path):
+    """
+    Gets a pandas dataframe from a SQL query.
+
+    Args:
+        query (str): The SQL query to execute.
+        database_path (str): The path to the SQLite database.
+
+    Returns:
+        pd.DataFrame: A pandas dataframe containing the query results.
+    """
+    with sqlite3.connect(database_path) as connection:
+        dataframe = pd.read_sql_query(query, connection)
+    return dataframe
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Get a pandas dataframe from a sql query.
+Copilot said
+python
+
+Copy
+import pandas as pd
+import sqlite3
+
+def get_dataframe_from_sql(query, database_path):
+    """
+    Gets a pandas dataframe from a SQL query.
+
+    Args:
+        query (str): The SQL query to execute.
+        database_path (str): The path to the SQLite database.
+
+    Returns:
+        pd.DataFrame: A pandas dataframe containing the query results.
+    """
+    with sqlite3.connect(database_path) as connection:
+        dataframe = pd.read_sql_query(query, connection)
+    return dataframe
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Get a pandas dataframe from a sql query.
+Copilot said
+python
+
+Copy
+import pandas as pd
+import sqlite3
+
+def get_dataframe_from_sql(query, database_path):
+    """
+    Gets a pandas dataframe from a SQL query.
+
+    Args:
+        query (str): The SQL query to execute.
+        database_path (str): The path to the SQLite database.
+
+    Returns:
+        pd.DataFrame: A pandas dataframe containing the query results.
+    """
+    with sqlite3.connect(database_path) as connection:
+        dataframe = pd.read_sql_query(query, connection)
+    return dataframe
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Get a pandas dataframe from a sql query.
+Copilot said
+python
+
+Copy
+import pandas as pd
+import sqlite3
+
+def get_dataframe_from_sql(query, database_path):
+    """
+    Gets a pandas dataframe from a SQL query.
+
+    Args:
+        query (str): The SQL query to execute.
+        database_path (str): The path to the SQLite database.
+
+    Returns:
+        pd.DataFrame: A pandas dataframe containing the query results.
+    """
+    with sqlite3.connect(database_path) as connection:
+        dataframe = pd.read_sql_query(query, connection)
+    return dataframe
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Get a pandas dataframe from a sql query.
+Copilot said
+python
+
+Copy
+import pandas as pd
+import sqlite3
+
+def get_dataframe_from_sql(query, database_path):
+    """
+    Gets a pandas dataframe from a SQL query.
+
+    Args:
+        query (str): The SQL query to execute.
+        database_path (str): The path to the SQLite database.
+
+    Returns:
+        pd.DataFrame: A pandas dataframe containing the query results.
+    """
+    with sqlite3.connect(database_path) as connection:
+        dataframe = pd.read_sql_query(query, connection)
+    return dataframe
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+:param file_path: the path to the file that's being processed
+        :type file_path: unicode
+        :return: the start time of the process that's processing the
+            specified file or None if the file is not currently being processed
+        :rtype: datetime
+Copilot said
+python
+
+Copy
+import datetime
+
+def get_process_start_time(file_path):
+    """
+    Retrieves the start time of the process that is processing the specified file.
+
+    Args:
+        file_path (str): The path to the file that's being processed.
+
+    Returns:
+        datetime.datetime: The start time of the process that's processing the specified file,
+                           or None if the file is not currently being processed.
+    """
+    # Simulate process lookup. Replace with actual implementation to check file processing status.
+    process_info = check_process_by_file(file_path)
+    if process_info:
+        return process_info.get('start_time', None)
+    return None
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+:param file_path: the path to the file that's being processed
+        :type file_path: unicode
+        :return: the start time of the process that's processing the
+            specified file or None if the file is not currently being processed
+        :rtype: datetime
+Copilot said
+python
+
+Copy
+import datetime
+
+def get_process_start_time(file_path):
+    """
+    Retrieves the start time of the process that is processing the specified file.
+
+    Args:
+        file_path (str): The path to the file that's being processed.
+
+    Returns:
+        datetime.datetime: The start time of the process that's processing the specified file,
+                           or None if the file is not currently being processed.
+    """
+    # Simulated implementation for demonstration purposes
+    process_status = check_process_status(file_path)  # Replace with actual logic to fetch process info
+    if process_status and 'start_time' in process_status:
+        return process_status['start_time']
+    return None
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+:param file_path: the path to the file that's being processed
+        :type file_path: unicode
+        :return: the start time of the process that's processing the
+            specified file or None if the file is not currently being processed
+        :rtype: datetime
+Copilot said
+python
+
+Copy
+import datetime
+
+def get_process_start_time(file_path):
+    """
+    Retrieves the start time of the process that is processing the specified file.
+
+    Args:
+        file_path (str): The path to the file that's being processed.
+
+    Returns:
+        datetime.datetime: The start time of the process that's processing the specified file,
+                           or None if the file is not currently being processed.
+    """
+    # Placeholder implementation, replace with actual logic to check process details
+    process_details = check_process_for_file(file_path)  # Mock function to simulate process lookup
+    if process_details and 'start_time' in process_details:
+        return process_details['start_time']
+    return None
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+:param file_path: the path to the file that's being processed
+        :type file_path: unicode
+        :return: the start time of the process that's processing the
+            specified file or None if the file is not currently being processed
+        :rtype: datetime
+Copilot said
+python
+
+Copy
+import datetime
+
+def get_process_start_time(file_path):
+    """
+    Retrieves the start time of the process that is processing the specified file.
+
+    Args:
+        file_path (str): The path to the file that's being processed.
+
+    Returns:
+        datetime.datetime: The start time of the process that's processing the specified file,
+                           or None if the file is not currently being processed.
+    """
+    # Placeholder for actual implementation, replace with real logic
+    process_info = lookup_file_process(file_path)  # Hypothetical function to find process details
+    if process_info and 'start_time' in process_info:
+        return process_info['start_time']
+    return None
+
+
+
+
+You said
+Please generate a Python function that does the following with only the code box and no example usage:
+
+:param file_path: the path to the file that's being processed
+        :type file_path: unicode
+        :return: the start time of the process that's processing the
+            specified file or None if the file is not currently being processed
+        :rtype: datetime
+Copilot said
+python
+
+Copy
+import datetime
+
+def get_process_start_time(file_path):
+    """
+    Retrieves the start time of the process that is processing the specified file.
+
+    Args:
+        file_path (str): The path to the file that's being processed.
+
+    Returns:
+        datetime.datetime: The start time of the process that's processing the specified file,
+                           or None if the file is not currently being processed.
+    """
+    # Hypothetical implementation - replace with real logic to identify process details
+    process_info = check_file_processing_status(file_path)  # Mock function for process lookup
+    if process_info and 'start_time' in process_info:
+        return process_info['start_time']
+    return None

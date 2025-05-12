@@ -1,0 +1,3276 @@
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Import a backup from Cloud Storage to Cloud Datastore.
+
+        .. note::
+            Keep in mind that this requests the Admin API not the Data API.
+
+        .. seealso::
+            https://cloud.google.com/datastore/docs/reference/admin/rest/v1/projects/import
+
+        :param bucket: The name of the Cloud Storage bucket.
+        :type bucket: str
+        :param file: the metadata file written by the projects.export operation.
+        :type file: str
+        :param namespace: The Cloud Storage namespace path.
+        :type namespace: str
+        :param entity_filter: specify which kinds/namespaces are to be imported.
+        :type entity_filter: dict
+        :param labels: Client-assigned labels.
+        :type labels: dict of str
+        :return: a resource operation instance.
+        :rtype: dict 
+ChatGPT said:
+import google.auth
+from google.auth.transport.requests import AuthorizedSession
+import requests
+
+def import_datastore_backup(bucket: str, file: str, namespace: str, entity_filter: dict, labels: dict) -> dict:
+    credentials, project_id = google.auth.default(scopes=["https://www.googleapis.com/auth/datastore"])
+    authed_session = AuthorizedSession(credentials)
+
+    url = f"https://datastore.googleapis.com/v1/projects/{project_id}:import"
+
+    body = {
+        "inputUrl": f"gs://{bucket}/{namespace}/{file}",
+        "entityFilter": entity_filter,
+        "labels": labels
+    }
+
+    response = authed_session.post(url, json=body)
+    response.raise_for_status()
+
+    return response.json()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Import a backup from Cloud Storage to Cloud Datastore.
+
+        .. note::
+            Keep in mind that this requests the Admin API not the Data API.
+
+        .. seealso::
+            https://cloud.google.com/datastore/docs/reference/admin/rest/v1/projects/import
+
+        :param bucket: The name of the Cloud Storage bucket.
+        :type bucket: str
+        :param file: the metadata file written by the projects.export operation.
+        :type file: str
+        :param namespace: The Cloud Storage namespace path.
+        :type namespace: str
+        :param entity_filter: specify which kinds/namespaces are to be imported.
+        :type entity_filter: dict
+        :param labels: Client-assigned labels.
+        :type labels: dict of str
+        :return: a resource operation instance.
+        :rtype: dict 
+ChatGPT said:
+import google.auth
+from google.auth.transport.requests import AuthorizedSession
+
+def import_backup_to_datastore(bucket: str, file: str, namespace: str, entity_filter: dict, labels: dict) -> dict:
+    credentials, project_id = google.auth.default(scopes=["https://www.googleapis.com/auth/datastore"])
+    authed_session = AuthorizedSession(credentials)
+
+    url = f"https://datastore.googleapis.com/v1/projects/{project_id}:import"
+
+    input_url = f"gs://{bucket}/{namespace}/{file}"
+
+    payload = {
+        "inputUrl": input_url,
+        "entityFilter": entity_filter,
+        "labels": labels
+    }
+
+    response = authed_session.post(url, json=payload)
+    response.raise_for_status()
+
+    return response.json()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Import a backup from Cloud Storage to Cloud Datastore.
+
+        .. note::
+            Keep in mind that this requests the Admin API not the Data API.
+
+        .. seealso::
+            https://cloud.google.com/datastore/docs/reference/admin/rest/v1/projects/import
+
+        :param bucket: The name of the Cloud Storage bucket.
+        :type bucket: str
+        :param file: the metadata file written by the projects.export operation.
+        :type file: str
+        :param namespace: The Cloud Storage namespace path.
+        :type namespace: str
+        :param entity_filter: specify which kinds/namespaces are to be imported.
+        :type entity_filter: dict
+        :param labels: Client-assigned labels.
+        :type labels: dict of str
+        :return: a resource operation instance.
+        :rtype: dict 
+ChatGPT said:
+import google.auth
+from google.auth.transport.requests import AuthorizedSession
+
+def import_datastore_backup(bucket: str, file: str, namespace: str, entity_filter: dict, labels: dict) -> dict:
+    credentials, project_id = google.auth.default(scopes=["https://www.googleapis.com/auth/datastore"])
+    authed_session = AuthorizedSession(credentials)
+
+    url = f"https://datastore.googleapis.com/v1/projects/{project_id}:import"
+
+    input_url = f"gs://{bucket}/{namespace}/{file}".rstrip('/')
+
+    body = {
+        "inputUrl": input_url,
+        "entityFilter": entity_filter,
+        "labels": labels
+    }
+
+    response = authed_session.post(url, json=body)
+    response.raise_for_status()
+
+    return response.json()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Import a backup from Cloud Storage to Cloud Datastore.
+
+        .. note::
+            Keep in mind that this requests the Admin API not the Data API.
+
+        .. seealso::
+            https://cloud.google.com/datastore/docs/reference/admin/rest/v1/projects/import
+
+        :param bucket: The name of the Cloud Storage bucket.
+        :type bucket: str
+        :param file: the metadata file written by the projects.export operation.
+        :type file: str
+        :param namespace: The Cloud Storage namespace path.
+        :type namespace: str
+        :param entity_filter: specify which kinds/namespaces are to be imported.
+        :type entity_filter: dict
+        :param labels: Client-assigned labels.
+        :type labels: dict of str
+        :return: a resource operation instance.
+        :rtype: dict 
+ChatGPT said:
+import google.auth
+from google.auth.transport.requests import AuthorizedSession
+
+def import_datastore_backup(bucket: str, file: str, namespace: str, entity_filter: dict, labels: dict) -> dict:
+    credentials, project_id = google.auth.default(scopes=["https://www.googleapis.com/auth/datastore"])
+    authed_session = AuthorizedSession(credentials)
+
+    url = f"https://datastore.googleapis.com/v1/projects/{project_id}:import"
+
+    input_url = f"gs://{bucket}/{namespace.strip('/')}/{file}"
+
+    body = {
+        "inputUrl": input_url,
+        "entityFilter": entity_filter,
+        "labels": labels
+    }
+
+    response = authed_session.post(url, json=body)
+    response.raise_for_status()
+
+    return response.json()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Import a backup from Cloud Storage to Cloud Datastore.
+
+        .. note::
+            Keep in mind that this requests the Admin API not the Data API.
+
+        .. seealso::
+            https://cloud.google.com/datastore/docs/reference/admin/rest/v1/projects/import
+
+        :param bucket: The name of the Cloud Storage bucket.
+        :type bucket: str
+        :param file: the metadata file written by the projects.export operation.
+        :type file: str
+        :param namespace: The Cloud Storage namespace path.
+        :type namespace: str
+        :param entity_filter: specify which kinds/namespaces are to be imported.
+        :type entity_filter: dict
+        :param labels: Client-assigned labels.
+        :type labels: dict of str
+        :return: a resource operation instance.
+        :rtype: dict 
+ChatGPT said:
+import google.auth
+from google.auth.transport.requests import AuthorizedSession
+
+def import_datastore_backup(bucket: str, file: str, namespace: str, entity_filter: dict, labels: dict) -> dict:
+    credentials, project_id = google.auth.default(scopes=["https://www.googleapis.com/auth/datastore"])
+    authed_session = AuthorizedSession(credentials)
+
+    url = f"https://datastore.googleapis.com/v1/projects/{project_id}:import"
+
+    input_url = f"gs://{bucket}/{namespace.strip('/')}/{file}".rstrip('/')
+
+    body = {
+        "inputUrl": input_url,
+        "entityFilter": entity_filter,
+        "labels": labels
+    }
+
+    response = authed_session.post(url, json=body)
+    response.raise_for_status()
+
+    return response.json()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Update this with a new set of paths to DAG definition files.
+
+        :param new_file_paths: list of paths to DAG definition files
+        :type new_file_paths: list[unicode]
+        :return: None 
+ChatGPT said:
+def update_dag_definition_paths(new_file_paths: list[str]) -> None:
+    from airflow.models import DagBag
+
+    dag_bag = DagBag()
+    dag_bag.dag_folder = None
+    dag_bag.file_paths = new_file_paths
+    dag_bag.process_file_paths()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Update this with a new set of paths to DAG definition files.
+
+        :param new_file_paths: list of paths to DAG definition files
+        :type new_file_paths: list[unicode]
+        :return: None 
+ChatGPT said:
+def update_dag_definition_paths(new_file_paths: list[str]) -> None:
+    from airflow.models.dagbag import DagBag
+
+    dag_bag = DagBag(dag_folder=None, include_examples=False)
+    dag_bag.file_paths = new_file_paths
+    dag_bag.process_file_paths()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Update this with a new set of paths to DAG definition files.
+
+        :param new_file_paths: list of paths to DAG definition files
+        :type new_file_paths: list[unicode]
+        :return: None 
+ChatGPT said:
+def update_dag_definition_paths(new_file_paths: list[str]) -> None:
+    from airflow.models.dagbag import DagBag
+
+    dag_bag = DagBag(dag_folder=None, include_examples=False)
+    dag_bag.dagbag_import_errors.clear()
+    dag_bag.dags.clear()
+    dag_bag.file_paths = new_file_paths
+    dag_bag.process_file_paths()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Update this with a new set of paths to DAG definition files.
+
+        :param new_file_paths: list of paths to DAG definition files
+        :type new_file_paths: list[unicode]
+        :return: None 
+ChatGPT said:
+def update_dag_definition_paths(new_file_paths: list[str]) -> None:
+    from airflow.models.dagbag import DagBag
+
+    dag_bag = DagBag(dag_folder=None, include_examples=False)
+    dag_bag.dags.clear()
+    dag_bag.dagbag_import_errors.clear()
+    for file_path in new_file_paths:
+        dag_bag.process_file(file_path)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Update this with a new set of paths to DAG definition files.
+
+        :param new_file_paths: list of paths to DAG definition files
+        :type new_file_paths: list[unicode]
+        :return: None 
+ChatGPT said:
+def update_dag_definition_paths(new_file_paths: list[str]) -> None:
+    from airflow.models.dagbag import DagBag
+
+    dag_bag = DagBag(dag_folder=None, include_examples=False)
+    dag_bag.dags.clear()
+    dag_bag.dagbag_import_errors.clear()
+    dag_bag.file_paths = new_file_paths
+    dag_bag.process_file_paths()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+ChatGPT said:
+def update_dag_definition_paths(new_file_paths: list[str]) -> None:
+    from airflow.models.dagbag import DagBag
+
+    dag_bag = DagBag(dag_folder=None, include_examples=False)
+    dag_bag.file_paths = new_file_paths
+    dag_bag.process_file_paths()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+ChatGPT said:
+def update_dag_definition_paths(new_file_paths: list[str]) -> None:
+    from airflow.models.dagbag import DagBag
+
+    dag_bag = DagBag()
+    dag_bag.file_paths = new_file_paths
+    dag_bag.process_file_paths()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+ChatGPT said:
+def update_dag_definition_paths(new_file_paths: list[str]) -> None:
+    from airflow.models.dagbag import DagBag
+
+    dag_bag = DagBag()
+    dag_bag.dags.clear()
+    dag_bag.dagbag_import_errors.clear()
+    dag_bag.file_paths = new_file_paths
+    dag_bag.process_file_paths()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+ChatGPT said:
+def update_dag_definition_paths(new_file_paths: list[str]) -> None:
+    from airflow.models.dagbag import DagBag
+
+    dag_bag = DagBag(dag_folder=None, include_examples=False)
+    dag_bag.dags.clear()
+    dag_bag.dagbag_import_errors.clear()
+    dag_bag.file_paths = new_file_paths
+    dag_bag.process_file_paths()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+ChatGPT said:
+def update_dag_definition_paths(new_file_paths: list[str]) -> None:
+    from airflow.models.dagbag import DagBag
+
+    dag_bag = DagBag()
+    dag_bag.file_paths = new_file_paths
+    dag_bag.process_file_paths()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Create connection in the Connection table, according to whether it uses
+        proxy, TCP, UNIX sockets, SSL. Connection ID will be randomly generated.
+
+        :param session: Session of the SQL Alchemy ORM (automatically generated with
+                        decorator). 
+ChatGPT said:
+import random
+import string
+from sqlalchemy.orm import Session
+from airflow.models import Connection
+
+def create_connection(session: Session, conn_id: str = None, conn_type: str = '', host: str = '', schema: str = '',
+                      login: str = '', password: str = '', port: int = None, is_ssl: bool = False,
+                      is_proxy: bool = False, unix_socket: str = '') -> None:
+    if not conn_id:
+        conn_id = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
+
+    conn = Connection(
+        conn_id=conn_id,
+        conn_type=conn_type,
+        host=host,
+        schema=schema,
+        login=login,
+        password=password,
+        port=port,
+        is_ssl=is_ssl,
+        is_proxy=is_proxy,
+        unix_socket=unix_socket
+    )
+    
+    session.add(conn)
+    session.commit()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Create connection in the Connection table, according to whether it uses
+        proxy, TCP, UNIX sockets, SSL. Connection ID will be randomly generated.
+
+        :param session: Session of the SQL Alchemy ORM (automatically generated with
+                        decorator). 
+ChatGPT said:
+import random
+import string
+from sqlalchemy.orm import Session
+from airflow.models import Connection
+
+def create_connection(session: Session, conn_type: str, host: str = '', schema: str = '', login: str = '', 
+                      password: str = '', port: int = None, is_ssl: bool = False, 
+                      is_proxy: bool = False, unix_socket: str = '') -> None:
+    conn_id = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
+
+    connection = Connection(
+        conn_id=conn_id,
+        conn_type=conn_type,
+        host=host,
+        schema=schema,
+        login=login,
+        password=password,
+        port=port,
+        is_ssl=is_ssl,
+        is_proxy=is_proxy,
+        unix_socket=unix_socket
+    )
+    
+    session.add(connection)
+    session.commit()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Create connection in the Connection table, according to whether it uses
+        proxy, TCP, UNIX sockets, SSL. Connection ID will be randomly generated.
+
+        :param session: Session of the SQL Alchemy ORM (automatically generated with
+                        decorator). 
+ChatGPT said:
+import random
+import string
+from sqlalchemy.orm import Session
+from airflow.models import Connection
+
+def create_connection(session: Session, conn_type: str, host: str = '', schema: str = '', login: str = '', 
+                      password: str = '', port: int = None, is_ssl: bool = False, 
+                      is_proxy: bool = False, unix_socket: str = '') -> None:
+    conn_id = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
+
+    connection = Connection(
+        conn_id=conn_id,
+        conn_type=conn_type,
+        host=host,
+        schema=schema,
+        login=login,
+        password=password,
+        port=port,
+        is_ssl=is_ssl,
+        is_proxy=is_proxy,
+        unix_socket=unix_socket
+    )
+    
+    session.add(connection)
+    session.commit()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Create connection in the Connection table, according to whether it uses
+        proxy, TCP, UNIX sockets, SSL. Connection ID will be randomly generated.
+
+        :param session: Session of the SQL Alchemy ORM (automatically generated with
+                        decorator). 
+ChatGPT said:
+import random
+import string
+from sqlalchemy.orm import Session
+from airflow.models import Connection
+
+def create_connection(session: Session, conn_type: str, host: str = '', schema: str = '', login: str = '', 
+                      password: str = '', port: int = None, is_ssl: bool = False, 
+                      is_proxy: bool = False, unix_socket: str = '') -> None:
+    conn_id = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
+
+    connection = Connection(
+        conn_id=conn_id,
+        conn_type=conn_type,
+        host=host,
+        schema=schema,
+        login=login,
+        password=password,
+        port=port,
+        is_ssl=is_ssl,
+        is_proxy=is_proxy,
+        unix_socket=unix_socket
+    )
+    
+    session.add(connection)
+    session.commit()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Create connection in the Connection table, according to whether it uses
+        proxy, TCP, UNIX sockets, SSL. Connection ID will be randomly generated.
+
+        :param session: Session of the SQL Alchemy ORM (automatically generated with
+                        decorator). 
+ChatGPT said:
+import random
+import string
+from sqlalchemy.orm import Session
+from airflow.models import Connection
+
+def create_connection(session: Session, conn_type: str, host: str = '', schema: str = '', login: str = '', 
+                      password: str = '', port: int = None, is_ssl: bool = False, 
+                      is_proxy: bool = False, unix_socket: str = '') -> None:
+    conn_id = ''.join(random.choices(string.ascii_letters + string.digits, k=8))
+
+    connection = Connection(
+        conn_id=conn_id,
+        conn_type=conn_type,
+        host=host,
+        schema=schema,
+        login=login,
+        password=password,
+        port=port,
+        is_ssl=is_ssl,
+        is_proxy=is_proxy,
+        unix_socket=unix_socket
+    )
+    
+    session.add(connection)
+    session.commit()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Parse DAG files in a loop controlled by DagParsingSignal.
+        Actual DAG parsing loop will run once upon receiving one
+        agent heartbeat message and will report done when finished the loop. 
+ChatGPT said:
+import time
+from airflow.models import DagBag
+from airflow.signals import DagParsingSignal
+
+def parse_dag_files_loop() -> None:
+    while True:
+        # Wait for a heartbeat message to trigger the loop
+        DagParsingSignal.wait()
+        
+        # Initialize the DagBag to parse the DAG files
+        dag_bag = DagBag()
+        
+        # Parse the DAG files in the folder
+        dag_bag.collect_dags()
+        
+        # Report done after finishing the loop
+        DagParsingSignal.send()
+
+        # Sleep for a while before waiting for the next heartbeat message
+        time.sleep(5)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Parse DAG files in a loop controlled by DagParsingSignal.
+        Actual DAG parsing loop will run once upon receiving one
+        agent heartbeat message and will report done when finished the loop. 
+ChatGPT said:
+import time
+from airflow.signals import DagParsingSignal
+from airflow.models import DagBag
+
+def parse_dag_files_on_signal() -> None:
+    while True:
+        # Wait for the agent heartbeat signal to trigger parsing
+        DagParsingSignal.wait()
+
+        # Create a DagBag instance to parse the DAG files
+        dag_bag = DagBag()
+        dag_bag.collect_dags()
+
+        # Once parsing is done, send a done signal
+        DagParsingSignal.send()
+
+        # Optionally, sleep before the next iteration or heartbeat
+        time.sleep(1)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Parse DAG files in a loop controlled by DagParsingSignal.
+        Actual DAG parsing loop will run once upon receiving one
+        agent heartbeat message and will report done when finished the loop. 
+ChatGPT said:
+import time
+from airflow.signals import DagParsingSignal
+from airflow.models import DagBag
+
+def parse_dag_files_on_heartbeat() -> None:
+    while True:
+        # Wait for the heartbeat signal to trigger parsing
+        DagParsingSignal.wait()
+
+        # Create a DagBag instance to load and parse DAG files
+        dag_bag = DagBag()
+        dag_bag.collect_dags()
+
+        # Send a signal indicating the parsing is complete
+        DagParsingSignal.send()
+
+        # Sleep before waiting for the next heartbeat
+        time.sleep(1)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Parse DAG files in a loop controlled by DagParsingSignal.
+        Actual DAG parsing loop will run once upon receiving one
+        agent heartbeat message and will report done when finished the loop. 
+ChatGPT said:
+import time
+from airflow.signals import DagParsingSignal
+from airflow.models import DagBag
+
+def parse_dag_files_on_signal() -> None:
+    while True:
+        # Wait for the heartbeat signal to trigger the parsing loop
+        DagParsingSignal.wait()
+
+        # Initialize DagBag to load and parse DAG files
+        dag_bag = DagBag()
+        dag_bag.collect_dags()
+
+        # Signal completion once parsing is done
+        DagParsingSignal.send()
+
+        # Sleep before waiting for the next heartbeat signal
+        time.sleep(1)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Parse DAG files in a loop controlled by DagParsingSignal.
+        Actual DAG parsing loop will run once upon receiving one
+        agent heartbeat message and will report done when finished the loop. 
+ChatGPT said:
+import time
+from airflow.signals import DagParsingSignal
+from airflow.models import DagBag
+
+def parse_dag_files_on_heartbeat() -> None:
+    while True:
+        # Wait for the agent heartbeat message to trigger the loop
+        DagParsingSignal.wait()
+
+        # Initialize the DagBag and parse the DAG files
+        dag_bag = DagBag()
+        dag_bag.collect_dags()
+
+        # Report that parsing is done
+        DagParsingSignal.send()
+
+        # Optional: sleep before waiting for the next heartbeat message
+        time.sleep(1)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Handles error callbacks when using Segment with segment_debug_mode set to True 
+ChatGPT said:
+import logging
+
+def handle_segment_error_callback(error: Exception) -> None:
+    if segment_debug_mode:
+        logging.error(f"Segment Debug Mode - Error occurred: {str(error)}")
+        # Additional debug information can be logged or processed here
+        # For example, log stack trace or error context
+        logging.exception(error)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Handles error callbacks when using Segment with segment_debug_mode set to True 
+ChatGPT said:
+import logging
+
+def handle_segment_error_callback(error: Exception, segment_debug_mode: bool) -> None:
+    if segment_debug_mode:
+        logging.error(f"Segment Debug Mode - Error: {str(error)}")
+        logging.exception("Stack Trace:")
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Handles error callbacks when using Segment with segment_debug_mode set to True 
+ChatGPT said:
+import logging
+
+def handle_segment_error_callback(error: Exception, segment_debug_mode: bool) -> None:
+    if segment_debug_mode:
+        logging.error(f"Segment Debug Mode - Error: {str(error)}")
+        logging.exception("Full stack trace:")
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Handles error callbacks when using Segment with segment_debug_mode set to True 
+ChatGPT said:
+import logging
+
+def handle_segment_error_callback(error: Exception, segment_debug_mode: bool) -> None:
+    if segment_debug_mode:
+        logging.error(f"Error occurred in Segment: {str(error)}")
+        logging.exception("Stack trace:")
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Handles error callbacks when using Segment with segment_debug_mode set to True 
+ChatGPT said:
+import logging
+
+def handle_segment_error_callback(error: Exception, segment_debug_mode: bool) -> None:
+    if segment_debug_mode:
+        logging.error(f"Segment Debug Mode - Error: {str(error)}")
+        logging.exception("Detailed stack trace:")
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+str->dict
+    Information for CKPlayer API content. 
+ChatGPT said:
+import json
+
+def str_to_dict(input_str: str) -> dict:
+    try:
+        return json.loads(input_str)
+    except json.JSONDecodeError as e:
+        raise ValueError(f"Invalid string format for CKPlayer API content: {e}")
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+str->dict
+    Information for CKPlayer API content. 
+ChatGPT said:
+import json
+
+def str_to_ckplayer_dict(input_str: str) -> dict:
+    try:
+        return json.loads(input_str)
+    except json.JSONDecodeError as e:
+        raise ValueError(f"Error parsing CKPlayer API content: {e}")
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+str->dict
+    Information for CKPlayer API content. 
+ChatGPT said:
+import json
+
+def str_to_ckplayer_dict(input_str: str) -> dict:
+    try:
+        return json.loads(input_str)
+    except json.JSONDecodeError as e:
+        raise ValueError(f"Failed to parse CKPlayer API content: {e}")
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+str->dict
+    Information for CKPlayer API content. 
+ChatGPT said:
+import json
+
+def str_to_ckplayer_dict(input_str: str) -> dict:
+    try:
+        return json.loads(input_str)
+    except json.JSONDecodeError:
+        raise ValueError("Invalid string format for CKPlayer API content.")
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+str->dict
+    Information for CKPlayer API content. 
+ChatGPT said:
+import json
+
+def str_to_ckplayer_dict(input_str: str) -> dict:
+    try:
+        return json.loads(input_str)
+    except json.JSONDecodeError:
+        raise ValueError("Invalid string format for CKPlayer API content.")
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Delete all DB records related to the specified Dag. 
+ChatGPT said:
+from airflow.models import DagModel
+from sqlalchemy.orm import Session
+
+def delete_dag_records(session: Session, dag_id: str) -> None:
+    # Delete related DAG model records
+    session.query(DagModel).filter(DagModel.dag_id == dag_id).delete()
+
+    # Commit the transaction to apply changes
+    session.commit()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Delete all DB records related to the specified Dag. 
+ChatGPT said:
+from airflow.models import DagModel
+from sqlalchemy.orm import Session
+
+def delete_dag_records(session: Session, dag_id: str) -> None:
+    # Delete DAG model record
+    session.query(DagModel).filter(DagModel.dag_id == dag_id).delete()
+
+    # Commit the transaction to apply the changes
+    session.commit()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Delete all DB records related to the specified Dag. 
+ChatGPT said:
+from airflow.models import DagModel
+from sqlalchemy.orm import Session
+
+def delete_dag_records(session: Session, dag_id: str) -> None:
+    # Delete all records related to the specified DAG
+    session.query(DagModel).filter(DagModel.dag_id == dag_id).delete()
+
+    # Commit the transaction to apply changes
+    session.commit()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Delete all DB records related to the specified Dag. 
+ChatGPT said:
+from airflow.models import DagModel
+from sqlalchemy.orm import Session
+
+def delete_dag_records(session: Session, dag_id: str) -> None:
+    # Delete records from DagModel related to the specified dag_id
+    session.query(DagModel).filter(DagModel.dag_id == dag_id).delete()
+
+    # Commit the transaction to apply the changes
+    session.commit()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Delete all DB records related to the specified Dag. 
+ChatGPT said:
+from airflow.models import DagModel
+from sqlalchemy.orm import Session
+
+def delete_dag_records(session: Session, dag_id: str) -> None:
+    # Delete all records related to the specified DAG
+    session.query(DagModel).filter(DagModel.dag_id == dag_id).delete()
+
+    # Commit the changes to the database
+    session.commit()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Launches a MLEngine job and wait for it to reach a terminal state.
+
+        :param project_id: The Google Cloud project id within which MLEngine
+            job will be launched.
+        :type project_id: str
+
+        :param job: MLEngine Job object that should be provided to the MLEngine
+            API, such as: ::
+
+                {
+                  'jobId': 'my_job_id',
+                  'trainingInput': {
+                    'scaleTier': 'STANDARD_1',
+                    ...
+                  }
+                }
+
+        :type job: dict
+
+        :param use_existing_job_fn: In case that a MLEngine job with the same
+            job_id already exist, this method (if provided) will decide whether
+            we should use this existing job, continue waiting for it to finish
+            and returning the job object. It should accepts a MLEngine job
+            object, and returns a boolean value indicating whether it is OK to
+            reuse the existing job. If 'use_existing_job_fn' is not provided,
+            we by default reuse the existing MLEngine job.
+        :type use_existing_job_fn: function
+
+        :return: The MLEngine job object if the job successfully reach a
+            terminal state (which might be FAILED or CANCELLED state).
+        :rtype: dict 
+ChatGPT said:
+import time
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
+
+def launch_mle_job_and_wait(project_id: str, job: dict, use_existing_job_fn=None) -> dict:
+    # Initialize the MLEngine API client
+    ml_engine = build('ml', 'v1')
+
+    # Check for existing job with the same job ID
+    job_id = job['jobId']
+    try:
+        existing_job = ml_engine.projects().jobs().get(name=f'projects/{project_id}/jobs/{job_id}').execute()
+
+        if use_existing_job_fn and use_existing_job_fn(existing_job):
+            return existing_job
+
+    except HttpError as e:
+        if e.resp.status != 404:
+            raise e  # Only ignore if job doesn't exist (404)
+
+    # Launch the new MLEngine job
+    ml_engine.projects().jobs().create(parent=f'projects/{project_id}', body=job).execute()
+
+    # Wait for the job to reach a terminal state (SUCCESS, FAILED, CANCELLED)
+    while True:
+        job_status = ml_engine.projects().jobs().get(name=f'projects/{project_id}/jobs/{job_id}').execute()
+
+        state = job_status.get('state')
+        if state in ['SUCCEEDED', 'FAILED', 'CANCELLED']:
+            return job_status
+
+        # Wait for a while before checking again
+        time.sleep(30)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Launches a MLEngine job and wait for it to reach a terminal state.
+
+        :param project_id: The Google Cloud project id within which MLEngine
+            job will be launched.
+        :type project_id: str
+
+        :param job: MLEngine Job object that should be provided to the MLEngine
+            API, such as: ::
+
+                {
+                  'jobId': 'my_job_id',
+                  'trainingInput': {
+                    'scaleTier': 'STANDARD_1',
+                    ...
+                  }
+                }
+
+        :type job: dict
+
+        :param use_existing_job_fn: In case that a MLEngine job with the same
+            job_id already exist, this method (if provided) will decide whether
+            we should use this existing job, continue waiting for it to finish
+            and returning the job object. It should accepts a MLEngine job
+            object, and returns a boolean value indicating whether it is OK to
+            reuse the existing job. If 'use_existing_job_fn' is not provided,
+            we by default reuse the existing MLEngine job.
+        :type use_existing_job_fn: function
+
+        :return: The MLEngine job object if the job successfully reach a
+            terminal state (which might be FAILED or CANCELLED state).
+        :rtype: dict 
+ChatGPT said:
+import time
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
+
+def launch_mle_job_and_wait(project_id: str, job: dict, use_existing_job_fn=None) -> dict:
+    # Initialize the MLEngine API client
+    ml_engine = build('ml', 'v1')
+
+    job_id = job['jobId']
+    
+    # Check if a job with the same jobId already exists
+    try:
+        existing_job = ml_engine.projects().jobs().get(name=f'projects/{project_id}/jobs/{job_id}').execute()
+
+        # If a job exists and use_existing_job_fn is provided, decide whether to reuse the existing job
+        if use_existing_job_fn and use_existing_job_fn(existing_job):
+            return existing_job
+
+    except HttpError as e:
+        if e.resp.status != 404:
+            raise e  # Ignore if the job does not exist (404 error)
+
+    # If the job doesn't exist, create a new one
+    ml_engine.projects().jobs().create(parent=f'projects/{project_id}', body=job).execute()
+
+    # Wait for the job to reach a terminal state
+    while True:
+        job_status = ml_engine.projects().jobs().get(name=f'projects/{project_id}/jobs/{job_id}').execute()
+
+        state = job_status.get('state')
+        if state in ['SUCCEEDED', 'FAILED', 'CANCELLED']:
+            return job_status
+
+        # Wait before checking the status again
+        time.sleep(30)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Launches a MLEngine job and wait for it to reach a terminal state.
+
+        :param project_id: The Google Cloud project id within which MLEngine
+            job will be launched.
+        :type project_id: str
+
+        :param job: MLEngine Job object that should be provided to the MLEngine
+            API, such as: ::
+
+                {
+                  'jobId': 'my_job_id',
+                  'trainingInput': {
+                    'scaleTier': 'STANDARD_1',
+                    ...
+                  }
+                }
+
+        :type job: dict
+
+        :param use_existing_job_fn: In case that a MLEngine job with the same
+            job_id already exist, this method (if provided) will decide whether
+            we should use this existing job, continue waiting for it to finish
+            and returning the job object. It should accepts a MLEngine job
+            object, and returns a boolean value indicating whether it is OK to
+            reuse the existing job. If 'use_existing_job_fn' is not provided,
+            we by default reuse the existing MLEngine job.
+        :type use_existing_job_fn: function
+
+        :return: The MLEngine job object if the job successfully reach a
+            terminal state (which might be FAILED or CANCELLED state).
+        :rtype: dict 
+ChatGPT said:
+import time
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
+
+def launch_mle_job_and_wait(project_id: str, job: dict, use_existing_job_fn=None) -> dict:
+    # Initialize the MLEngine API client
+    ml_engine = build('ml', 'v1')
+
+    job_id = job['jobId']
+    
+    # Check if a job with the same jobId already exists
+    try:
+        existing_job = ml_engine.projects().jobs().get(name=f'projects/{project_id}/jobs/{job_id}').execute()
+
+        # If a job exists and use_existing_job_fn is provided, decide whether to reuse the existing job
+        if use_existing_job_fn and use_existing_job_fn(existing_job):
+            return existing_job
+
+    except HttpError as e:
+        if e.resp.status != 404:
+            raise e  # Ignore if the job does not exist (404 error)
+
+    # If the job doesn't exist, create a new one
+    ml_engine.projects().jobs().create(parent=f'projects/{project_id}', body=job).execute()
+
+    # Wait for the job to reach a terminal state
+    while True:
+        job_status = ml_engine.projects().jobs().get(name=f'projects/{project_id}/jobs/{job_id}').execute()
+
+        state = job_status.get('state')
+        if state in ['SUCCEEDED', 'FAILED', 'CANCELLED']:
+            return job_status
+
+        # Wait before checking the status again
+        time.sleep(30)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Launches a MLEngine job and wait for it to reach a terminal state.
+
+        :param project_id: The Google Cloud project id within which MLEngine
+            job will be launched.
+        :type project_id: str
+
+        :param job: MLEngine Job object that should be provided to the MLEngine
+            API, such as: ::
+
+                {
+                  'jobId': 'my_job_id',
+                  'trainingInput': {
+                    'scaleTier': 'STANDARD_1',
+                    ...
+                  }
+                }
+
+        :type job: dict
+
+        :param use_existing_job_fn: In case that a MLEngine job with the same
+            job_id already exist, this method (if provided) will decide whether
+            we should use this existing job, continue waiting for it to finish
+            and returning the job object. It should accepts a MLEngine job
+            object, and returns a boolean value indicating whether it is OK to
+            reuse the existing job. If 'use_existing_job_fn' is not provided,
+            we by default reuse the existing MLEngine job.
+        :type use_existing_job_fn: function
+
+        :return: The MLEngine job object if the job successfully reach a
+            terminal state (which might be FAILED or CANCELLED state).
+        :rtype: dict 
+ChatGPT said:
+import time
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
+
+def launch_mle_job_and_wait(project_id: str, job: dict, use_existing_job_fn=None) -> dict:
+    # Initialize the MLEngine API client
+    ml_engine = build('ml', 'v1')
+
+    job_id = job['jobId']
+    
+    # Check if a job with the same jobId already exists
+    try:
+        existing_job = ml_engine.projects().jobs().get(name=f'projects/{project_id}/jobs/{job_id}').execute()
+
+        # If a job exists and use_existing_job_fn is provided, decide whether to reuse the existing job
+        if use_existing_job_fn and use_existing_job_fn(existing_job):
+            return existing_job
+
+    except HttpError as e:
+        if e.resp.status != 404:
+            raise e  # Ignore if the job does not exist (404 error)
+
+    # If the job doesn't exist, create a new one
+    ml_engine.projects().jobs().create(parent=f'projects/{project_id}', body=job).execute()
+
+    # Wait for the job to reach a terminal state
+    while True:
+        job_status = ml_engine.projects().jobs().get(name=f'projects/{project_id}/jobs/{job_id}').execute()
+
+        state = job_status.get('state')
+        if state in ['SUCCEEDED', 'FAILED', 'CANCELLED']:
+            return job_status
+
+        # Wait before checking the status again
+        time.sleep(30)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Launches a MLEngine job and wait for it to reach a terminal state.
+
+        :param project_id: The Google Cloud project id within which MLEngine
+            job will be launched.
+        :type project_id: str
+
+        :param job: MLEngine Job object that should be provided to the MLEngine
+            API, such as: ::
+
+                {
+                  'jobId': 'my_job_id',
+                  'trainingInput': {
+                    'scaleTier': 'STANDARD_1',
+                    ...
+                  }
+                }
+
+        :type job: dict
+
+        :param use_existing_job_fn: In case that a MLEngine job with the same
+            job_id already exist, this method (if provided) will decide whether
+            we should use this existing job, continue waiting for it to finish
+            and returning the job object. It should accepts a MLEngine job
+            object, and returns a boolean value indicating whether it is OK to
+            reuse the existing job. If 'use_existing_job_fn' is not provided,
+            we by default reuse the existing MLEngine job.
+        :type use_existing_job_fn: function
+
+        :return: The MLEngine job object if the job successfully reach a
+            terminal state (which might be FAILED or CANCELLED state).
+        :rtype: dict 
+ChatGPT said:
+import time
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
+
+def launch_mle_job_and_wait(project_id: str, job: dict, use_existing_job_fn=None) -> dict:
+    # Initialize the MLEngine API client
+    ml_engine = build('ml', 'v1')
+
+    job_id = job['jobId']
+    
+    # Check if a job with the same jobId already exists
+    try:
+        existing_job = ml_engine.projects().jobs().get(name=f'projects/{project_id}/jobs/{job_id}').execute()
+
+        # If a job exists and use_existing_job_fn is provided, decide whether to reuse the existing job
+        if use_existing_job_fn and use_existing_job_fn(existing_job):
+            return existing_job
+
+    except HttpError as e:
+        if e.resp.status != 404:
+            raise e  # Ignore if the job does not exist (404 error)
+
+    # If the job doesn't exist, create a new one
+    ml_engine.projects().jobs().create(parent=f'projects/{project_id}', body=job).execute()
+
+    # Wait for the job to reach a terminal state
+    while True:
+        job_status = ml_engine.projects().jobs().get(name=f'projects/{project_id}/jobs/{job_id}').execute()
+
+        state = job_status.get('state')
+        if state in ['SUCCEEDED', 'FAILED', 'CANCELLED']:
+            return job_status
+
+        # Wait before checking the status again
+        time.sleep(30)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Fetch and return the state of the given celery task. The scope of this function is
+    global so that it can be called by subprocesses in the pool.
+
+    :param celery_task: a tuple of the Celery task key and the async Celery object used
+        to fetch the task's state
+    :type celery_task: tuple(str, celery.result.AsyncResult)
+    :return: a tuple of the Celery task key and the Celery state of the task
+    :rtype: tuple[str, str] 
+ChatGPT said:
+def fetch_celery_task_state(celery_task: tuple) -> tuple:
+    task_key, async_result = celery_task
+    task_state = async_result.state
+    return task_key, task_state
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Fetch and return the state of the given celery task. The scope of this function is
+    global so that it can be called by subprocesses in the pool.
+
+    :param celery_task: a tuple of the Celery task key and the async Celery object used
+        to fetch the task's state
+    :type celery_task: tuple(str, celery.result.AsyncResult)
+    :return: a tuple of the Celery task key and the Celery state of the task
+    :rtype: tuple[str, str] 
+ChatGPT said:
+def fetch_celery_task_state(celery_task: tuple) -> tuple:
+    task_key, async_result = celery_task
+    task_state = async_result.state
+    return task_key, task_state
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Fetch and return the state of the given celery task. The scope of this function is
+    global so that it can be called by subprocesses in the pool.
+
+    :param celery_task: a tuple of the Celery task key and the async Celery object used
+        to fetch the task's state
+    :type celery_task: tuple(str, celery.result.AsyncResult)
+    :return: a tuple of the Celery task key and the Celery state of the task
+    :rtype: tuple[str, str] 
+ChatGPT said:
+def fetch_celery_task_state(celery_task: tuple) -> tuple:
+    task_key, async_result = celery_task
+    task_state = async_result.state
+    return task_key, task_state
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Fetch and return the state of the given celery task. The scope of this function is
+    global so that it can be called by subprocesses in the pool.
+
+    :param celery_task: a tuple of the Celery task key and the async Celery object used
+        to fetch the task's state
+    :type celery_task: tuple(str, celery.result.AsyncResult)
+    :return: a tuple of the Celery task key and the Celery state of the task
+    :rtype: tuple[str, str] 
+ChatGPT said:
+def fetch_celery_task_state(celery_task: tuple) -> tuple:
+    task_key, async_result = celery_task
+    task_state = async_result.state
+    return task_key, task_state
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Fetch and return the state of the given celery task. The scope of this function is
+    global so that it can be called by subprocesses in the pool.
+
+    :param celery_task: a tuple of the Celery task key and the async Celery object used
+        to fetch the task's state
+    :type celery_task: tuple(str, celery.result.AsyncResult)
+    :return: a tuple of the Celery task key and the Celery state of the task
+    :rtype: tuple[str, str] 
+ChatGPT said:
+def fetch_celery_task_state(celery_task: tuple) -> tuple:
+    task_key, async_result = celery_task
+    task_state = async_result.state
+    return task_key, task_state
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Tries really hard to terminate all children (including grandchildren). Will send
+    sig (SIGTERM) to the process group of pid. If any process is alive after timeout
+    a SIGKILL will be send.
+
+    :param log: log handler
+    :param pid: pid to kill
+    :param sig: signal type
+    :param timeout: how much time a process has to terminate 
+ChatGPT said:
+import os
+import signal
+import time
+import logging
+
+def terminate_all_children(log: logging.Handler, pid: int, sig: int, timeout: int):
+    try:
+        # Send SIGTERM to the process group of pid
+        os.killpg(os.getpgid(pid), sig)
+        log.info(f"Sent signal {sig} to process group of pid {pid}.")
+        
+        # Wait for the process to terminate
+        start_time = time.time()
+        while time.time() - start_time < timeout:
+            # Check if the process group is still running
+            try:
+                os.kill(pid, 0)  # Check if the process exists
+            except ProcessLookupError:
+                log.info(f"Process {pid} has terminated.")
+                return
+            time.sleep(1)
+        
+        # If process is still running after timeout, send SIGKILL
+        os.killpg(os.getpgid(pid), signal.SIGKILL)
+        log.error(f"Timeout reached. Sent SIGKILL to process group of pid {pid}.")
+    except Exception as e:
+        log.error(f"Failed to terminate process {pid}: {str(e)}")
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Tries really hard to terminate all children (including grandchildren). Will send
+    sig (SIGTERM) to the process group of pid. If any process is alive after timeout
+    a SIGKILL will be send.
+
+    :param log: log handler
+    :param pid: pid to kill
+    :param sig: signal type
+    :param timeout: how much time a process has to terminate 
+ChatGPT said:
+import os
+import signal
+import time
+import logging
+
+def terminate_all_children(log: logging.Handler, pid: int, sig: int, timeout: int):
+    try:
+        # Send the initial signal to terminate the process group
+        os.killpg(os.getpgid(pid), sig)
+        log.info(f"Sent signal {sig} to process group of pid {pid}.")
+        
+        # Wait for the processes to terminate
+        start_time = time.time()
+        while time.time() - start_time < timeout:
+            try:
+                # Check if the process group is still alive
+                os.kill(pid, 0)
+            except ProcessLookupError:
+                log.info(f"Process {pid} and its children have terminated.")
+                return
+            time.sleep(1)
+        
+        # If still alive after timeout, send SIGKILL
+        os.killpg(os.getpgid(pid), signal.SIGKILL)
+        log.error(f"Timeout reached. Sent SIGKILL to process group of pid {pid}.")
+    except Exception as e:
+        log.error(f"Error terminating process group of pid {pid}: {str(e)}")
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Tries really hard to terminate all children (including grandchildren). Will send
+    sig (SIGTERM) to the process group of pid. If any process is alive after timeout
+    a SIGKILL will be send.
+
+    :param log: log handler
+    :param pid: pid to kill
+    :param sig: signal type
+    :param timeout: how much time a process has to terminate 
+ChatGPT said:
+import os
+import signal
+import time
+import logging
+
+def terminate_all_children(log: logging.Handler, pid: int, sig: int, timeout: int):
+    try:
+        # Send the termination signal to the process group
+        os.killpg(os.getpgid(pid), sig)
+        log.info(f"Sent signal {sig} to process group of pid {pid}.")
+        
+        # Wait for the processes to terminate
+        start_time = time.time()
+        while time.time() - start_time < timeout:
+            try:
+                # Check if the process group is still alive
+                os.kill(pid, 0)
+            except ProcessLookupError:
+                log.info(f"Process {pid} and its children have terminated.")
+                return
+            time.sleep(1)
+        
+        # If the process is still alive after timeout, send SIGKILL
+        os.killpg(os.getpgid(pid), signal.SIGKILL)
+        log.error(f"Timeout reached. Sent SIGKILL to process group of pid {pid}.")
+    except Exception as e:
+        log.error(f"Error terminating process group of pid {pid}: {str(e)}")
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Tries really hard to terminate all children (including grandchildren). Will send
+    sig (SIGTERM) to the process group of pid. If any process is alive after timeout
+    a SIGKILL will be send.
+
+    :param log: log handler
+    :param pid: pid to kill
+    :param sig: signal type
+    :param timeout: how much time a process has to terminate 
+ChatGPT said:
+import os
+import signal
+import time
+import logging
+
+def terminate_all_children(log: logging.Handler, pid: int, sig: int, timeout: int):
+    try:
+        # Send the signal to the entire process group
+        os.killpg(os.getpgid(pid), sig)
+        log.info(f"Sent signal {sig} to process group of pid {pid}.")
+        
+        # Wait for the processes to terminate within the timeout
+        start_time = time.time()
+        while time.time() - start_time < timeout:
+            try:
+                # Check if the process group is still alive
+                os.kill(pid, 0)
+            except ProcessLookupError:
+                log.info(f"Process {pid} and its children have terminated.")
+                return
+            time.sleep(1)
+        
+        # If the process is still alive after the timeout, send SIGKILL
+        os.killpg(os.getpgid(pid), signal.SIGKILL)
+        log.error(f"Timeout reached. Sent SIGKILL to process group of pid {pid}.")
+    except Exception as e:
+        log.error(f"Error terminating process group of pid {pid}: {str(e)}")
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Tries really hard to terminate all children (including grandchildren). Will send
+    sig (SIGTERM) to the process group of pid. If any process is alive after timeout
+    a SIGKILL will be send.
+
+    :param log: log handler
+    :param pid: pid to kill
+    :param sig: signal type
+    :param timeout: how much time a process has to terminate 
+ChatGPT said:
+import os
+import signal
+import time
+import logging
+
+def terminate_all_children(log: logging.Handler, pid: int, sig: int, timeout: int):
+    try:
+        # Send the termination signal to the entire process group
+        os.killpg(os.getpgid(pid), sig)
+        log.info(f"Sent signal {sig} to process group of pid {pid}.")
+        
+        # Wait for the processes to terminate within the timeout
+        start_time = time.time()
+        while time.time() - start_time < timeout:
+            try:
+                # Check if any process in the group is still alive
+                os.kill(pid, 0)
+            except ProcessLookupError:
+                log.info(f"Process group of pid {pid} has terminated.")
+                return
+            time.sleep(1)
+        
+        # If the processes are still alive after the timeout, send SIGKILL
+        os.killpg(os.getpgid(pid), signal.SIGKILL)
+        log.error(f"Timeout reached. Sent SIGKILL to process group of pid {pid}.")
+    except Exception as e:
+        log.error(f"Error terminating process group of pid {pid}: {str(e)}")
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Cancels an transfer operation in Google Storage Transfer Service.
+
+        :param operation_name: Name of the transfer operation.
+        :type operation_name: str
+        :rtype: None 
+ChatGPT said:
+from google.cloud import storage_transfer_v1
+
+def cancel_transfer_operation(operation_name: str):
+    client = storage_transfer_v1.StorageTransferServiceClient()
+    operation = client.get_transfer_operation(name=operation_name)
+    
+    if operation.status != storage_transfer_v1.TransferOperation.Status.COMPLETED:
+        client.cancel_transfer_operation(name=operation_name)
+        print(f"Transfer operation '{operation_name}' has been canceled.")
+    else:
+        print(f"Transfer operation '{operation_name}' is already completed and cannot be canceled.")
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Cancels an transfer operation in Google Storage Transfer Service.
+
+        :param operation_name: Name of the transfer operation.
+        :type operation_name: str
+        :rtype: None 
+ChatGPT said:
+from google.cloud import storage_transfer_v1
+
+def cancel_transfer_operation(operation_name: str):
+    client = storage_transfer_v1.StorageTransferServiceClient()
+    client.cancel_transfer_operation(name=operation_name)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Cancels an transfer operation in Google Storage Transfer Service.
+
+        :param operation_name: Name of the transfer operation.
+        :type operation_name: str
+        :rtype: None 
+ChatGPT said:
+from google.cloud import storage_transfer_v1
+
+def cancel_transfer_operation(operation_name: str):
+    client = storage_transfer_v1.StorageTransferServiceClient()
+    client.cancel_transfer_operation(name=operation_name)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Cancels an transfer operation in Google Storage Transfer Service.
+
+        :param operation_name: Name of the transfer operation.
+        :type operation_name: str
+        :rtype: None 
+ChatGPT said:
+from google.cloud import storage_transfer_v1
+
+def cancel_transfer_operation(operation_name: str):
+    client = storage_transfer_v1.StorageTransferServiceClient()
+    transfer_operation = client.get_transfer_operation(name=operation_name)
+    if transfer_operation.status not in ['COMPLETED', 'FAILED', 'CANCELED']:
+        client.cancel_transfer_operation(name=operation_name)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Cancels an transfer operation in Google Storage Transfer Service.
+
+        :param operation_name: Name of the transfer operation.
+        :type operation_name: str
+        :rtype: None 
+ChatGPT said:
+from google.cloud import storage_transfer_v1
+
+def cancel_transfer_operation(operation_name: str):
+    client = storage_transfer_v1.StorageTransferServiceClient()
+    client.cancel_transfer_operation(name=operation_name)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Toggle the pause state of the DAGs in the test. 
+ChatGPT said:
+def toggle_dag_pause_state(dag_ids, pause=True):
+    from airflow.models import DagModel
+
+    for dag_id in dag_ids:
+        dag = DagModel.get_dagmodel(dag_id)
+        if dag:
+            dag.is_paused = pause
+            dag.save()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Toggle the pause state of the DAGs in the test. 
+ChatGPT said:
+def toggle_dag_pause_state(dag_ids, pause=True):
+    from airflow.models import DagModel
+
+    for dag_id in dag_ids:
+        dag = DagModel.get_dagmodel(dag_id)
+        if dag:
+            dag.is_paused = pause
+            dag.save()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Toggle the pause state of the DAGs in the test. 
+ChatGPT said:
+def toggle_dag_pause_state(dag_ids, pause=True):
+    from airflow.models import DagModel
+
+    for dag_id in dag_ids:
+        dag = DagModel.get_dagmodel(dag_id)
+        if dag:
+            dag.is_paused = pause
+            dag.save()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Toggle the pause state of the DAGs in the test. 
+ChatGPT said:
+def toggle_dag_pause_state(dag_ids, pause=True):
+    from airflow.models import DagModel
+
+    for dag_id in dag_ids:
+        dag = DagModel.get_dagmodel(dag_id)
+        if dag:
+            dag.is_paused = pause
+            dag.save()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Toggle the pause state of the DAGs in the test. 
+ChatGPT said:
+def toggle_dag_pause_state(dag_ids, pause=True):
+    from airflow.models import DagModel
+
+    for dag_id in dag_ids:
+        dag = DagModel.get_dagmodel(dag_id)
+        if dag:
+            dag.is_paused = pause
+            dag.save()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Remove an option if it exists in config from a file or
+        default config. If both of config have the same option, this removes
+        the option in both configs unless remove_default=False. 
+ChatGPT said:
+import configparser
+
+def remove_option_from_config(config_file, option, remove_default=True):
+    config = configparser.ConfigParser()
+    config.read(config_file)
+
+    # Remove the option if it exists in the specified config file
+    for section in config.sections():
+        if config.has_option(section, option):
+            config.remove_option(section, option)
+
+    # Remove from default config if remove_default is True
+    if remove_default:
+        default_config_file = '/path/to/default/config'  # Replace with the actual default config file path
+        default_config = configparser.ConfigParser()
+        default_config.read(default_config_file)
+        
+        for section in default_config.sections():
+            if default_config.has_option(section, option):
+                default_config.remove_option(section, option)
+
+        # Save changes back to the default config file
+        with open(default_config_file, 'w') as f:
+            default_config.write(f)
+
+    # Save changes back to the main config file
+    with open(config_file, 'w') as f:
+        config.write(f)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Remove an option if it exists in config from a file or
+        default config. If both of config have the same option, this removes
+        the option in both configs unless remove_default=False. 
+ChatGPT said:
+import configparser
+
+def remove_option_from_config(config_file, option, remove_default=True):
+    config = configparser.ConfigParser()
+    config.read(config_file)
+
+    # Remove the option if it exists in the specified config file
+    for section in config.sections():
+        if config.has_option(section, option):
+            config.remove_option(section, option)
+
+    # Remove from default config if remove_default is True
+    if remove_default:
+        default_config_file = '/path/to/default/config'  # Replace with the actual default config file path
+        default_config = configparser.ConfigParser()
+        default_config.read(default_config_file)
+        
+        for section in default_config.sections():
+            if default_config.has_option(section, option):
+                default_config.remove_option(section, option)
+
+        # Save changes back to the default config file
+        with open(default_config_file, 'w') as f:
+            default_config.write(f)
+
+    # Save changes back to the main config file
+    with open(config_file, 'w') as f:
+        config.write(f)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Remove an option if it exists in config from a file or
+        default config. If both of config have the same option, this removes
+        the option in both configs unless remove_default=False. 
+ChatGPT said:
+import configparser
+
+def remove_option(config_file, option, remove_default=True):
+    # Read the configuration file
+    config = configparser.ConfigParser()
+    config.read(config_file)
+
+    # Remove the option from the given config file
+    for section in config.sections():
+        if config.has_option(section, option):
+            config.remove_option(section, option)
+
+    # If remove_default is True, remove the option from the default config as well
+    if remove_default:
+        default_config_file = '/path/to/default/config'  # Replace with actual path to default config
+        default_config = configparser.ConfigParser()
+        default_config.read(default_config_file)
+        
+        for section in default_config.sections():
+            if default_config.has_option(section, option):
+                default_config.remove_option(section, option)
+
+        # Save the changes to the default config file
+        with open(default_config_file, 'w') as f:
+            default_config.write(f)
+
+    # Save the changes to the original config file
+    with open(config_file, 'w') as f:
+        config.write(f)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Remove an option if it exists in config from a file or
+        default config. If both of config have the same option, this removes
+        the option in both configs unless remove_default=False. 
+ChatGPT said:
+import configparser
+
+def remove_option_from_configs(config_file, option, remove_default=True):
+    config = configparser.ConfigParser()
+    config.read(config_file)
+
+    # Remove the option from the given config file
+    for section in config.sections():
+        if config.has_option(section, option):
+            config.remove_option(section, option)
+
+    # If remove_default is True, remove the option from the default config as well
+    if remove_default:
+        default_config_file = '/path/to/default/config'  # Replace with actual path to default config
+        default_config = configparser.ConfigParser()
+        default_config.read(default_config_file)
+
+        for section in default_config.sections():
+            if default_config.has_option(section, option):
+                default_config.remove_option(section, option)
+
+        # Save the changes to the default config file
+        with open(default_config_file, 'w') as f:
+            default_config.write(f)
+
+    # Save the changes to the original config file
+    with open(config_file, 'w') as f:
+        config.write(f)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Remove an option if it exists in config from a file or
+        default config. If both of config have the same option, this removes
+        the option in both configs unless remove_default=False. 
+ChatGPT said:
+import configparser
+
+def remove_option(config_file, option, remove_default=True):
+    # Load the config from the provided file
+    config = configparser.ConfigParser()
+    config.read(config_file)
+
+    # Remove the option from the specified config file
+    for section in config.sections():
+        if config.has_option(section, option):
+            config.remove_option(section, option)
+
+    # If remove_default is True, remove the option from the default config
+    if remove_default:
+        default_config_file = '/path/to/default/config'  # Specify the path to the default config
+        default_config = configparser.ConfigParser()
+        default_config.read(default_config_file)
+
+        for section in default_config.sections():
+            if default_config.has_option(section, option):
+                default_config.remove_option(section, option)
+
+        # Save the changes to the default config
+        with open(default_config_file, 'w') as f:
+            default_config.write(f)
+
+    # Save the changes to the original config file
+    with open(config_file, 'w') as f:
+        config.write(f)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Wrapper around datetime.datetime that adds settings.TIMEZONE if tzinfo not specified
+
+    :return: datetime.datetime 
+ChatGPT said:
+import datetime
+import settings  # Assuming settings.TIMEZONE is imported from a settings module
+
+def datetime_with_timezone(tzinfo=None):
+    if tzinfo is None:
+        tzinfo = settings.TIMEZONE
+    return datetime.datetime.now(tzinfo)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Wrapper around datetime.datetime that adds settings.TIMEZONE if tzinfo not specified
+
+    :return: datetime.datetime 
+ChatGPT said:
+import datetime
+import settings  # Assuming settings.TIMEZONE is imported from a settings module
+
+def datetime_with_timezone(tzinfo=None):
+    if tzinfo is None:
+        tzinfo = settings.TIMEZONE
+    return datetime.datetime.now(tzinfo)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Wrapper around datetime.datetime that adds settings.TIMEZONE if tzinfo not specified
+
+    :return: datetime.datetime 
+ChatGPT said:
+import datetime
+import settings  # Assuming settings.TIMEZONE is imported from a settings module
+
+def datetime_with_timezone(tzinfo=None):
+    if tzinfo is None:
+        tzinfo = settings.TIMEZONE
+    return datetime.datetime.now(tzinfo)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Wrapper around datetime.datetime that adds settings.TIMEZONE if tzinfo not specified
+
+    :return: datetime.datetime 
+ChatGPT said:
+import datetime
+import settings
+
+def datetime_with_timezone(tzinfo=None):
+    if tzinfo is None:
+        tzinfo = settings.TIMEZONE
+    return datetime.datetime.now(tzinfo)
+
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Wrapper around datetime.datetime that adds settings.TIMEZONE if tzinfo not specified
+
+ChatGPT said:
+
+import datetime
+from django.conf import settings
+
+def make_aware_datetime(dt):
+    """
+    Returns a timezone-aware datetime object. If the given datetime `dt`
+    is naive (i.e., has no tzinfo), it applies the timezone from settings.TIMEZONE.
+    """
+    if dt.tzinfo is None:
+        tz = datetime.timezone(datetime.timedelta(hours=settings.TIMEZONE.utcoffset(None).total_seconds() / 3600))
+        return dt.replace(tzinfo=tz)
+    return dt
+
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Deletes an existing database in CosmosDB. 
+ChatGPT said:
+from azure.cosmos import CosmosClient
+
+def delete_cosmosdb_database(endpoint: str, key: str, database_name: str):
+    # Initialize the Cosmos client
+    client = CosmosClient(endpoint, key)
+    
+    # Get the database container
+    database = client.get_database_client(database_name)
+    
+    # Delete the database
+    database.delete()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Deletes an existing database in CosmosDB. 
+ChatGPT said:
+from azure.cosmos import CosmosClient
+
+def delete_cosmosdb_database(endpoint: str, key: str, database_name: str):
+    client = CosmosClient(endpoint, key)
+    database_client = client.get_database_client(database_name)
+    database_client.delete()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Deletes an existing database in CosmosDB. 
+ChatGPT said:
+from azure.cosmos import CosmosClient
+
+def delete_cosmosdb_database(endpoint: str, key: str, database_name: str):
+    client = CosmosClient(endpoint, key)
+    database = client.get_database_client(database_name)
+    database.delete()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Deletes an existing database in CosmosDB. 
+ChatGPT said:
+from azure.cosmos import CosmosClient
+
+def delete_cosmosdb_database(endpoint: str, key: str, database_name: str):
+    client = CosmosClient(endpoint, key)
+    database_client = client.get_database_client(database_name)
+    database_client.delete()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Deletes an existing database in CosmosDB. 
+ChatGPT said:
+from azure.cosmos import CosmosClient
+
+def delete_cosmosdb_database(endpoint: str, key: str, database_name: str):
+    client = CosmosClient(endpoint, key)
+    database = client.get_database_client(database_name)
+    database.delete()
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Waits until the job reaches the expected state.
+
+        :param job: Transfer job
+            See:
+            https://cloud.google.com/storage-transfer/docs/reference/rest/v1/transferJobs#TransferJob
+        :type job: dict
+        :param expected_statuses: State that is expected
+            See:
+            https://cloud.google.com/storage-transfer/docs/reference/rest/v1/transferOperations#Status
+        :type expected_statuses: set[str]
+        :param timeout:
+        :type timeout: time in which the operation must end in seconds
+        :rtype: None 
+ChatGPT said:
+import time
+
+def wait_for_transfer_job(job, expected_statuses, timeout):
+    start_time = time.time()
+    
+    while time.time() - start_time < timeout:
+        current_status = job.get('status')
+        if current_status in expected_statuses:
+            return
+        
+        time.sleep(5)  # Wait for 5 seconds before checking again
+    
+    raise TimeoutError(f"Job did not reach the expected statuses within {timeout} seconds.")
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Waits until the job reaches the expected state.
+
+        :param job: Transfer job
+            See:
+            https://cloud.google.com/storage-transfer/docs/reference/rest/v1/transferJobs#TransferJob
+        :type job: dict
+        :param expected_statuses: State that is expected
+            See:
+            https://cloud.google.com/storage-transfer/docs/reference/rest/v1/transferOperations#Status
+        :type expected_statuses: set[str]
+        :param timeout:
+        :type timeout: time in which the operation must end in seconds
+        :rtype: None 
+ChatGPT said:
+import time
+
+def wait_for_transfer_job(job, expected_statuses, timeout):
+    start_time = time.time()
+    
+    while time.time() - start_time < timeout:
+        if job.get('status') in expected_statuses:
+            return
+        
+        time.sleep(5)  # Check status every 5 seconds
+    
+    raise TimeoutError(f"Job did not reach the expected statuses within {timeout} seconds.")
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Waits until the job reaches the expected state.
+
+        :param job: Transfer job
+            See:
+            https://cloud.google.com/storage-transfer/docs/reference/rest/v1/transferJobs#TransferJob
+        :type job: dict
+        :param expected_statuses: State that is expected
+            See:
+            https://cloud.google.com/storage-transfer/docs/reference/rest/v1/transferOperations#Status
+        :type expected_statuses: set[str]
+        :param timeout:
+        :type timeout: time in which the operation must end in seconds
+        :rtype: None 
+ChatGPT said:
+import time
+
+def wait_for_transfer_job(job, expected_statuses, timeout):
+    start_time = time.time()
+
+    while time.time() - start_time < timeout:
+        if job.get('status') in expected_statuses:
+            return
+        
+        time.sleep(5)
+
+    raise TimeoutError(f"Job did not reach the expected statuses within {timeout} seconds.")
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Waits until the job reaches the expected state.
+
+        :param job: Transfer job
+            See:
+            https://cloud.google.com/storage-transfer/docs/reference/rest/v1/transferJobs#TransferJob
+        :type job: dict
+        :param expected_statuses: State that is expected
+            See:
+            https://cloud.google.com/storage-transfer/docs/reference/rest/v1/transferOperations#Status
+        :type expected_statuses: set[str]
+        :param timeout:
+        :type timeout: time in which the operation must end in seconds
+        :rtype: None 
+ChatGPT said:
+import time
+
+def wait_for_transfer_job(job, expected_statuses, timeout):
+    start_time = time.time()
+
+    while time.time() - start_time < timeout:
+        if job.get('status') in expected_statuses:
+            return
+
+        time.sleep(5)
+
+    raise TimeoutError("Job did not reach the expected statuses within the specified timeout.")
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Waits until the job reaches the expected state.
+
+        :param job: Transfer job
+            See:
+            https://cloud.google.com/storage-transfer/docs/reference/rest/v1/transferJobs#TransferJob
+        :type job: dict
+        :param expected_statuses: State that is expected
+            See:
+            https://cloud.google.com/storage-transfer/docs/reference/rest/v1/transferOperations#Status
+        :type expected_statuses: set[str]
+        :param timeout:
+        :type timeout: time in which the operation must end in seconds
+        :rtype: None 
+ChatGPT said:
+import time
+
+def wait_for_transfer_job(job, expected_statuses, timeout):
+    start_time = time.time()
+
+    while time.time() - start_time < timeout:
+        if job.get('status') in expected_statuses:
+            return
+
+        time.sleep(5)
+
+    raise TimeoutError("Job did not reach the expected statuses within the specified timeout.")
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Deletes a Pub/Sub subscription, if it exists.
+
+        :param project: the GCP project ID where the subscription exists
+        :type project: str
+        :param subscription: the Pub/Sub subscription name to delete; do not
+            include the `projects/{project}/subscriptions/ prefix.
+        :type subscription: str
+        :param fail_if_not_exists: if set, raise an exception if the topic
+            does not exist
+        :type fail_if_not_exists: bool 
+ChatGPT said:
+from google.cloud import pubsub_v1
+from google.api_core.exceptions import NotFound
+
+def delete_pubsub_subscription(project, subscription, fail_if_not_exists=False):
+    client = pubsub_v1.SubscriberClient()
+    subscription_path = client.subscription_path(project, subscription)
+
+    try:
+        client.delete_subscription(subscription_path)
+    except NotFound:
+        if fail_if_not_exists:
+            raise NotFound(f"Subscription '{subscription}' not found.")
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Deletes a Pub/Sub subscription, if it exists.
+
+        :param project: the GCP project ID where the subscription exists
+        :type project: str
+        :param subscription: the Pub/Sub subscription name to delete; do not
+            include the `projects/{project}/subscriptions/ prefix.
+        :type subscription: str
+        :param fail_if_not_exists: if set, raise an exception if the topic
+            does not exist
+        :type fail_if_not_exists: bool 
+ChatGPT said:
+from google.cloud import pubsub_v1
+from google.api_core.exceptions import NotFound
+
+def delete_pubsub_subscription(project, subscription, fail_if_not_exists=False):
+    client = pubsub_v1.SubscriberClient()
+    subscription_path = client.subscription_path(project, subscription)
+
+    try:
+        client.delete_subscription(subscription_path)
+    except NotFound:
+        if fail_if_not_exists:
+            raise NotFound(f"Subscription '{subscription}' not found.")
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Deletes a Pub/Sub subscription, if it exists.
+
+        :param project: the GCP project ID where the subscription exists
+        :type project: str
+        :param subscription: the Pub/Sub subscription name to delete; do not
+            include the `projects/{project}/subscriptions/ prefix.
+        :type subscription: str
+        :param fail_if_not_exists: if set, raise an exception if the topic
+            does not exist
+        :type fail_if_not_exists: bool 
+ChatGPT said:
+from google.cloud import pubsub_v1
+from google.api_core.exceptions import NotFound
+
+def delete_pubsub_subscription(project, subscription, fail_if_not_exists=False):
+    client = pubsub_v1.SubscriberClient()
+    subscription_path = client.subscription_path(project, subscription)
+
+    try:
+        client.delete_subscription(subscription_path)
+    except NotFound:
+        if fail_if_not_exists:
+            raise NotFound(f"Subscription '{subscription}' does not exist.")
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Deletes a Pub/Sub subscription, if it exists.
+
+        :param project: the GCP project ID where the subscription exists
+        :type project: str
+        :param subscription: the Pub/Sub subscription name to delete; do not
+            include the `projects/{project}/subscriptions/ prefix.
+        :type subscription: str
+        :param fail_if_not_exists: if set, raise an exception if the topic
+            does not exist
+        :type fail_if_not_exists: bool 
+ChatGPT said:
+from google.cloud import pubsub_v1
+from google.api_core.exceptions import NotFound
+
+def delete_pubsub_subscription(project, subscription, fail_if_not_exists=False):
+    client = pubsub_v1.SubscriberClient()
+    subscription_path = client.subscription_path(project, subscription)
+
+    try:
+        client.delete_subscription(subscription_path)
+    except NotFound:
+        if fail_if_not_exists:
+            raise NotFound(f"Subscription '{subscription}' not found.")
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Deletes a Pub/Sub subscription, if it exists.
+
+        :param project: the GCP project ID where the subscription exists
+        :type project: str
+        :param subscription: the Pub/Sub subscription name to delete; do not
+            include the `projects/{project}/subscriptions/ prefix.
+        :type subscription: str
+        :param fail_if_not_exists: if set, raise an exception if the topic
+            does not exist
+        :type fail_if_not_exists: bool 
+ChatGPT said:
+from google.cloud import pubsub_v1
+from google.api_core.exceptions import NotFound
+
+def delete_pubsub_subscription(project, subscription, fail_if_not_exists=False):
+    client = pubsub_v1.SubscriberClient()
+    subscription_path = client.subscription_path(project, subscription)
+
+    try:
+        client.delete_subscription(subscription_path)
+    except NotFound:
+        if fail_if_not_exists:
+            raise NotFound(f"Subscription '{subscription}' does not exist.")
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Deletes a transfer job. This is a soft delete. After a transfer job is
+        deleted, the job and all the transfer executions are subject to garbage
+        collection. Transfer jobs become eligible for garbage collection
+        30 days after soft delete.
+
+        :param job_name: (Required) Name of the job to be deleted
+        :type job_name: str
+        :param project_id: (Optional) the ID of the project that owns the Transfer
+            Job. If set to None or missing, the default project_id from the GCP
+            connection is used.
+        :type project_id: str
+        :rtype: None 
+ChatGPT said:
+from google.cloud import storagetransfer_v1
+
+def delete_transfer_job(job_name, project_id=None):
+    client = storagetransfer_v1.StorageTransferServiceClient()
+    
+    if project_id is None:
+        project_id = client.project_path()  # Use the default project if not provided
+    
+    job_path = client.transfer_job_path(project_id, job_name)
+    
+    client.delete_transfer_job(name=job_path)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Deletes a transfer job. This is a soft delete. After a transfer job is
+        deleted, the job and all the transfer executions are subject to garbage
+        collection. Transfer jobs become eligible for garbage collection
+        30 days after soft delete.
+
+        :param job_name: (Required) Name of the job to be deleted
+        :type job_name: str
+        :param project_id: (Optional) the ID of the project that owns the Transfer
+            Job. If set to None or missing, the default project_id from the GCP
+            connection is used.
+        :type project_id: str
+        :rtype: None 
+ChatGPT said:
+from google.cloud import storagetransfer_v1
+
+def delete_transfer_job(job_name, project_id=None):
+    client = storagetransfer_v1.StorageTransferServiceClient()
+    
+    if project_id is None:
+        project_id = client.project_path()  # Use the default project if not provided
+    
+    job_path = client.transfer_job_path(project_id, job_name)
+    
+    client.delete_transfer_job(name=job_path)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Deletes a transfer job. This is a soft delete. After a transfer job is
+        deleted, the job and all the transfer executions are subject to garbage
+        collection. Transfer jobs become eligible for garbage collection
+        30 days after soft delete.
+
+        :param job_name: (Required) Name of the job to be deleted
+        :type job_name: str
+        :param project_id: (Optional) the ID of the project that owns the Transfer
+            Job. If set to None or missing, the default project_id from the GCP
+            connection is used.
+        :type project_id: str
+        :rtype: None 
+ChatGPT said:
+from google.cloud import storagetransfer_v1
+
+def delete_transfer_job(job_name, project_id=None):
+    client = storagetransfer_v1.StorageTransferServiceClient()
+    
+    if project_id is None:
+        project_id = client.project_path()  # Use default project if not provided
+    
+    job_path = client.transfer_job_path(project_id, job_name)
+    
+    client.delete_transfer_job(name=job_path)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Deletes a transfer job. This is a soft delete. After a transfer job is
+        deleted, the job and all the transfer executions are subject to garbage
+        collection. Transfer jobs become eligible for garbage collection
+        30 days after soft delete.
+
+        :param job_name: (Required) Name of the job to be deleted
+        :type job_name: str
+        :param project_id: (Optional) the ID of the project that owns the Transfer
+            Job. If set to None or missing, the default project_id from the GCP
+            connection is used.
+        :type project_id: str
+        :rtype: None 
+ChatGPT said:
+from google.cloud import storagetransfer_v1
+
+def delete_transfer_job(job_name, project_id=None):
+    client = storagetransfer_v1.StorageTransferServiceClient()
+    
+    if project_id is None:
+        project_id = client.project_path()  # Use the default project if not provided
+    
+    job_path = client.transfer_job_path(project_id, job_name)
+    
+    client.delete_transfer_job(name=job_path)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Deletes a transfer job. This is a soft delete. After a transfer job is
+        deleted, the job and all the transfer executions are subject to garbage
+        collection. Transfer jobs become eligible for garbage collection
+        30 days after soft delete.
+
+        :param job_name: (Required) Name of the job to be deleted
+        :type job_name: str
+        :param project_id: (Optional) the ID of the project that owns the Transfer
+            Job. If set to None or missing, the default project_id from the GCP
+            connection is used.
+        :type project_id: str
+        :rtype: None 
+ChatGPT said:
+from google.cloud import storagetransfer_v1
+
+def delete_transfer_job(job_name, project_id=None):
+    client = storagetransfer_v1.StorageTransferServiceClient()
+    
+    if project_id is None:
+        project_id = client.project_path()  # Use the default project if not provided
+    
+    job_path = client.transfer_job_path(project_id, job_name)
+    
+    client.delete_transfer_job(name=job_path)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Use multiple processes to parse and generate tasks for the
+        DAGs in parallel. By processing them in separate processes,
+        we can get parallelism and isolation from potentially harmful
+        user code. 
+ChatGPT said:
+import multiprocessing
+
+def process_dag_tasks_parallel(dag_tasks, process_task_func):
+    with multiprocessing.Pool() as pool:
+        pool.map(process_task_func, dag_tasks)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Use multiple processes to parse and generate tasks for the
+        DAGs in parallel. By processing them in separate processes,
+        we can get parallelism and isolation from potentially harmful
+        user code. 
+ChatGPT said:
+import multiprocessing
+
+def process_dag_tasks_parallel(dag_tasks, process_task_func):
+    with multiprocessing.Pool() as pool:
+        pool.map(process_task_func, dag_tasks)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Use multiple processes to parse and generate tasks for the
+        DAGs in parallel. By processing them in separate processes,
+        we can get parallelism and isolation from potentially harmful
+        user code. 
+ChatGPT said:
+import multiprocessing
+
+def process_dag_tasks_parallel(dag_tasks, process_task_func):
+    with multiprocessing.Pool(processes=multiprocessing.cpu_count()) as pool:
+        pool.map(process_task_func, dag_tasks)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Use multiple processes to parse and generate tasks for the
+        DAGs in parallel. By processing them in separate processes,
+        we can get parallelism and isolation from potentially harmful
+        user code. 
+ChatGPT said:
+import multiprocessing
+
+def process_dag_tasks_parallel(dag_tasks, process_task_func):
+    with multiprocessing.get_start_method() as method:
+        with multiprocessing.Pool(processes=multiprocessing.cpu_count(), method=method) as pool:
+            pool.map(process_task_func, dag_tasks)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Use multiple processes to parse and generate tasks for the
+        DAGs in parallel. By processing them in separate processes,
+        we can get parallelism and isolation from potentially harmful
+        user code. 
+ChatGPT said:
+import multiprocessing
+
+def process_dag_tasks_parallel(dag_tasks, process_task_func):
+    with multiprocessing.Pool(processes=multiprocessing.cpu_count()) as pool:
+        pool.map(process_task_func, dag_tasks)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+try:
+        # normal Vimeo video
+        html = get_content('https://vimeo.com/' + id)
+        cfg_patt = r'clip_page_config\s*=\s*(\{.+?\});'
+        cfg = json.loads(match1(html, cfg_patt))
+        video_page = get_content(cfg['player']['config_url'], headers=fake_headers)
+        title = cfg['clip']['title']
+        info = loads(video_page)
+    except:
+        # embedded player - referer may be required
+        if 'referer' in kwargs:
+            fake_headers['Referer'] = kwargs['referer']
+
+        video_page = get_content('http://player.vimeo.com/video/%s' % id, headers=fake_headers)
+        title = r1(r'<title>([^<]+)</title>', video_page)
+        info = loads(match1(video_page, r'var t=(\{.+?\});'))
+
+    streams = info['request']['files']['progressive']
+    streams = sorted(streams, key=lambda i: i['height'])
+    url = streams[-1]['url']
+
+    type, ext, size = url_info(url, faker=True)
+
+    print_info(site_info, title, type, size)
+    if not info_only:
+        download_urls([url], title, ext, size, output_dir, merge=merge, faker=True) 
+ChatGPT said:
+import json
+import requests
+
+def get_vimeo_video_info(id, **kwargs):
+    fake_headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+    }
+    
+    try:
+        # normal Vimeo video
+        html = get_content('https://vimeo.com/' + id)
+        cfg_patt = r'clip_page_config\s*=\s*(\{.+?\});'
+        cfg = json.loads(match1(html, cfg_patt))
+        video_page = get_content(cfg['player']['config_url'], headers=fake_headers)
+        title = cfg['clip']['title']
+        info = json.loads(video_page)
+    except:
+        # embedded player - referer may be required
+        if 'referer' in kwargs:
+            fake_headers['Referer'] = kwargs['referer']
+
+        video_page = get_content('http://player.vimeo.com/video/%s' % id, headers=fake_headers)
+        title = r1(r'<title>([^<]+)</title>', video_page)
+        info = json.loads(match1(video_page, r'var t=(\{.+?\});'))
+
+    streams = info['request']['files']['progressive']
+    streams = sorted(streams, key=lambda i: i['height'])
+    url = streams[-1]['url']
+
+    type, ext, size = url_info(url, faker=True)
+
+    print_info(site_info, title, type, size)
+    if not kwargs.get('info_only', False):
+        download_urls([url], title, ext, size, kwargs.get('output_dir', ''), merge=kwargs.get('merge', False), faker=True)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+try:
+        # normal Vimeo video
+        html = get_content('https://vimeo.com/' + id)
+        cfg_patt = r'clip_page_config\s*=\s*(\{.+?\});'
+        cfg = json.loads(match1(html, cfg_patt))
+        video_page = get_content(cfg['player']['config_url'], headers=fake_headers)
+        title = cfg['clip']['title']
+        info = loads(video_page)
+    except:
+        # embedded player - referer may be required
+        if 'referer' in kwargs:
+            fake_headers['Referer'] = kwargs['referer']
+
+        video_page = get_content('http://player.vimeo.com/video/%s' % id, headers=fake_headers)
+        title = r1(r'<title>([^<]+)</title>', video_page)
+        info = loads(match1(video_page, r'var t=(\{.+?\});'))
+
+    streams = info['request']['files']['progressive']
+    streams = sorted(streams, key=lambda i: i['height'])
+    url = streams[-1]['url']
+
+    type, ext, size = url_info(url, faker=True)
+
+    print_info(site_info, title, type, size)
+    if not info_only:
+        download_urls([url], title, ext, size, output_dir, merge=merge, faker=True) 
+ChatGPT said:
+import json
+
+def get_vimeo_video(id, **kwargs):
+    fake_headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+    }
+
+    try:
+        # normal Vimeo video
+        html = get_content('https://vimeo.com/' + id)
+        cfg_patt = r'clip_page_config\s*=\s*(\{.+?\});'
+        cfg = json.loads(match1(html, cfg_patt))
+        video_page = get_content(cfg['player']['config_url'], headers=fake_headers)
+        title = cfg['clip']['title']
+        info = json.loads(video_page)
+    except:
+        # embedded player - referer may be required
+        if 'referer' in kwargs:
+            fake_headers['Referer'] = kwargs['referer']
+
+        video_page = get_content('http://player.vimeo.com/video/%s' % id, headers=fake_headers)
+        title = r1(r'<title>([^<]+)</title>', video_page)
+        info = json.loads(match1(video_page, r'var t=(\{.+?\});'))
+
+    streams = info['request']['files']['progressive']
+    streams = sorted(streams, key=lambda i: i['height'])
+    url = streams[-1]['url']
+
+    type, ext, size = url_info(url, faker=True)
+
+    print_info(site_info, title, type, size)
+    if not kwargs.get('info_only', False):
+        download_urls([url], title, ext, size, kwargs.get('output_dir', ''), merge=kwargs.get('merge', False), faker=True)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+try:
+        # normal Vimeo video
+        html = get_content('https://vimeo.com/' + id)
+        cfg_patt = r'clip_page_config\s*=\s*(\{.+?\});'
+        cfg = json.loads(match1(html, cfg_patt))
+        video_page = get_content(cfg['player']['config_url'], headers=fake_headers)
+        title = cfg['clip']['title']
+        info = loads(video_page)
+    except:
+        # embedded player - referer may be required
+        if 'referer' in kwargs:
+            fake_headers['Referer'] = kwargs['referer']
+
+        video_page = get_content('http://player.vimeo.com/video/%s' % id, headers=fake_headers)
+        title = r1(r'<title>([^<]+)</title>', video_page)
+        info = loads(match1(video_page, r'var t=(\{.+?\});'))
+
+    streams = info['request']['files']['progressive']
+    streams = sorted(streams, key=lambda i: i['height'])
+    url = streams[-1]['url']
+
+    type, ext, size = url_info(url, faker=True)
+
+    print_info(site_info, title, type, size)
+    if not info_only:
+        download_urls([url], title, ext, size, output_dir, merge=merge, faker=True) 
+ChatGPT said:
+import json
+
+def fetch_vimeo_video(id, **kwargs):
+    fake_headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+    }
+
+    try:
+        # normal Vimeo video
+        html = get_content('https://vimeo.com/' + id)
+        cfg_patt = r'clip_page_config\s*=\s*(\{.+?\});'
+        cfg = json.loads(match1(html, cfg_patt))
+        video_page = get_content(cfg['player']['config_url'], headers=fake_headers)
+        title = cfg['clip']['title']
+        info = json.loads(video_page)
+    except:
+        # embedded player - referer may be required
+        if 'referer' in kwargs:
+            fake_headers['Referer'] = kwargs['referer']
+
+        video_page = get_content(f'http://player.vimeo.com/video/{id}', headers=fake_headers)
+        title = r1(r'<title>([^<]+)</title>', video_page)
+        info = json.loads(match1(video_page, r'var t=(\{.+?\});'))
+
+    streams = info['request']['files']['progressive']
+    streams = sorted(streams, key=lambda i: i['height'])
+    url = streams[-1]['url']
+
+    file_type, ext, size = url_info(url, faker=True)
+
+    print_info(site_info, title, file_type, size)
+    if not kwargs.get('info_only', False):
+        download_urls([url], title, ext, size, kwargs.get('output_dir', ''), merge=kwargs.get('merge', False), faker=True)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+try:
+        # normal Vimeo video
+        html = get_content('https://vimeo.com/' + id)
+        cfg_patt = r'clip_page_config\s*=\s*(\{.+?\});'
+        cfg = json.loads(match1(html, cfg_patt))
+        video_page = get_content(cfg['player']['config_url'], headers=fake_headers)
+        title = cfg['clip']['title']
+        info = loads(video_page)
+    except:
+        # embedded player - referer may be required
+        if 'referer' in kwargs:
+            fake_headers['Referer'] = kwargs['referer']
+
+        video_page = get_content('http://player.vimeo.com/video/%s' % id, headers=fake_headers)
+        title = r1(r'<title>([^<]+)</title>', video_page)
+        info = loads(match1(video_page, r'var t=(\{.+?\});'))
+
+    streams = info['request']['files']['progressive']
+    streams = sorted(streams, key=lambda i: i['height'])
+    url = streams[-1]['url']
+
+    type, ext, size = url_info(url, faker=True)
+
+    print_info(site_info, title, type, size)
+    if not info_only:
+        download_urls([url], title, ext, size, output_dir, merge=merge, faker=True) 
+ChatGPT said:
+import json
+
+def fetch_vimeo_video(id, **kwargs):
+    fake_headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+    }
+
+    try:
+        # normal Vimeo video
+        html = get_content('https://vimeo.com/' + id)
+        cfg_patt = r'clip_page_config\s*=\s*(\{.+?\});'
+        cfg = json.loads(match1(html, cfg_patt))
+        video_page = get_content(cfg['player']['config_url'], headers=fake_headers)
+        title = cfg['clip']['title']
+        info = json.loads(video_page)
+    except:
+        # embedded player - referer may be required
+        if 'referer' in kwargs:
+            fake_headers['Referer'] = kwargs['referer']
+
+        video_page = get_content(f'http://player.vimeo.com/video/{id}', headers=fake_headers)
+        title = r1(r'<title>([^<]+)</title>', video_page)
+        info = json.loads(match1(video_page, r'var t=(\{.+?\});'))
+
+    streams = info['request']['files']['progressive']
+    streams = sorted(streams, key=lambda i: i['height'])
+    url = streams[-1]['url']
+
+    file_type, ext, size = url_info(url, faker=True)
+
+    print_info(site_info, title, file_type, size)
+    if not kwargs.get('info_only', False):
+        download_urls([url], title, ext, size, kwargs.get('output_dir', ''), merge=kwargs.get('merge', False), faker=True)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+try:
+        # normal Vimeo video
+        html = get_content('https://vimeo.com/' + id)
+        cfg_patt = r'clip_page_config\s*=\s*(\{.+?\});'
+        cfg = json.loads(match1(html, cfg_patt))
+        video_page = get_content(cfg['player']['config_url'], headers=fake_headers)
+        title = cfg['clip']['title']
+        info = loads(video_page)
+    except:
+        # embedded player - referer may be required
+        if 'referer' in kwargs:
+            fake_headers['Referer'] = kwargs['referer']
+
+        video_page = get_content('http://player.vimeo.com/video/%s' % id, headers=fake_headers)
+        title = r1(r'<title>([^<]+)</title>', video_page)
+        info = loads(match1(video_page, r'var t=(\{.+?\});'))
+
+    streams = info['request']['files']['progressive']
+    streams = sorted(streams, key=lambda i: i['height'])
+    url = streams[-1]['url']
+
+    type, ext, size = url_info(url, faker=True)
+
+    print_info(site_info, title, type, size)
+    if not info_only:
+        download_urls([url], title, ext, size, output_dir, merge=merge, faker=True) 
+ChatGPT said:
+import json
+
+def fetch_vimeo_video(id, **kwargs):
+    fake_headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+    }
+
+    try:
+        # normal Vimeo video
+        html = get_content('https://vimeo.com/' + id)
+        cfg_patt = r'clip_page_config\s*=\s*(\{.+?\});'
+        cfg = json.loads(match1(html, cfg_patt))
+        video_page = get_content(cfg['player']['config_url'], headers=fake_headers)
+        title = cfg['clip']['title']
+        info = json.loads(video_page)
+    except:
+        # embedded player - referer may be required
+        if 'referer' in kwargs:
+            fake_headers['Referer'] = kwargs['referer']
+
+        video_page = get_content(f'http://player.vimeo.com/video/{id}', headers=fake_headers)
+        title = r1(r'<title>([^<]+)</title>', video_page)
+        info = json.loads(match1(video_page, r'var t=(\{.+?\});'))
+
+    streams = info['request']['files']['progressive']
+    streams = sorted(streams, key=lambda i: i['height'])
+    url = streams[-1]['url']
+
+    file_type, ext, size = url_info(url, faker=True)
+
+    print_info(site_info, title, file_type, size)
+    if not kwargs.get('info_only', False):
+        download_urls([url], title, ext, size, kwargs.get('output_dir', ''), merge=kwargs.get('merge', False), faker=True)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Inserts a new document (or updates an existing one) into an existing
+        collection in the CosmosDB database. 
+ChatGPT said:
+from azure.cosmos import CosmosClient, exceptions
+
+def upsert_document(cosmos_url, cosmos_key, database_name, container_name, document):
+    # Initialize the Cosmos client
+    client = CosmosClient(cosmos_url, cosmos_key)
+
+    # Get the database and container
+    database = client.get_database_client(database_name)
+    container = database.get_container_client(container_name)
+
+    try:
+        # Upsert the document (insert or update if exists)
+        container.upsert_item(document)
+    except exceptions.CosmosHttpResponseError as e:
+        print(f"Error upserting document: {e}")
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Inserts a new document (or updates an existing one) into an existing
+        collection in the CosmosDB database. 
+ChatGPT said:
+from azure.cosmos import CosmosClient, exceptions
+
+def upsert_document(cosmos_url, cosmos_key, database_name, container_name, document):
+    # Initialize CosmosClient
+    client = CosmosClient(cosmos_url, cosmos_key)
+
+    # Get the database and container
+    database = client.get_database_client(database_name)
+    container = database.get_container_client(container_name)
+
+    try:
+        # Insert or update the document
+        container.upsert_item(document)
+    except exceptions.CosmosHttpResponseError as e:
+        print(f"An error occurred while upserting the document: {e}")
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Inserts a new document (or updates an existing one) into an existing
+        collection in the CosmosDB database. 
+ChatGPT said:
+from azure.cosmos import CosmosClient, exceptions
+
+def upsert_document(cosmos_url, cosmos_key, database_name, container_name, document):
+    # Initialize Cosmos client
+    client = CosmosClient(cosmos_url, cosmos_key)
+
+    # Get the database and container client
+    database = client.get_database_client(database_name)
+    container = database.get_container_client(container_name)
+
+    try:
+        # Upsert (insert or update) the document
+        container.upsert_item(document)
+    except exceptions.CosmosHttpResponseError as e:
+        print(f"Error upserting document: {e}")
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Inserts a new document (or updates an existing one) into an existing
+        collection in the CosmosDB database. 
+ChatGPT said:
+from azure.cosmos import CosmosClient
+
+def upsert_document(cosmos_url, cosmos_key, database_name, container_name, document):
+    # Initialize Cosmos client
+    client = CosmosClient(cosmos_url, cosmos_key)
+
+    # Get the database and container client
+    database = client.get_database_client(database_name)
+    container = database.get_container_client(container_name)
+
+    # Upsert (insert or update) the document
+    container.upsert_item(document)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Inserts a new document (or updates an existing one) into an existing
+        collection in the CosmosDB database. 
+ChatGPT said:
+from azure.cosmos import CosmosClient
+
+def upsert_document(cosmos_url, cosmos_key, database_name, container_name, document):
+    # Initialize Cosmos client
+    client = CosmosClient(cosmos_url, cosmos_key)
+
+    # Get the database and container
+    database = client.get_database_client(database_name)
+    container = database.get_container_client(container_name)
+
+    # Insert or update the document
+    container.upsert_item(document)
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Launches the pod synchronously and waits for completion.
+        Args:
+            pod (Pod):
+            startup_timeout (int): Timeout for startup of the pod (if pod is pending for
+             too long, considers task a failure 
+ChatGPT said:
+import time
+
+def launch_pod_synchronously(pod, startup_timeout):
+    """
+    Launches the pod synchronously and waits for completion.
+    
+    Args:
+        pod (Pod): The pod object to be launched.
+        startup_timeout (int): Timeout for startup of the pod (if pod is pending for too long, considers task a failure).
+        
+    Returns:
+        bool: True if the pod is successfully launched, False if it times out.
+    """
+    start_time = time.time()
+    
+    # Launch the pod
+    pod.launch()
+    
+    # Wait for the pod to reach a completed state or timeout
+    while time.time() - start_time < startup_timeout:
+        if pod.status == "Running":
+            return True
+        elif pod.status == "Failed" or pod.status == "Completed":
+            return False
+        time.sleep(1)
+    
+    # Timeout occurred
+    return False
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Launches the pod synchronously and waits for completion.
+        Args:
+            pod (Pod):
+            startup_timeout (int): Timeout for startup of the pod (if pod is pending for
+             too long, considers task a failure 
+ChatGPT said:
+import time
+
+def launch_pod_synchronously(pod, startup_timeout):
+    """
+    Launches the pod synchronously and waits for completion.
+    
+    Args:
+        pod (Pod): The pod object to be launched.
+        startup_timeout (int): Timeout for startup of the pod (if pod is pending for too long, considers task a failure).
+        
+    Returns:
+        bool: True if the pod started successfully, False if it timed out or failed.
+    """
+    start_time = time.time()
+    
+    # Launch the pod
+    pod.launch()
+
+    # Wait for the pod to start and check its status
+    while time.time() - start_time < startup_timeout:
+        if pod.status == 'Running':
+            return True
+        elif pod.status == 'Failed' or pod.status == 'Succeeded':
+            return False
+        time.sleep(1)
+
+    # If the pod doesn't start in the given timeout
+    return False
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Launches the pod synchronously and waits for completion.
+        Args:
+            pod (Pod):
+            startup_timeout (int): Timeout for startup of the pod (if pod is pending for
+             too long, considers task a failure 
+ChatGPT said:
+import time
+
+def launch_pod_synchronously(pod, startup_timeout):
+    """
+    Launches the pod synchronously and waits for completion.
+
+    Args:
+        pod (Pod): The pod object to be launched.
+        startup_timeout (int): Timeout for startup of the pod (if pod is pending for too long, considers task a failure).
+        
+    Returns:
+        bool: True if the pod started and completed successfully, False if it failed or timed out.
+    """
+    start_time = time.time()
+
+    # Launch the pod
+    pod.launch()
+
+    # Wait for the pod to reach a running state or timeout
+    while time.time() - start_time < startup_timeout:
+        if pod.status == 'Running':
+            # Wait for the pod to complete
+            while pod.status == 'Running':
+                time.sleep(1)
+            return pod.status == 'Succeeded'
+        elif pod.status == 'Failed':
+            return False
+        time.sleep(1)
+
+    # If timeout is reached before the pod is running
+    return False
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Launches the pod synchronously and waits for completion.
+        Args:
+            pod (Pod):
+            startup_timeout (int): Timeout for startup of the pod (if pod is pending for
+             too long, considers task a failure 
+ChatGPT said:
+import time
+
+def launch_pod_synchronously(pod, startup_timeout):
+    """
+    Launches the pod synchronously and waits for completion.
+    
+    Args:
+        pod (Pod): The pod object to be launched.
+        startup_timeout (int): Timeout for startup of the pod (if pod is pending for too long, considers task a failure).
+        
+    Returns:
+        bool: True if the pod completed successfully, False if it failed or timed out.
+    """
+    start_time = time.time()
+
+    # Launch the pod
+    pod.launch()
+
+    # Wait for the pod to start and complete
+    while time.time() - start_time < startup_timeout:
+        if pod.status == 'Running':
+            # Wait for the pod to complete (success or failure)
+            while pod.status == 'Running':
+                time.sleep(1)
+            return pod.status == 'Succeeded'
+        elif pod.status == 'Failed':
+            return False
+        time.sleep(1)
+
+    # If timeout is reached without the pod starting
+    return False
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Launches the pod synchronously and waits for completion.
+        Args:
+            pod (Pod):
+            startup_timeout (int): Timeout for startup of the pod (if pod is pending for
+             too long, considers task a failure 
+ChatGPT said:
+import time
+
+def launch_pod_synchronously(pod, startup_timeout):
+    """
+    Launches the pod synchronously and waits for completion.
+
+    Args:
+        pod (Pod): The pod object to be launched.
+        startup_timeout (int): Timeout for startup of the pod (if pod is pending for too long, considers task a failure).
+        
+    Returns:
+        bool: True if the pod completed successfully, False if it failed or timed out.
+    """
+    start_time = time.time()
+
+    # Launch the pod
+    pod.launch()
+
+    # Wait for the pod to start and complete
+    while time.time() - start_time < startup_timeout:
+        if pod.status == 'Running':
+            # Wait for the pod to complete (either success or failure)
+            while pod.status == 'Running':
+                time.sleep(1)
+            return pod.status == 'Succeeded'
+        elif pod.status == 'Failed':
+            return False
+        time.sleep(1)
+
+    # If timeout is reached without the pod starting or completing
+    return False
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Waits for the named operation to complete - checks status of the
+        asynchronous call.
+
+        :param operation_name: The name of the operation.
+        :type operation_name: str
+        :return: The response returned by the operation.
+        :rtype: dict
+        :exception: AirflowException in case error is returned. 
+ChatGPT said:
+from airflow.exceptions import AirflowException
+import time
+
+def wait_for_operation_to_complete(operation_name):
+    """
+    Waits for the named operation to complete - checks status of the asynchronous call.
+
+    :param operation_name: The name of the operation.
+    :type operation_name: str
+    :return: The response returned by the operation.
+    :rtype: dict
+    :exception: AirflowException in case error is returned.
+    """
+    operation_status = None
+    try:
+        while True:
+            # Check the status of the operation
+            operation_status = get_operation_status(operation_name)
+
+            if operation_status['status'] == 'SUCCEEDED':
+                return operation_status
+            elif operation_status['status'] == 'FAILED':
+                raise AirflowException(f"Operation {operation_name} failed.")
+            
+            # Wait before checking again
+            time.sleep(5)
+    except Exception as e:
+        raise AirflowException(f"Error waiting for operation {operation_name} to complete: {str(e)}")
+
+def get_operation_status(operation_name):
+    """
+    Dummy function to simulate checking operation status.
+    In a real scenario, replace this with an actual API call or method to get the operation status.
+
+    :param operation_name: The name of the operation.
+    :type operation_name: str
+    :return: A dict containing the operation status.
+    :rtype: dict
+    """
+    # Simulating a successful operation status
+    return {'status': 'SUCCEEDED'}
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Waits for the named operation to complete - checks status of the
+        asynchronous call.
+
+        :param operation_name: The name of the operation.
+        :type operation_name: str
+        :return: The response returned by the operation.
+        :rtype: dict
+        :exception: AirflowException in case error is returned. 
+ChatGPT said:
+from airflow.exceptions import AirflowException
+import time
+
+def wait_for_operation_to_complete(operation_name):
+    """
+    Waits for the named operation to complete - checks status of the asynchronous call.
+
+    :param operation_name: The name of the operation.
+    :type operation_name: str
+    :return: The response returned by the operation.
+    :rtype: dict
+    :exception: AirflowException in case error is returned.
+    """
+    try:
+        while True:
+            # Fetch operation status (replace this with actual logic to fetch status)
+            operation_status = get_operation_status(operation_name)
+
+            if operation_status['status'] == 'SUCCEEDED':
+                return operation_status
+            elif operation_status['status'] == 'FAILED':
+                raise AirflowException(f"Operation {operation_name} failed with status: {operation_status}")
+            
+            # Wait before checking the status again
+            time.sleep(5)
+
+    except Exception as e:
+        raise AirflowException(f"Error while waiting for operation {operation_name} to complete: {str(e)}")
+
+def get_operation_status(operation_name):
+    """
+    Dummy function to simulate checking operation status.
+    In a real scenario, replace this with an actual API call or method to get the operation status.
+
+    :param operation_name: The name of the operation.
+    :type operation_name: str
+    :return: A dict containing the operation status.
+    :rtype: dict
+    """
+    # Example status, in a real scenario this would be fetched from the actual operation status
+    return {'status': 'SUCCEEDED'}
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Waits for the named operation to complete - checks status of the
+        asynchronous call.
+
+        :param operation_name: The name of the operation.
+        :type operation_name: str
+        :return: The response returned by the operation.
+        :rtype: dict
+        :exception: AirflowException in case error is returned. 
+ChatGPT said:
+from airflow.exceptions import AirflowException
+import time
+
+def wait_for_operation_to_complete(operation_name):
+    """
+    Waits for the named operation to complete - checks status of the asynchronous call.
+
+    :param operation_name: The name of the operation.
+    :type operation_name: str
+    :return: The response returned by the operation.
+    :rtype: dict
+    :exception: AirflowException in case error is returned.
+    """
+    try:
+        while True:
+            # Fetch operation status (replace this with actual logic to fetch status)
+            operation_status = get_operation_status(operation_name)
+
+            if operation_status['status'] == 'SUCCEEDED':
+                return operation_status
+            elif operation_status['status'] == 'FAILED':
+                raise AirflowException(f"Operation {operation_name} failed with status: {operation_status}")
+            
+            # Wait before checking the status again
+            time.sleep(5)
+
+    except Exception as e:
+        raise AirflowException(f"Error while waiting for operation {operation_name} to complete: {str(e)}")
+
+def get_operation_status(operation_name):
+    """
+    Dummy function to simulate checking operation status.
+    In a real scenario, replace this with an actual API call or method to get the operation status.
+
+    :param operation_name: The name of the operation.
+    :type operation_name: str
+    :return: A dict containing the operation status.
+    :rtype: dict
+    """
+    # Example status, in a real scenario this would be fetched from the actual operation status
+    return {'status': 'SUCCEEDED'}
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Waits for the named operation to complete - checks status of the
+        asynchronous call.
+
+        :param operation_name: The name of the operation.
+        :type operation_name: str
+        :return: The response returned by the operation.
+        :rtype: dict
+        :exception: AirflowException in case error is returned. 
+ChatGPT said:
+from airflow.exceptions import AirflowException
+import time
+
+def wait_for_operation_to_complete(operation_name):
+    """
+    Waits for the named operation to complete - checks status of the asynchronous call.
+
+    :param operation_name: The name of the operation.
+    :type operation_name: str
+    :return: The response returned by the operation.
+    :rtype: dict
+    :exception: AirflowException in case error is returned.
+    """
+    try:
+        while True:
+            # Retrieve the operation status (this is a placeholder, replace with actual status retrieval logic)
+            operation_status = get_operation_status(operation_name)
+
+            if operation_status['status'] == 'SUCCEEDED':
+                return operation_status
+            elif operation_status['status'] == 'FAILED':
+                raise AirflowException(f"Operation {operation_name} failed: {operation_status}")
+            
+            # Sleep for a while before checking again
+            time.sleep(10)
+    
+    except Exception as e:
+        raise AirflowException(f"Error waiting for operation {operation_name} to complete: {str(e)}")
+
+def get_operation_status(operation_name):
+    """
+    Simulated function to retrieve the status of an operation.
+    Replace with actual logic to query the operation status from the respective service.
+
+    :param operation_name: The name of the operation.
+    :type operation_name: str
+    :return: A dictionary containing the status of the operation.
+    :rtype: dict
+    """
+    # Example of a dummy status; replace with actual logic to get real operation status
+    return {'status': 'SUCCEEDED'}
+You said:
+Please generate a Python function that does the following with only the code box and no example usage:
+
+Waits for the named operation to complete - checks status of the
+        asynchronous call.
+
+        :param operation_name: The name of the operation.
+        :type operation_name: str
+        :return: The response returned by the operation.
+        :rtype: dict
+        :exception: AirflowException in case error is returned. 
+ChatGPT said:
+from airflow.exceptions import AirflowException
+import time
+
+def wait_for_operation_to_complete(operation_name):
+    """
+    Waits for the named operation to complete - checks status of the asynchronous call.
+
+    :param operation_name: The name of the operation.
+    :type operation_name: str
+    :return: The response returned by the operation.
+    :rtype: dict
+    :exception: AirflowException in case error is returned.
+    """
+    try:
+        while True:
+            # Assuming `get_operation_status` is a function that retrieves the status of the operation
+            operation_status = get_operation_status(operation_name)
+
+            if operation_status['status'] == 'SUCCEEDED':
+                return operation_status
+            elif operation_status['status'] == 'FAILED':
+                raise AirflowException(f"Operation {operation_name} failed with status: {operation_status}")
+            
+            # Sleep for a while before checking again
+            time.sleep(10)
+    
+    except Exception as e:
+        raise AirflowException(f"Error while waiting for operation {operation_name} to complete: {str(e)}")
+
+def get_operation_status(operation_name):
+    """
+    Simulated function to retrieve the status of an operation.
+    Replace with actual logic to query the operation status from the respective service.
+
+    :param operation_name: The name of the operation.
+    :type operation_name: str
+    :return: A dictionary containing the status of the operation.
+    :rtype: dict
+    """
+    # Example of a dummy status; replace with actual logic to get real operation status
+    return {'status': 'SUCCEEDED'}
